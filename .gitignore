@@ -1,7 +1,5 @@
 node_modules/
 public/components
 .sass-cache
-'Tablas de Mariano'
-Tablas de Mariano/2010 09 01 Carpinteras GICM - version de prueba.xls
-Tablas de Mariano/2014 10 30 Clavijas GICM.xls
-Tablas de Mariano/2014 10 30 Conectores GICM.xls
+mongodb/
+Tablas-de-Mariano/

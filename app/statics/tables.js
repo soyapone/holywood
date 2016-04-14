@@ -322,85 +322,85 @@ var tabla = [
   }
 ];
 
-function find(ID) {
+exports.find = function(ID) {
     return _.find(tabla, function(o) { return o.ID == ID; });
 }
 
-function getFlexion(ID){
- var col = find(ID);
+exports.getFlexion = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.TraccionPerpendicular;
    }
 }
 
-function getTraccionParalela(ID){
- var col = find(ID);
+exports.getTraccionParalela = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.TraccionParalela;
    }
 }
 
-function getTraccionPerpendicular(ID){
- var col = find(ID);
+exports.getTraccionPerpendicular = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.TraccionPerpendicular;
    }
 }
 
-function getCompresionParalela(ID){
- var col = find(ID);
+exports.getCompresionParalela = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.CompresionParalela;
    }
 }
 
-function getCortante(ID){
- var col = find(ID);
+exports.getCortante = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.Cortante;
    }
 }
 
-function getModuloParaleloMedio(ID){
- var col = find(ID);
+exports.getModuloParaleloMedio = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.ModuloParaleloMedio;
    }
 }
 
-function getModuloParalelo5percentil(ID){
- var col = find(ID);
+exports.getModuloParalelo5percentil = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.ModuloParalelo5percentil;
    }
 }
 
-function getModuloPerpendicularMedio(ID){
- var col = find(ID);
+exports.getModuloPerpendicularMedio = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.ModuloPerpendicularMedio;
    }
 }
 
-function getModuloCortanteMedio(ID){
- var col = find(ID);
+exports.getModuloCortanteMedio = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.ModuloPerpendicularMedio;
    }
 }
 
-function getDensidadCaracteristica(ID){
- var col = find(ID);
+exports.getDensidadCaracteristica = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.ModuloPerpendicularMedio;
    }
 }
 
-function getDensidadMedia(ID){
- var col = find(ID);
+exports.getDensidadMedia = function (ID){
+ var col = this.find(ID);
    if (typeof col !== 'undefined'){
      return col.DensidadMedia;
    }
 }
 
-console.log(getTraccionPerpendicular("D70"));
+// console.log(getTraccionPerpendicular("D70"));
