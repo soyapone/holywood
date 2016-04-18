@@ -6,25 +6,57 @@
   <script type="text/javascript" src="../js/app.js"></script>
 
 
-<h1><%-title %></h1>
+  <h1><%-title %></h1>
 
-<h2>Variable 1:</h2>
-<h3><%-var1 %></h3>
+  <h2>Variable 1:</h2>
+  <h3><%-var1 %></h3>
 
-<h2>Variable 2:</h2>
-<h3><%-var2 %></h3>
+  <h2>Variable 2:</h2>
+  <h3><%-var2 %></h3>
 
-<h2>Resultado:</h2>
-<h3><%-res1 %></h3>
+  <h2>Resultado:</h2>
+  <h3><%-res1 %></h3>
 
 
-<div ng-controller="CalculoController as calculo">
-  <h1>{{calculo.product.name}} </h1>
-  <h2>${{calculo.product.price}} </h2>
-  <p> {{calculo.product.description}}</p>
+  <div ng-controller="InicializadorController as calculo">
+    <div ng-repeat="product in calculo.products">
+      <h1>{{product.name}} </h1>
+      <h2>{{product.price | currency }} </h2>
+      <p> {{product.description}}</p>
+      <button ng-show="calculo.product.canPurchase">
+        Comprar</button>
+      </div>
+    </div>
+<br>
+</hr>
+<br>
+    <form name="calculoForm" ng-controller="CalculoController as calculoCtrl"
+    ng-submint = "calculoForm.$valid && calculoCtrl.sendCalculo()" novalidate>
+    Tipo madera: <br>
+      <select ng-model = "calculoCtrl.calculo.tipo" required>
+        <option value="D16">D16</option>
+        <option value="D17">D17</option>
+        <option value="D18">D18</option>
+      </select>
+      <br>
+      Operando 1:<br>
+      <input type="number" min="0" max="65000" ng-model="calculoCtrl.calculo.operando1" name="operando1" placeholder="Operando 1" required><br>
+      Operando 2:<br>
+      <input type="number" min="0" max="65000" ng-model="calculoCtrl.calculo.operando2" name="operando2" placeholder="Operando 2" required>
+      <div> El formulario es: {{calculoForm.$valid}}</div>
+      <input type="submit" value="Enviar" ng-disabled = "!calculoForm.$valid" class="btn btn-primary btn-block"/>
+      <br>
+      </hr>
+      <br>
 
-</div>
+      <blockquote>
+        <b> Tipo: {{calculoCtrl.calculo.tipo}}</b><br>
+        <b> Operando 1: {{calculoCtrl.calculo.operando1}}</b><br>
+        <b> Operando 2: {{calculoCtrl.calculo.operando2}}</b><br>
 
-<% include footer %>
+      </blockquote>
+    </form>
 
-</body>
+    <% include footer %>
+
+  </body>
