@@ -30,8 +30,8 @@
 <br>
 </hr>
 <br>
-    <form name="calculoForm" ng-controller="CalculoController as calculoCtrl"
-    ng-submint = "calculoForm.$valid && calculoCtrl.sendCalculo()" novalidate>
+<div ng-controller="CalculoController as calculoCtrl">
+    <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculo()" novalidate>
     Tipo madera: <br>
       <select ng-model = "calculoCtrl.calculo.tipo" required>
         <option value="D16">D16</option>
@@ -48,15 +48,16 @@
       <br>
       </hr>
       <br>
-
       <blockquote>
-        <b> Tipo: {{calculoCtrl.calculo.tipo}}</b><br>
-        <b> Operando 1: {{calculoCtrl.calculo.operando1}}</b><br>
-        <b> Operando 2: {{calculoCtrl.calculo.operando2}}</b><br>
-
+        <p> Operando: {{calculoCtrl.calculo.tipo}}</p><br>
+        <p> Operando 1: {{calculoCtrl.calculo.operando1}}</p><br>
+        <p> Operando 2: {{calculoCtrl.calculo.operando2}}</p><br>
+        <hr>
+        <b> Resultado: {{calculoCtrl.calculo.resultado}}</b><br>
+        <b ng-model="calculoCtrl.calculo.resultado">
       </blockquote>
     </form>
-
+</div>
     <% include footer %>
 
   </body>
