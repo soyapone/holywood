@@ -5,10 +5,10 @@ body {
 a {
   color: #00B7FF; }
 
-.ng-invalid.ng-dirty{
-  border-color: #FA787E;
-}
+  .ng-invalid.ng-dirty{
+    border-color: #FA787E;
+  }
 
-.ng-valid.ng-dirty{
-  border-color: #78FA89;
-}
+  .ng-valid.ng-dirty{
+    border-color: #78FA89;
+  }
