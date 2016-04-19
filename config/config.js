@@ -6,28 +6,28 @@ var config = {
   development: {
     root: rootPath,
     app: {
-      name: 'hollywood'
+      name: 'holywood'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/hollywood-development'
+    db: 'mongodb://localhost/holywood-development'
   },
 
   test: {
     root: rootPath,
     app: {
-      name: 'hollywood'
+      name: 'holywood'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/hollywood-test'
+    db: 'mongodb://localhost/holywood-test'
   },
 
   production: {
     root: rootPath,
     app: {
-      name: 'hollywood'
+      name: 'holywood'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/hollywood-production'
+    db: 'mongodb://localhost/holywood-production'
   }
 };
 

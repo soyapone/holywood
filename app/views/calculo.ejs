@@ -40,9 +40,9 @@
       </select>
       <br>
       Operando 1:<br>
-      <input type="number" min="0" max="65000" ng-model="calculoCtrl.calculo.operando1" name="operando1" placeholder="Operando 1" required><br>
+      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculo.operando1" name="operando1" placeholder="Operando 1" required><br>
       Operando 2:<br>
-      <input type="number" min="0" max="65000" ng-model="calculoCtrl.calculo.operando2" name="operando2" placeholder="Operando 2" required>
+      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculo.operando2" name="operando2" placeholder="Operando 2" required>
       <div> El formulario es: {{calculoForm.$valid}}</div>
       <input type="submit" value="Enviar" ng-disabled = "!calculoForm.$valid" class="btn btn-primary btn-block"/>
       <br>
