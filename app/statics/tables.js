@@ -1,7 +1,7 @@
 // Load the full build.
 var _ = require('lodash');
 
-var propiedadesMadera = [
+const propiedadesMadera = [
   {
     "ID": "C14",
     "Flexion": 14,
@@ -322,7 +322,7 @@ var propiedadesMadera = [
   }
 ];
 
-var kmod = [
+const kmod = [
   {
     "Servicio": 1,
     "Permanente": 0.6,
@@ -349,6 +349,10 @@ var kmod = [
   }
 ]
 
+const ServicioTypes = ["P","L","M","C","I"];
+
+var MaderaTypes = [];
+
 exports.findServicio = function(servicio){
   return _.find(kmod , function (o) { return o.Servicio == servicio});
 }
@@ -370,6 +374,11 @@ exports.findServicioDuracion = function(servicio,duracion){
     return this.findServicioInstantanea(servicio);
   }
 }
+
+exports.findServicioTypes = function(servicio){
+  return ServicioTypes;
+}
+
 exports.findServicioPermanente = function(servicio){
   var fila = this.findServicio(servicio);
   if (typeof fila !== 'undefined'){
@@ -407,6 +416,19 @@ exports.findServicioInstantanea = function(servicio){
 
 exports.find = function(ID) {
   return _.find(propiedadesMadera, function(o) { return o.ID == ID; });
+}
+
+exports.findMaderaTypes =function(){
+  if (typeof MaderaTypes !== 'undefined' && MaderaTypes.length > 0){
+    return MaderaTypes;
+  } else {
+    propiedadesMadera.forEach(function(value){
+      MaderaTypes.push(value.ID);
+    });
+    // añadir maderas extra
+    MaderaTypes.push("GL24h");
+  }
+  return MaderaTypes;
 }
 
 exports.getFlexion = function (ID){
@@ -494,4 +516,4 @@ exports.isGL = function (ID){
   return (ID === "GL24h" || ID ==="GL28h" || ID ==="GL32h" || ID ==="GL36h" || ID === "GL24c" || ID ==="GL28c" || ID ==="GL32c" || ID ==="GL36c" )
 }
 
- // console.log(this.findServicioDuracion(1,"C"));
+// console.log(this.findServicioDuracion(1,"C"));

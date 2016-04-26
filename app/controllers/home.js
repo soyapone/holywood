@@ -1,9 +1,12 @@
 var express = require('express'),
-  router = express.Router(),
-  mongoose = require('mongoose'),
-  Article = mongoose.model('Article'),
-  xml = require('xml'),
-  compresionUniformePerpendicularFibre = require('../statics/compresionUniformePerpendicularFibre');
+router = express.Router(),
+mongoose = require('mongoose'),
+Article = mongoose.model('Article'),
+xml = require('xml'),
+compresionUniformePerpendicularFibre = require('../statics/compresionUniformePerpendicularFibre');
+tabla = require('../statics/tables');
+validationErrors = require('../statics/validationErrors');
+util = require('util');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -71,57 +74,92 @@ router.get('/XML/calculo2', function (req, res) {
 
 // Operaciones serias
 
-function compresionUniformePerpendicularFibreServicioDuracionGetIndex(req){
-  var Fd = Number(req.query.Fd)
-  var b = Number(req.query.b);
-  var l = Number(req.query.l);
-  var a1 = Number(req.query.a1);
-  var a2 = Number(req.query.a2);
-  var l1 = Number(req.query.l1);
-  var h = Number(req.query.h);
-  var durmiente = ((req.query.durmiente === "true")||(req.query.durmiente === "True"));
-  var tipoMadera = req.query.tipoMadera;
-  var servicio = Number(req.query.servicio);
-  var duracion = req.query.duracion;
-  var CompresionPerpendicular = Number(req.query.CompresionPerpendicular);
-  var gammaM = Number(req.query.gammaM);
+function compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res){
+  req.checkQuery('Fd', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('Fd', validationErrors.val_err_isInt()).isInt();
 
-  console.log("Fd: ", Fd);
-  console.log("b: ", b);
-  console.log("l: ", l);
-  console.log("a1: ", a1);
-  console.log("a2: ", a2);
-  console.log("l1: ", l1);
-  console.log("h: ", h);
-  console.log("Durmiente: " , durmiente);
-  console.log("tipoMadera: ", tipoMadera);
-  console.log("servicio: ", servicio);
-  console.log("duracion: ", duracion);
-  console.log("CompresionPerpendicular: ", CompresionPerpendicular);
-  console.log("gammaM: ", gammaM);
+  req.checkQuery('b', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('b', validationErrors.val_err_isInt()).isInt();
 
+  req.checkQuery('l', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('l', validationErrors.val_err_isInt()).isInt();
 
-  return compresionUniformePerpendicularFibre.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,servicio,duracion,CompresionPerpendicular,gammaM);
+  req.checkQuery('a1', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('a1', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('a2', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('a2', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('l1', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('l1', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('h', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('h', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('durmiente', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('durmiente', validationErrors.val_err_isIn(["false","true"])).isIn(["false","true"]);
+
+  req.checkQuery('tipoMadera', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('tipoMadera', validationErrors.val_err_isIn(tabla.findMaderaTypes())).isIn(tabla.findMaderaTypes());
+
+  req.checkQuery('servicio', validationErrors.val_err_notEmpty()).notEmpty();
+
+  req.checkQuery('duracion', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('duracion', validationErrors.val_err_isIn(tabla.findMaderaTypes())).isIn(tabla.findServicioTypes());
+
+  req.checkQuery('CompresionPerpendicular', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('CompresionPerpendicular', validationErrors.val_err_isFloat()).isFloat();
+
+  req.checkQuery('gammaM', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('gammaM', validationErrors.val_err_isFloat()).isFloat();
+
+  errors = req.validationErrors();
+  if (errors) {
+    res.status(400).send('There have been validation errors: ' + util.inspect(errors));
+    return;
+  } else {
+
+    var Fd = Number(req.query.Fd)
+    var b = Number(req.query.b);
+    var l = Number(req.query.l);
+    var a1 = Number(req.query.a1);
+    var a2 = Number(req.query.a2);
+    var l1 = Number(req.query.l1);
+    var h = Number(req.query.h);
+    var durmiente = ((req.query.durmiente === "true")||(req.query.durmiente === "True"));
+    var tipoMadera = req.query.tipoMadera;
+    var servicio = Number(req.query.servicio);
+    var duracion = req.query.duracion;
+    var CompresionPerpendicular = Number(req.query.CompresionPerpendicular);
+    var gammaM = Number(req.query.gammaM);
+
+    return compresionUniformePerpendicularFibre.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,servicio,duracion,CompresionPerpendicular,gammaM);
+  }
 }
 
 //Para cálculos XML http://localhost:3705/XML/compresionUniformePerpendicularFibreServicioDuracion?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&durmiente=false&tipoMadera=GL24h&servicio=1&duracion=C&CompresionPerpendicular=2.5&gammaM=1.25
 router.get('/XML/compresionUniformePerpendicularFibreServicioDuracion', function (req, res) {
-  var index = compresionUniformePerpendicularFibreServicioDuracionGetIndex(req);
 
-  var result = {  "index": index };
-  var send = '<?xml version="1.0" encoding="utf-8"?>'.concat("\n").concat(xml(result));
-  res.set('Content-Type', 'text/xml');
+  var head = '<?xml version="1.0" encoding="utf-8"?>'.concat("\n")
+  var index = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
 
-  res.send(send);
-  res.end();
+  if (index){
+    var result = {  "index" : index };
+    var msg = head.concat(xml(result));
+    res.set('Content-Type', 'text/xml');
+    res.send(msg);
+    res.end();
+  }
 });
-(14752, 90, 70, 0, 30, 1000, 300, false, "GL24h", 1, "C", 2.5, 1.25)
 
 //Para cálculos JSON http://localhost:3705/JSON/compresionUniformePerpendicularFibreServicioDuracion?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&durmiente=false&tipoMadera=GL24h&servicio=1&duracion=C&CompresionPerpendicular=2.5&gammaM=1.25
 router.get('/JSON/compresionUniformePerpendicularFibreServicioDuracion', function (req, res) {
-var index = compresionUniformePerpendicularFibreServicioDuracionGetIndex(req);
-var resultjson = {  "index": index };
+  var err;
+  var index = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
+  if (index){
+    var resultjson = {  "index": index };
+    res.json(resultjson);
+    res.end();
+  }
 
-  res.json(resultjson);
-  res.end();
 });
