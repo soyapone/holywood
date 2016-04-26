@@ -8,7 +8,7 @@ var config = {
     app: {
       name: 'holywood'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3705,
     db: 'mongodb://localhost/holywood-development'
   },
 
@@ -17,7 +17,7 @@ var config = {
     app: {
       name: 'holywood'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3705,
     db: 'mongodb://localhost/holywood-test'
   },
 
@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'holywood'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3705,
     db: 'mongodb://localhost/holywood-production'
   }
 };
