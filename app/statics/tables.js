@@ -1,7 +1,7 @@
 // Load the full build.
 var _ = require('lodash');
 
-var tabla = [
+var propiedadesMadera = [
   {
     "ID": "C14",
     "Flexion": 14,
@@ -18,7 +18,7 @@ var tabla = [
     "DensidadMedia": 350
 
   },
- {
+  {
     "ID": "C16",
     "Flexion": 16,
     "TraccionParalela": 10,
@@ -33,7 +33,7 @@ var tabla = [
     "DensidadCaracteristica": 310,
     "DensidadMedia": 370
   },
-   {
+  {
     "ID": "C18",
     "Flexion": 18,
     "TraccionParalela": 11,
@@ -65,7 +65,7 @@ var tabla = [
     "DensidadMedia": 390
 
   },
-   {
+  {
     "ID": "C22",
     "Flexion": 22,
     "TraccionParalela": 13,
@@ -81,7 +81,7 @@ var tabla = [
     "DensidadMedia": 410
 
   },
-   {
+  {
     "ID": "C24",
     "Flexion": 24,
     "TraccionParalela": 14,
@@ -113,7 +113,7 @@ var tabla = [
     "DensidadMedia": 450
 
   },
- {
+  {
     "ID": "C30",
     "Flexion": 30,
     "TraccionParalela": 18,
@@ -146,7 +146,7 @@ var tabla = [
     "DensidadMedia": 480
 
   },
- {
+  {
     "ID": "C40",
     "Flexion": 40,
     "TraccionParalela": 24,
@@ -162,7 +162,7 @@ var tabla = [
     "DensidadMedia": 500
 
   },
- {
+  {
     "ID": "C45",
     "Flexion": 45,
     "TraccionParalela": 27,
@@ -178,7 +178,7 @@ var tabla = [
     "DensidadMedia": 520
 
   },
- {
+  {
     "ID": "C50",
     "Flexion": 50,
     "TraccionParalela": 30,
@@ -194,7 +194,7 @@ var tabla = [
     "DensidadMedia": 550
 
   },
- {
+  {
     "ID": "D18",
     "Flexion": 18,
     "TraccionParalela": 11,
@@ -241,7 +241,7 @@ var tabla = [
     "DensidadMedia": 640
 
   },
-   {
+  {
     "ID": "D35",
     "Flexion": 35,
     "TraccionParalela": 21,
@@ -257,7 +257,7 @@ var tabla = [
     "DensidadMedia": 650
 
   },
- {
+  {
     "ID": "D40",
     "Flexion": 40,
     "TraccionParalela": 24,
@@ -288,7 +288,7 @@ var tabla = [
     "DensidadCaracteristica": 620,
     "DensidadMedia": 750
   },
- {
+  {
     "ID": "D60",
     "Flexion": 60,
     "TraccionParalela": 36,
@@ -304,7 +304,7 @@ var tabla = [
     "DensidadMedia": 840
 
   },
- {
+  {
     "ID": "D70",
     "Flexion": 70,
     "TraccionParalela": 42,
@@ -322,85 +322,176 @@ var tabla = [
   }
 ];
 
+var kmod = [
+  {
+    "Servicio": 1,
+    "Permanente": 0.6,
+    "Larga": 0.7,
+    "Media": 0.8,
+    "Corta": 0.9,
+    "Instantanea": 1.1
+  },
+  {
+    "Servicio": 2,
+    "Permanente": 0.6,
+    "Larga": 0.7,
+    "Media": 0.8,
+    "Corta": 0.9,
+    "Instantanea": 1.1
+  },
+  {
+    "Servicio": 3,
+    "Permanente": 0.5,
+    "Larga": 0.55,
+    "Media": 0.65,
+    "Corta": 0.7,
+    "Instantanea": 0.9
+  }
+]
+
+exports.findServicio = function(servicio){
+  return _.find(kmod , function (o) { return o.Servicio == servicio});
+}
+
+exports.findServicioDuracion = function(servicio,duracion){
+  if (duracion === "P"){
+    return this.findServicioPermanente(servicio);
+  }
+  if (duracion === "L"){
+    return this.findServicioLarga(servicio);
+  }
+  if (duracion === "M"){
+    return this.findServicioMedia(servicio);
+  }
+  if (duracion === "C"){
+    return this.findServicioCorta(servicio);
+  }
+  if (duracion === "I"){
+    return this.findServicioInstantanea(servicio);
+  }
+}
+exports.findServicioPermanente = function(servicio){
+  var fila = this.findServicio(servicio);
+  if (typeof fila !== 'undefined'){
+    return fila.Permanente;
+  }
+}
+
+exports.findServicioLarga = function(servicio){
+  var fila = this.findServicio(servicio);
+  if (typeof fila !== 'undefined'){
+    return fila.Larga;
+  }
+}
+
+exports.findServicioMedia = function(servicio){
+  var fila = this.findServicio(servicio);
+  if (typeof fila !== 'undefined'){
+    return fila.Media;
+  }
+}
+
+exports.findServicioCorta = function(servicio){
+  var fila = this.findServicio(servicio);
+  if (typeof fila !== 'undefined'){
+    return fila.Corta;
+  }
+}
+
+exports.findServicioInstantanea = function(servicio){
+  var fila = this.findServicio(servicio);
+  if (typeof fila !== 'undefined'){
+    return fila.Instantanea;
+  }
+}
+
 exports.find = function(ID) {
-    return _.find(tabla, function(o) { return o.ID == ID; });
+  return _.find(propiedadesMadera, function(o) { return o.ID == ID; });
 }
 
 exports.getFlexion = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.TraccionPerpendicular;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.TraccionPerpendicular;
+  }
 }
 
 exports.getTraccionParalela = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.TraccionParalela;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.TraccionParalela;
+  }
 }
 
 exports.getTraccionPerpendicular = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.TraccionPerpendicular;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.TraccionPerpendicular;
+  }
 }
 
 exports.getCompresionParalela = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.CompresionParalela;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.CompresionParalela;
+  }
 }
 
 exports.getCortante = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.Cortante;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.Cortante;
+  }
 }
 
 exports.getModuloParaleloMedio = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.ModuloParaleloMedio;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.ModuloParaleloMedio;
+  }
 }
 
 exports.getModuloParalelo5percentil = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.ModuloParalelo5percentil;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.ModuloParalelo5percentil;
+  }
 }
 
 exports.getModuloPerpendicularMedio = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.ModuloPerpendicularMedio;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.ModuloPerpendicularMedio;
+  }
 }
 
 exports.getModuloCortanteMedio = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.ModuloPerpendicularMedio;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.ModuloPerpendicularMedio;
+  }
 }
 
 exports.getDensidadCaracteristica = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.ModuloPerpendicularMedio;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.ModuloPerpendicularMedio;
+  }
 }
 
 exports.getDensidadMedia = function (ID){
- var col = this.find(ID);
-   if (typeof col !== 'undefined'){
-     return col.DensidadMedia;
-   }
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.DensidadMedia;
+  }
 }
 
-// console.log(getTraccionPerpendicular("D70"));
+exports.isConiferous = function (ID){
+  return (ID === "C14" || ID ==="C16" || ID ==="C18" || ID ==="C22" || ID ==="C24" || ID ==="C27" || ID ==="C30" || ID ==="C35" || ID ==="C40" || ID ==="C45" || ID ==="C50")
+}
+
+exports.isGL = function (ID){
+  return (ID === "GL24h" || ID ==="GL28h" || ID ==="GL32h" || ID ==="GL36h" || ID === "GL24c" || ID ==="GL28c" || ID ==="GL32c" || ID ==="GL36c" )
+}
+
+ // console.log(this.findServicioDuracion(1,"C"));
