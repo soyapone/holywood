@@ -3,3 +3,4 @@ public/components
 .sass-cache
 mongodb/
 Tablas-de-Mariano/
+config/auth.js
