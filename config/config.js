@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'holywood'
     },
-    port: process.env.PORT || 3705,
+    port: process.env.PORT || 80,
     db: 'mongodb://localhost/holywood-production'
   }
 };

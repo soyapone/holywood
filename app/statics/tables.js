@@ -349,7 +349,7 @@ const kmod = [
   }
 ]
 
-const ServicioTypes = ["P","L","M","C","I"];
+const ServicioTypes = ["P","L","M","S","I"];
 
 var MaderaTypes = [];
 
@@ -367,7 +367,7 @@ exports.findServicioDuracion = function(servicio,duracion){
   if (duracion === "M"){
     return this.findServicioMedia(servicio);
   }
-  if (duracion === "C"){
+  if (duracion === "S"){
     return this.findServicioCorta(servicio);
   }
   if (duracion === "I"){
@@ -442,6 +442,14 @@ exports.getTraccionParalela = function (ID){
   var col = this.find(ID);
   if (typeof col !== 'undefined'){
     return col.TraccionParalela;
+  }
+}
+
+
+exports.getCompresionPerpendicular = function (ID){
+  var col = this.find(ID);
+  if (typeof col !== 'undefined'){
+    return col.TraccionPerpendicular;
   }
 }
 

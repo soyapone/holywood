@@ -2,7 +2,7 @@ var express = require('express'),
 router = express.Router(),
 mongoose = require('mongoose'),
 Article = mongoose.model('Article'),
-xml = require('xml'),
+xmlify = require('xmlify'),
 compresionUniformePerpendicularFibre = require('../statics/compresionUniformePerpendicularFibre'),
 tabla = require('../statics/tables'),
 validationErrors = require('../statics/validationErrors'),
@@ -28,18 +28,18 @@ module.exports = function (app,passport) {
   });
 
 
-//*********
-//Rutas para el perfil
-//*******
+  //*********
+  //Rutas para el perfil
+  //*******
 
-app.get('/profile', isLoggedIn, function(req,res){
-  res.render('profile.ejs', {user:req.user, title:"Profile page."});
-});
+  app.get('/profile', isLoggedIn, function(req,res){
+    res.render('profile.ejs', {user:req.user, title:"Profile page."});
+  });
 
-app.get('/logout', function(req,res){
-  req.logout();
-  res.redirect('/');
-});
+  app.get('/logout', function(req,res){
+    req.logout();
+    res.redirect('/');
+  });
 
   //****************************
   // Rutas para la autentificación
@@ -49,161 +49,179 @@ app.get('/logout', function(req,res){
   // Facebook will redirect the user back to the application at
   //     /auth/facebook/callback
   app.get('/auth/facebook',
-    passport.authenticate('facebook', { scope: [ 'email' ] })
+  passport.authenticate('facebook', { scope: [ 'email' ] })
 );
 
-  // Facebook will redirect the user to this URL after approval.  Finish the
-  // authentication process by attempting to obtain an access token.  If
-  // access was granted, the user will be logged in.  Otherwise,
-  // authentication has failed.
-  app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { successRedirect: '/profile',
-                                        failureRedirect: '/' }));
-
-  //****************************
-  // Rutas para los cálculos
-  //****************************
+// Facebook will redirect the user to this URL after approval.  Finish the
+// authentication process by attempting to obtain an access token.  If
+// access was granted, the user will be logged in.  Otherwise,
+// authentication has failed.
+app.get('/auth/facebook/callback',
+passport.authenticate('facebook', { successRedirect: '/profile',
+failureRedirect: '/' }));
 
 
-  //Para cálculos del estilo http://localhost:3705/GUI/calculo/12/33f3
-  app.get('/GUI/calculo/:var1/:var2', function (req, res) {
-    var res1 = Number(req.params.var1)+Number(req.params.var2);
-    res.render('calculo', {
-      title: 'calculo',
-      var1: req.params.var1,
-      var2: req.params.var2,
-      res1: res1
-    });
-    res.end();
+// Rutas de google
+app.get('/auth/google',
+passport.authenticate('google', { scope: ['profile', 'email' ] })
+);
+
+// Ruta de google (callback)
+app.get('/auth/google/callback',
+passport.authenticate('google', { successRedirect: '/profile',
+failureRedirect: '/' }));
+
+
+
+
+//****************************
+// Rutas para los cálculos
+//****************************
+
+
+//Para cálculos del estilo http://localhost:3705/GUI/calculo/12/33f3
+app.get('/GUI/calculo/:var1/:var2', function (req, res) {
+  var res1 = Number(req.params.var1)+Number(req.params.var2);
+  res.render('calculo', {
+    title: 'calculo',
+    var1: req.params.var1,
+    var2: req.params.var2,
+    res1: res1
   });
+  res.end();
+});
 
-  //Para cálculos del estilo http://localhost:3705/GUI/calculo2?var1=3&var2=5
-  app.get('/GUI/calculo2', function (req, res) {
-    var res1 = Number(req.query.var1)+Number(req.query.var2);
-    res.render('calculo', {
-      title: 'calculo2',
-      var1: req.query.var1,
-      var2: req.query.var2,
-      res1: res1
-    });
-    res.end();
+//Para cálculos del estilo http://localhost:3705/GUI/calculo2?var1=3&var2=5
+app.get('/GUI/calculo2', function (req, res) {
+  var res1 = Number(req.query.var1)+Number(req.query.var2);
+  res.render('calculo', {
+    title: 'calculo2',
+    var1: req.query.var1,
+    var2: req.query.var2,
+    res1: res1
   });
+  res.end();
+});
 
-  //Para cálculos JSON http://localhost:3705/JSON/calculo2?var1=3&var2=5
-  app.get('/JSON/calculo2', function (req, res) {
-    var var1 = Number(req.query.var1)
-    var var2 = Number(req.query.var2);
-    var res1 = var1+var2;
+//Para cálculos JSON http://localhost:3705/JSON/calculo2?var1=3&var2=5
+app.get('/JSON/calculo2', function (req, res) {
+  var var1 = Number(req.query.var1)
+  var var2 = Number(req.query.var2);
+  var res1 = var1+var2;
 
-    var result = {  "result": res1 };
+  var result = {  "result": res1 };
+
+  res.json(result);
+  res.end();
+});
+
+//Para cálculos XML http://localhost:3705/XML/calculo2?var1=3&var2=5
+app.get('/XML/calculo2', function (req, res) {
+  var var1 = Number(req.query.var1)
+  var var2 = Number(req.query.var2);
+  var res1 = var1+var2;
+  var result = {  "result": res1 };
+  var send = '<?xml version="1.0" encoding="utf-8"?>'.concat("\n").concat(xml(result));
+  res.set('Content-Type', 'text/xml');
+
+  res.send(send);
+  res.end();
+});
+
+
+// Operaciones serias
+
+function compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res){
+  req.checkQuery('Fd', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('Fd', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('b', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('b', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('l', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('l', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('a1', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('a1', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('a2', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('a2', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('l1', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('l1', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('h', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('h', validationErrors.val_err_isInt()).isInt();
+
+  req.checkQuery('Continuous', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('Continuous', validationErrors.val_err_isIn(["false","true"])).isIn(["false","true"]);
+
+  req.checkQuery('tipoMadera', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('tipoMadera', validationErrors.val_err_isIn(tabla.findMaderaTypes())).isIn(tabla.findMaderaTypes());
+
+  req.checkQuery('service', validationErrors.val_err_notEmpty()).notEmpty();
+
+  req.checkQuery('LoadDuration', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('LoadDuration', validationErrors.val_err_isIn(tabla.findServicioTypes())).isIn(tabla.findServicioTypes());
+
+  req.checkQuery('gammaM', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('gammaM', validationErrors.val_err_isFloat()).isFloat();
+
+  errors = req.validationErrors();
+  if (errors) {
+    res.status(400).send('There have been validation errors: ' + util.inspect(errors));
+    return;
+  } else {
+
+    var Fd = Number(req.query.Fd)
+    var b = Number(req.query.b);
+    var l = Number(req.query.l);
+    var a1 = Number(req.query.a1);
+    var a2 = Number(req.query.a2);
+    var l1 = Number(req.query.l1);
+    var h = Number(req.query.h);
+    var Continuous = ((req.query.Continuous === "true")||(req.query.Continuous === "True"));
+    var tipoMadera = req.query.tipoMadera;
+    var service = Number(req.query.service);
+    var LoadDuration = req.query.LoadDuration;
+    var gammaM = Number(req.query.gammaM);
+
+    var rawValues = compresionUniformePerpendicularFibre.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,Continuous,tipoMadera,service,LoadDuration,gammaM);
+    var data = {
+      'sigmaC90d' : rawValues.sigmaC90d.toFixed(2),
+      'fc90d' : rawValues.fc90d.toFixed(2),
+      'areaEf' : rawValues.areaEf.toFixed(0),
+      'index': rawValues.index.toFixed(2)
+    };
+    return data;
+    //console.log(compresionUniformePerpendicularFibre);
+    //return null;
+  }
+}
+
+//Para cálculos XML
+//http://localhost:3705/XML/CompressionPerpendicularToTheGrain?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&tipoMadera=GL24h&service=1&LoadDuration=S&gammaM=1.25
+app.get('/XML/CompressionPerpendicularToTheGrain', function (req, res) {
+
+ var result = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
+
+  if (result){
+
+    var msg = xmlify(result, { root: 'results' });
+    res.set('Content-Type', 'text/xml');
+    res.send(msg);
+    res.end();
+  }
+});
+
+//Para cálculos JSON http://localhost:3705/JSON/compresionUniformePerpendicularFibreServicioDuracion?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&tipoMadera=GL24h&service=1&LoadDuration=C&gammaM=1.25
+app.get('/JSON/CompressionPerpendicularToTheGrainServiceDuration', function (req, res) {
+  var result = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
+  if (result){
 
     res.json(result);
     res.end();
-  });
-
-  //Para cálculos XML http://localhost:3705/XML/calculo2?var1=3&var2=5
-  app.get('/XML/calculo2', function (req, res) {
-    var var1 = Number(req.query.var1)
-    var var2 = Number(req.query.var2);
-    var res1 = var1+var2;
-    var result = {  "result": res1 };
-    var send = '<?xml version="1.0" encoding="utf-8"?>'.concat("\n").concat(xml(result));
-    res.set('Content-Type', 'text/xml');
-
-    res.send(send);
-    res.end();
-  });
-
-
-  // Operaciones serias
-
-  function compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res){
-    req.checkQuery('Fd', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('Fd', validationErrors.val_err_isInt()).isInt();
-
-    req.checkQuery('b', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('b', validationErrors.val_err_isInt()).isInt();
-
-    req.checkQuery('l', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('l', validationErrors.val_err_isInt()).isInt();
-
-    req.checkQuery('a1', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('a1', validationErrors.val_err_isInt()).isInt();
-
-    req.checkQuery('a2', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('a2', validationErrors.val_err_isInt()).isInt();
-
-    req.checkQuery('l1', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('l1', validationErrors.val_err_isInt()).isInt();
-
-    req.checkQuery('h', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('h', validationErrors.val_err_isInt()).isInt();
-
-    req.checkQuery('durmiente', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('durmiente', validationErrors.val_err_isIn(["false","true"])).isIn(["false","true"]);
-
-    req.checkQuery('tipoMadera', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('tipoMadera', validationErrors.val_err_isIn(tabla.findMaderaTypes())).isIn(tabla.findMaderaTypes());
-
-    req.checkQuery('servicio', validationErrors.val_err_notEmpty()).notEmpty();
-
-    req.checkQuery('duracion', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('duracion', validationErrors.val_err_isIn(tabla.findMaderaTypes())).isIn(tabla.findServicioTypes());
-
-    req.checkQuery('CompresionPerpendicular', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('CompresionPerpendicular', validationErrors.val_err_isFloat()).isFloat();
-
-    req.checkQuery('gammaM', validationErrors.val_err_notEmpty()).notEmpty();
-    req.checkQuery('gammaM', validationErrors.val_err_isFloat()).isFloat();
-
-    errors = req.validationErrors();
-    if (errors) {
-      res.status(400).send('There have been validation errors: ' + util.inspect(errors));
-      return;
-    } else {
-
-      var Fd = Number(req.query.Fd)
-      var b = Number(req.query.b);
-      var l = Number(req.query.l);
-      var a1 = Number(req.query.a1);
-      var a2 = Number(req.query.a2);
-      var l1 = Number(req.query.l1);
-      var h = Number(req.query.h);
-      var durmiente = ((req.query.durmiente === "true")||(req.query.durmiente === "True"));
-      var tipoMadera = req.query.tipoMadera;
-      var servicio = Number(req.query.servicio);
-      var duracion = req.query.duracion;
-      var CompresionPerpendicular = Number(req.query.CompresionPerpendicular);
-      var gammaM = Number(req.query.gammaM);
-
-      return compresionUniformePerpendicularFibre.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,servicio,duracion,CompresionPerpendicular,gammaM);
-    }
   }
 
-  //Para cálculos XML http://localhost:3705/XML/compresionUniformePerpendicularFibreServicioDuracion?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&durmiente=false&tipoMadera=GL24h&servicio=1&duracion=C&CompresionPerpendicular=2.5&gammaM=1.25
-  app.get('/XML/compresionUniformePerpendicularFibreServicioDuracion', function (req, res) {
-
-    var head = '<?xml version="1.0" encoding="utf-8"?>'.concat("\n")
-    var index = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
-
-    if (index){
-      var result = {  "index" : index };
-      var msg = head.concat(xml(result));
-      res.set('Content-Type', 'text/xml');
-      res.send(msg);
-      res.end();
-    }
-  });
-
-  //Para cálculos JSON http://localhost:3705/JSON/compresionUniformePerpendicularFibreServicioDuracion?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&durmiente=false&tipoMadera=GL24h&servicio=1&duracion=C&CompresionPerpendicular=2.5&gammaM=1.25
-  app.get('/JSON/compresionUniformePerpendicularFibreServicioDuracion', function (req, res) {
-    var err;
-    var index = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
-    if (index){
-      var resultjson = {  "index": index };
-      res.json(resultjson);
-      res.end();
-    }
-
-  });
+});
 };
