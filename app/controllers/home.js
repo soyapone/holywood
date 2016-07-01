@@ -3,7 +3,7 @@ router = express.Router(),
 mongoose = require('mongoose'),
 Article = mongoose.model('Article'),
 xmlify = require('xmlify'),
-compresionUniformePerpendicularFibre = require('../statics/compresionUniformePerpendicularFibre'),
+CompressionPerpendicularToTheGrain = require('../statics/CompressionPerpendicularToTheGrain'),
 tabla = require('../statics/tables'),
 validationErrors = require('../statics/validationErrors'),
 util = require('util')
@@ -131,7 +131,7 @@ app.get('/XML/calculo2', function (req, res) {
 
 // Operaciones serias
 
-function compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res){
+function CompressionPerpendicularToTheGrainGetValue(req,res){
   req.checkQuery('Fd', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('Fd', validationErrors.val_err_isInt()).isInt();
 
@@ -156,8 +156,8 @@ function compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res){
   req.checkQuery('Continuous', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('Continuous', validationErrors.val_err_isIn(["false","true"])).isIn(["false","true"]);
 
-  req.checkQuery('tipoMadera', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('tipoMadera', validationErrors.val_err_isIn(tabla.findMaderaTypes())).isIn(tabla.findMaderaTypes());
+  req.checkQuery('s', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('s', validationErrors.val_err_isIn(tabla.findMaderaTypes())).isIn(tabla.findMaderaTypes());
 
   req.checkQuery('service', validationErrors.val_err_notEmpty()).notEmpty();
 
@@ -181,12 +181,12 @@ function compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res){
     var l1 = Number(req.query.l1);
     var h = Number(req.query.h);
     var Continuous = ((req.query.Continuous === "true")||(req.query.Continuous === "True"));
-    var tipoMadera = req.query.tipoMadera;
+    var s = req.query.s;
     var service = Number(req.query.service);
     var LoadDuration = req.query.LoadDuration;
     var gammaM = Number(req.query.gammaM);
 
-    var rawValues = compresionUniformePerpendicularFibre.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,Continuous,tipoMadera,service,LoadDuration,gammaM);
+    var rawValues = CompressionPerpendicularToTheGrain.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
     var data = {
       'sigmaC90d' : rawValues.sigmaC90d.toFixed(2),
       'fc90d' : rawValues.fc90d.toFixed(2),
@@ -194,16 +194,15 @@ function compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res){
       'index': rawValues.index.toFixed(2)
     };
     return data;
-    //console.log(compresionUniformePerpendicularFibre);
-    //return null;
+
   }
 }
 
 //Para cálculos XML
-//http://localhost:3705/XML/CompressionPerpendicularToTheGrain?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&tipoMadera=GL24h&service=1&LoadDuration=S&gammaM=1.25
+//http://localhost:3705/XML/CompressionPerpendicularToTheGrain?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25
 app.get('/XML/CompressionPerpendicularToTheGrain', function (req, res) {
 
- var result = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
+ var result = CompressionPerpendicularToTheGrainGetValue(req,res);
 
   if (result){
 
@@ -214,13 +213,12 @@ app.get('/XML/CompressionPerpendicularToTheGrain', function (req, res) {
   }
 });
 
-//Para cálculos JSON http://localhost:3705/JSON/compresionUniformePerpendicularFibreServicioDuracion?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&tipoMadera=GL24h&service=1&LoadDuration=C&gammaM=1.25
+//Para cálculos JSON
+//http://localhost:3705/JSON/CompressionPerpendicularToTheGrain?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25
 app.get('/JSON/CompressionPerpendicularToTheGrainServiceDuration', function (req, res) {
-  var result = compresionUniformePerpendicularFibreServicioDuracionGetValue(req,res);
+  var result = CompressionPerpendicularToTheGrainGetValue(req,res);
   if (result){
-
     res.json(result);
-    res.end();
   }
 
 });
