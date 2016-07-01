@@ -20,9 +20,8 @@ module.exports = function (app,passport) {
   app.get('/', function (req, res, next) {
     Article.find(function (err, articles) {
       if (err) return next(err);
-      res.render('index', {
-        title: 'Generator-Express MVC',
-        articles: articles
+      res.render('indexTest', {
+        title: 'WOODCALC - specialists in wood joints calculations [BETA]'
       });
     });
   });
@@ -215,7 +214,7 @@ app.get('/XML/CompressionPerpendicularToTheGrain', function (req, res) {
 
 //Para cálculos JSON
 //http://localhost:3705/JSON/CompressionPerpendicularToTheGrain?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25
-app.get('/JSON/CompressionPerpendicularToTheGrainServiceDuration', function (req, res) {
+app.get('/JSON/CompressionPerpendicularToTheGrain', function (req, res) {
   var result = CompressionPerpendicularToTheGrainGetValue(req,res);
   if (result){
     res.json(result);
