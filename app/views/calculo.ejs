@@ -1,6 +1,9 @@
-<% include header %>
+<!doctype html>
+<html lang="en" ng-app="myApp">
 
-<body >
+<% include head %>
+
+<body>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
   <script type="text/javascript" src="../js/app.js"></script>
@@ -18,12 +21,12 @@
   <h3><%-res1 %></h3>
 
 
-  <div ng-controller="InicializadorController as calculo">
-    <div ng-repeat="product in calculo.products">
+  <div ng-controller="InicializadorController as calculation">
+    <div ng-repeat="product in calculation.products">
       <h1>{{product.name}} </h1>
       <h2>{{product.price | currency }} </h2>
       <p> {{product.description}}</p>
-      <button ng-show="calculo.product.canPurchase">
+      <button ng-show="calculation.product.canPurchase">
         Comprar</button>
       </div>
     </div>
@@ -33,31 +36,32 @@
 <div ng-controller="CalculoController as calculoCtrl">
     <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculo()" novalidate>
     Tipo madera: <br>
-      <select ng-model = "calculoCtrl.calculo.tipo" required>
+      <select ng-model = "calculoCtrl.calculation.tipo" required>
         <option value="D16">D16</option>
         <option value="D17">D17</option>
         <option value="D18">D18</option>
       </select>
       <br>
       Operando 1:<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculo.operando1" name="operando1" placeholder="Operando 1" required><br>
+      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.operando1" name="operando1" placeholder="Operando 1" required><br>
       Operando 2:<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculo.operando2" name="operando2" placeholder="Operando 2" required>
+      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.operando2" name="operando2" placeholder="Operando 2" required>
       <div> El formulario es: {{calculoForm.$valid}}</div>
       <input type="submit" value="Enviar" ng-disabled = "!calculoForm.$valid" class="btn btn-primary btn-block"/>
       <br>
       </hr>
       <br>
       <blockquote>
-        <p> Operando: {{calculoCtrl.calculo.tipo}}</p><br>
-        <p> Operando 1: {{calculoCtrl.calculo.operando1}}</p><br>
-        <p> Operando 2: {{calculoCtrl.calculo.operando2}}</p><br>
+        <p> Operando: {{calculoCtrl.calculation.tipo}}</p><br>
+        <p> Operando 1: {{calculoCtrl.calculation.operando1}}</p><br>
+        <p> Operando 2: {{calculoCtrl.calculation.operando2}}</p><br>
         <hr>
-        <b> Resultado: {{calculoCtrl.calculo.resultado}}</b><br>
-        <b ng-model="calculoCtrl.calculo.resultado">
+        <b> Resultado: {{calculoCtrl.calculation.resultado}}</b><br>
+        <b ng-model="calculoCtrl.calculation.resultado">
       </blockquote>
     </form>
 </div>
     <% include footer %>
 
-  </body>
+</body>
+</xml>

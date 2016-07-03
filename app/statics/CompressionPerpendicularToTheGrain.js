@@ -7,7 +7,7 @@ var _ = require ('lodash');
 
 exports.compresion90ServicioDuracion = function(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,servicio,duracion,gammaM){
   var CompresionPerpendicular = tabla.getfc90k(tipoMadera);
-  var kmod = tabla.findServicioDuracion(servicio,duracion);
+  var kmod = tabla.findServiceDuracion(servicio,duracion);
   return this.compresion90Kmod(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,kmod,CompresionPerpendicular,gammaM);
 }
 

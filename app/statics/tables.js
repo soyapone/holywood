@@ -644,66 +644,66 @@ var kmod = [
 ]
 
 
-const ServicioTypes = ["P","L","M","S","I"];
+const ServiceTypes = ["P","L","M","S","I"];
 
 var MaderaTypes = [];
 
-exports.findServicio = function(servicio){
+exports.findService = function(servicio){
   return _.find(kmod , function (o) { return o.Servicio == servicio});
 }
 
-exports.findServicioDuracion = function(servicio,duracion){
+exports.findServiceDuracion = function(servicio,duracion){
   if (duracion === "P"){
-    return this.findServicioPermanente(servicio);
+    return this.findServicePermanente(servicio);
   }
   if (duracion === "L"){
-    return this.findServicioLarga(servicio);
+    return this.findServiceLarga(servicio);
   }
   if (duracion === "M"){
-    return this.findServicioMedia(servicio);
+    return this.findServiceMedia(servicio);
   }
   if (duracion === "S"){
-    return this.findServicioCorta(servicio);
+    return this.findServiceCorta(servicio);
   }
   if (duracion === "I"){
-    return this.findServicioInstantanea(servicio);
+    return this.findServiceInstantanea(servicio);
   }
 }
 
-exports.findServicioTypes = function(servicio){
-  return ServicioTypes;
+exports.findServiceTypes = function(servicio){
+  return ServiceTypes;
 }
 
-exports.findServicioPermanente = function(servicio){
-  var fila = this.findServicio(servicio);
+exports.findServicePermanente = function(servicio){
+  var fila = this.findService(servicio);
   if (typeof fila !== 'undefined'){
     return fila.Permanente;
   }
 }
 
-exports.findServicioLarga = function(servicio){
-  var fila = this.findServicio(servicio);
+exports.findServiceLarga = function(servicio){
+  var fila = this.findService(servicio);
   if (typeof fila !== 'undefined'){
     return fila.Larga;
   }
 }
 
-exports.findServicioMedia = function(servicio){
-  var fila = this.findServicio(servicio);
+exports.findServiceMedia = function(servicio){
+  var fila = this.findService(servicio);
   if (typeof fila !== 'undefined'){
     return fila.Media;
   }
 }
 
-exports.findServicioCorta = function(servicio){
-  var fila = this.findServicio(servicio);
+exports.findServiceCorta = function(servicio){
+  var fila = this.findService(servicio);
   if (typeof fila !== 'undefined'){
     return fila.Corta;
   }
 }
 
-exports.findServicioInstantanea = function(servicio){
-  var fila = this.findServicio(servicio);
+exports.findServiceInstantanea = function(servicio){
+  var fila = this.findService(servicio);
   if (typeof fila !== 'undefined'){
     return fila.Instantanea;
   }
@@ -823,4 +823,4 @@ exports.isHardwood = function (ID){
 }
 
 
-// console.log(this.findServicioDuracion(1,"C"));
+// console.log(this.findServiceDuracion(1,"C"));
