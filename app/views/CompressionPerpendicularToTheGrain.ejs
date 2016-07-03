@@ -7,71 +7,143 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
   <script type="text/javascript" src="../js/CompressionPerpendicularToTheGrain.js"></script>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <!-- <h1>woodcalc</h1> -->
+    <img src="/img/woodcalc.png" alt="woodcalc" width="30%">
+      <p>Specialists in wood joints calculations</p>
+      <!-- <form class="form-inline">
+        <input type="email" class="form-control" size="50" placeholder="Email Address" required>
+        <button type="button" class="btn btn-danger">Subscribe</button>
+      </form> -->
 
-<div ng-controller="CalculoController as calculoCtrl">
-    <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
-    Woodtype: <br>
-      <select selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required>
-        <% for(var i=0; i<woodtypes.length; i++) { %>
-          <option value="<%= woodtypes[i] %>"><%= woodtypes[i] %></option>
-        <% } %>
-      </select>
-      <br>
-      Fd<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required><br>
-      b<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.b" name="b" placeholder="b" required><br>
-      l<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l" name="l" placeholder="l" required><br>
-      a1<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a1" name="a1" placeholder="a1" required><br>
-      a2<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a2" name="a2" placeholder="a2" required><br>
-      l1<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l1" name="l1" placeholder="l1" required><br>
-      h<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required><br>
-      Continous<br>
-      <select selected="selected" ng-model = "calculoCtrl.calculation.Continuous" required>
-        <option value="true">true</option>
-        <option value="true">false</option>
-      </select>
-      <br>
-      Service<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.service" name="service" placeholder="service" required><br>
-      LoadDuration<br>
-      <select selected="selected" ng-model = "calculoCtrl.calculation.LoadDuration" required>
-        <% for(var i=0; i<services.length; i++) { %>
-          <option value="<%= services[i] %>"><%= services[i] %></option>
-        <% } %>
-      </select>
-      <br>
-      gammaM<br>
-      <input type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.gammaM" name="gammaM" placeholder="gammaM" step="any" required><br>
-      <br>
-      <div> El formulario es: {{calculoForm.$valid}}</div>
-      <input type="submit" value="Enviar" ng-disabled = "!calculoForm.$valid" class="btn btn-primary btn-block"/>
-      <br>
-</form>
-      </hr>
+      <!-- <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"> </span> Facebook</a>
+      <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"> </span> Google</a> -->
+    </div>
 
-      <br>
-      <p>
-        sigmaC90d: <input ng-model="sigmaC90d" readonly><br>
-        fc90d: <input ng-model="fc90d" readonly><br>
-        areaEf: <input ng-model="areaEf" readonly><br>
-        index: <input ng-model="index" readonly><br>
-      </p>
-      <!-- <blockquote>
-        <p> sigmaC90d: {{calculoCtrl.calculation.result.sigmaC90d}}</p><br>
-        <p> fc90d: {{calculoCtrl.calculation.result.fc90d}}</p><br>
-        <p> areaEf: {{calculoCtrl.calculation.result.areaEf}}</p><br>
-        <p> index: {{calculoCtrl.calculation.result.index}}</p><br>
-        <b ng-model="calculoCtrl.calculation.result.index">
-      </blockquote> -->
+    <div ng-controller="CalculoController as calculoCtrl">
+      <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
+        <div class="row">
+          <!-- sección para la foto -->
+          <div class="col-xs-6">
 
-</div>
-    <% include footer %>
+            <img src="/img/CompressionPerpendicularToTheGrain.jpg" class="img-responsive" alt="Compression Perpendicular to the Grain">
 
-</body>
-</xml>
+          </div>
+          <!-- sección para los parametros -->
+          <div class="col-xs-6">
+            <div class="row">
+              <div class="col-xs-4">
+                Woodtype<br>
+                <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required>
+                  <% for(var i=0; i<woodtypes.length; i++) { %>
+                    <option value="<%= woodtypes[i] %>"><%= woodtypes[i] %></option>
+                    <% } %>
+                  </select>
+                </div>
+                <div class="col-xs-4">
+                  Fd<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required><br>
+                </div>
+                <div class="col-xs-4">
+                  b<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.b" name="b" placeholder="b" required><br>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-4">
+                  l<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l" name="l" placeholder="l" required><br>
+                </div>
+                <div class="col-xs-4">
+                  a1<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a1" name="a1" placeholder="a1" required><br>
+                </div>
+                <div class="col-xs-4">
+                  a2<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a2" name="a2" placeholder="a2" required><br>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-4">
+                  l1<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l1" name="l1" placeholder="l1" required><br>
+                </div>
+                <div class="col-xs-4">
+                  h<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required><br>
+                </div>
+                <div class="col-xs-4">
+                  Continous<br>
+                  <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.Continuous" required>
+                    <option value="true">true</option>
+                    <option value="true">false</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-4">
+                  Service<br>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.service" name="service" placeholder="service" required><br>
+                </div>
+                <div  class="col-xs-4">
+                  Load duration<br>
+                  <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.LoadDuration" required>
+                    <% for(var i=0; i<services.length; i++) { %>
+                      <option value="<%= services[i] %>"><%= services[i] %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                  <div  class="col-xs-4">
+                    GammaM<br>
+                    <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.gammaM" name="gammaM" placeholder="gammaM" step="any" required><br>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs-4">
+                  </div>
+                  <div class="col-xs-4">
+                    <input class="form-control" type="submit" value="Submit" ng-disabled = "!calculoForm.$valid" class="btn btn-primary btn-block"/>
+                  </div>
+                  <div class="col-xs-4">
+                  </div>
+
+                </div>
+
+
+                <div class="row">
+                  <div class="col-xs-3">
+                    sigmaC90d<br>
+                    <input class="form-control" ng-model="sigmaC90d" readonly><br>
+                  </div>
+                  <div class="col-xs-3">
+                    fc90d<br>
+                    <input class="form-control" ng-model="fc90d" readonly><br>
+                  </div>
+                  <div class="col-xs-3">
+                    areaEf<br>
+                    <input class="form-control" ng-model="areaEf" readonly><br>
+                  </div>
+                  <div class="col-xs-3">
+                    index<br>
+                    <input class="form-control" ng-model="index" readonly><br>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <!-- <div> El formulario es: {{calculoForm.$valid}}</div> -->
+            <br>
+          </form>
+
+        </div>
+      </div>
+      <% include footer %>
+
+    </body>
+  </xml>
