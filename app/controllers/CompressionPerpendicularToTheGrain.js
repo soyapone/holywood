@@ -125,6 +125,7 @@ function CompressionPerpendicularToTheGrainGetValue(req,res){
       'sigmaC90d' : rawValues.sigmaC90d.toFixed(2),
       'fc90d' : rawValues.fc90d.toFixed(2),
       'areaEf' : rawValues.areaEf.toFixed(0),
+      'kc90': rawValues.kc90.toFixed(2),
       'index': rawValues.index.toFixed(2)
     };
     return data;
@@ -157,7 +158,7 @@ router.get('/', function (req, res) {
 
 //Para cálculos del estilo http://localhost:3705/CompressionPerpendicularToTheGrain/GUI/
 router.get('/GUI', function (req, res) {
-  console.log(tabla.findService());
+  //console.log(tabla.findService());
   res.render('CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain',
     woodtypes: tabla.findMaderaTypes(),

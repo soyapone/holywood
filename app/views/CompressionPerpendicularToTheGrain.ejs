@@ -10,140 +10,166 @@
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <!-- <h1>woodcalc</h1> -->
-    <img src="/img/woodcalc.png" alt="woodcalc" width="30%">
+      <a href="/">
+        <img src="/img/woodcalc.png" alt="woodcalc" width="30%">
+      </a>
+
       <p>Specialists in wood joints calculations</p>
       <!-- <form class="form-inline">
-        <input type="email" class="form-control" size="50" placeholder="Email Address" required>
-        <button type="button" class="btn btn-danger">Subscribe</button>
-      </form> -->
+      <input type="email" class="form-control" size="50" placeholder="Email Address" required>
+      <button type="button" class="btn btn-danger">Subscribe</button>
+    </form> -->
 
-      <!-- <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"> </span> Facebook</a>
-      <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"> </span> Google</a> -->
-    </div>
+    <!-- <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"> </span> Facebook</a>
+    <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"> </span> Google</a> -->
+  </div>
 
-    <div ng-controller="CalculoController as calculoCtrl">
-      <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
-        <div class="row">
-          <!-- sección para la foto -->
-          <div class="col-xs-6">
+  <div ng-controller="CalculoController as calculoCtrl">
+    <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
 
-            <img src="/img/CompressionPerpendicularToTheGrain.jpg" class="img-responsive" alt="Compression Perpendicular to the Grain">
+      <!-- sección para la foto -->
 
+      <div class="row-pictures">
+
+        <figure class="figure">
+      	<img src="/img/CompressionPerpendicularToTheGrain.jpg" class="figure-img pull-right img-responsive">
+        </figure>
+
+        <figure class="figure">
+        <img src="/img/CompresionPerpendicularPuntu.jpg" class="figure-img pull-left img-responsive">
+        </figure>
+
+      </div>
+
+      <!-- sección para los parametros -->
+
+      <div class="row">
+        <div class="col-xs-3">
+          Strength class<br>
+          <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required data-toggle="tooltip" title="is the design compressive load perpendicular to the grain">
+            <% for(var i=0; i<woodtypes.length; i++) { %>
+              <option value="<%= woodtypes[i] %>"><%= woodtypes[i] %></option>
+              <% } %>
+            </select>
           </div>
-          <!-- sección para los parametros -->
-          <div class="col-xs-6">
-            <div class="row">
-              <div class="col-xs-4">
-                Woodtype<br>
-                <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required>
-                  <% for(var i=0; i<woodtypes.length; i++) { %>
-                    <option value="<%= woodtypes[i] %>"><%= woodtypes[i] %></option>
-                    <% } %>
-                  </select>
-                </div>
-                <div class="col-xs-4">
-                  Fd<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required><br>
-                </div>
-                <div class="col-xs-4">
-                  b<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.b" name="b" placeholder="b" required><br>
-                </div>
-              </div>
+          <div class="col-xs-3">
+            Fd (N)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required data-toggle="tooltip" title="Design compressive load perpendicular to the grain measured in Newtons"><br>
+          </div>
+          <div class="col-xs-3">
+            b (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.b" name="b" placeholder="b" required data-toggle="tooltip" title="Contact width measured in millimeters"><br>
+          </div>
+          <div class="col-xs-3">
+            l (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l" name="l" placeholder="l" required data-toggle="tooltip" title="Contact length measured in millimeters"><br>
+          </div>
+        </div>
 
-              <div class="row">
-                <div class="col-xs-4">
-                  l<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l" name="l" placeholder="l" required><br>
-                </div>
-                <div class="col-xs-4">
-                  a1<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a1" name="a1" placeholder="a1" required><br>
-                </div>
-                <div class="col-xs-4">
-                  a2<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a2" name="a2" placeholder="a2" required><br>
-                </div>
-              </div>
+        <div class="row">
 
-              <div class="row">
-                <div class="col-xs-4">
-                  l1<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l1" name="l1" placeholder="l1" required><br>
-                </div>
-                <div class="col-xs-4">
-                  h<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required><br>
-                </div>
-                <div class="col-xs-4">
-                  Continous<br>
-                  <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.Continuous" required>
-                    <option value="true">true</option>
-                    <option value="true">false</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-xs-4">
-                  Service<br>
-                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.service" name="service" placeholder="service" required><br>
-                </div>
-                <div  class="col-xs-4">
-                  Load duration<br>
-                  <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.LoadDuration" required>
-                    <% for(var i=0; i<services.length; i++) { %>
-                      <option value="<%= services[i] %>"><%= services[i] %></option>
-                      <% } %>
-                    </select>
-                  </div>
-                  <div  class="col-xs-4">
-                    GammaM<br>
-                    <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.gammaM" name="gammaM" placeholder="gammaM" step="any" required><br>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-xs-4">
-                  </div>
-                  <div class="col-xs-4">
-                    <input class="form-control" type="submit" value="Submit" ng-disabled = "!calculoForm.$valid" class="btn btn-primary btn-block"/>
-                  </div>
-                  <div class="col-xs-4">
-                  </div>
-
-                </div>
+          <div class="col-xs-3">
+            a1 (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a1" name="a1" placeholder="a1" required data-toggle="tooltip" title="Additional length to the effective contact length (l) parallel to the grain. The contact length, l, at each side is increased by 30 mm,but no more than a1 (see the picture for discrete support), l or l1/2."><br>
+          </div>
+          <div class="col-xs-3">
+            a2 (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a2" name="a2" placeholder="a2" required data-toggle="tooltip" title="Additional length to the effective contact length (l) parallel to the grain. The contact length, l, at each side is increased by 30 mm,but no more than a1 (see the picture for discrete support), l or l1/2."><br>
+          </div>
+          <div class="col-xs-3">
+            l1 (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l1" name="l1" placeholder="l1" required data-toggle="tooltip" title="Distance between supports measured in millimeters"><br>
+          </div>
+          <div class="col-xs-3">
+            h (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required data-toggle="tooltip" title="Height measured in millimeters"><br>
+          </div>
+        </div>
 
 
-                <div class="row">
-                  <div class="col-xs-3">
-                    sigmaC90d<br>
-                    <input class="form-control" ng-model="sigmaC90d" readonly><br>
-                  </div>
-                  <div class="col-xs-3">
-                    fc90d<br>
-                    <input class="form-control" ng-model="fc90d" readonly><br>
-                  </div>
-                  <div class="col-xs-3">
-                    areaEf<br>
-                    <input class="form-control" ng-model="areaEf" readonly><br>
-                  </div>
-                  <div class="col-xs-3">
-                    index<br>
-                    <input class="form-control" ng-model="index" readonly><br>
-                  </div>
-                </div>
+        <div class="row">
+          <div class="col-xs-3">
+            Supports<br>
+            <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.Continuous" required data-toggle="tooltip" title="Structural design">
+              <option value="true">Continuous</option>
+              <option value="false">Discrete</option>
+            </select>
+          </div>
+          <div class="col-xs-3">
+            Service class<br>
+            <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.service" required required data-toggle="tooltip" title="Structures shall be assigned to one of the services classes depending on its moisture content.">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div  class="col-xs-3">
+            Load-duration<br>
+            <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.LoadDuration" required data-toggle="tooltip" title="The load duration classes are characterised by the effect of a constant load acting for a certain period of time in the life of the structure">
+              <option value="P">Permanent</option>
+              <option value="L">Long-term</option>
+              <option value="M">Medium-term</option>
+              <option value="S">Short-term</option>
+              <option value="I">Instantaneous</option>
+            </select>
+          </div>
+          <div  class="col-xs-3">
+            &gamma;<sub>M</sub><br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.gammaM" name="gammaM" placeholder="&gamma;M" step="any" required data-toggle="tooltip" title="Partial factor for material properties, also acounting for model uncertainties and dimensional variations."><br>
+          </div>
+        </div>
 
-
-              </div>
-            </div>
-            <!-- <div> El formulario es: {{calculoForm.$valid}}</div> -->
-            <br>
-          </form>
+        <div class="row">
+          <div class="col-xs-4">
+          </div>
+          <div class="col-xs-4">
+            <input class="form-control" type="submit" value="Submit" ng-disabled = "!calculoForm.$valid" class="btn btn-primary btn-block"/>
+          </div>
+          <div class="col-xs-4">
+          </div>
 
         </div>
-      </div>
-      <% include footer %>
 
-    </body>
-  </xml>
+
+        <div class="row">
+          <div class="col-xs-2">
+            <h3><small>&sigma;<sub>C90d</sub>(N/mm<sup>2</sup>)</small></h3><br>
+            <input class="form-control" ng-model="sigmaC90d" readonly data-toggle="tooltip" title="Design compressive stress perpendicular to the grain"><br>
+          </div>
+          <div class="col-xs-2">
+            <h3><small>fc90d (N)</small></h3> <br>
+            <input class="form-control" ng-model="fc90d" readonly data-toggle="tooltip" title="Design compressive strength perpendicular to the grain"><br>
+          </div>
+          <div class="col-xs-2">
+            <h3><small>areaEf (mm<sup>2</sup>)</small></h3><br>
+            <input class="form-control" ng-model="areaEf" readonly data-toggle="tooltip" title="Effective contact areaof the total contact surface"><br>
+          </div>
+          <div class="col-xs-2">
+            <h3><small>kc90</small></h3><br>
+            <input class="form-control" ng-model="kc90" readonly data-toggle="tooltip" title="Factor taking into account the load configuration, the possibility of splitting and the degree of compressive deformation."><br>
+          </div>
+          <div class="col-xs-4">
+            <h3><small>index</small></h3><br>
+            <input class="form-control" ng-model="index" readonly data-toggle="tooltip" title="This value checks the 6.3 formula of EN 1995-1-1:2004+A1:2008 and should be lower or equal than 1"><br>
+          </div>
+        </div>
+
+
+
+      </div>
+      <!-- <div> El formulario es: {{calculoForm.$valid}}</div> -->
+      <br>
+    </form>
+
+  </div>
+</div>
+<% include footer %>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+</body>
+</xml>

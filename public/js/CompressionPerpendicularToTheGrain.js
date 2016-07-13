@@ -35,6 +35,7 @@
           $scope.sigmaC90d = response.data.sigmaC90d;
           $scope.fc90d = response.data.fc90d;
           $scope.areaEf = response.data.areaEf;
+          $scope.kc90 = response.data.kc90;
           $scope.index = response.data.index;
 
           // cal.calculation.result.sigmaC90d = response.data.sigmaC90d;

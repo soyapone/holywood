@@ -23,12 +23,15 @@ exports.compresion90Kmod = function(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,kmod,
 
   var fc90d = this.fc90d(kmod,CompresionPerpendicular, gammaM);
 
-  var index = sigmaC90d/(this.kc90(l1,h,durmiente,tipoMadera)*fc90d);
+  var kc90 = this.kc90(l1,h,durmiente,tipoMadera);
+
+  var index = sigmaC90d/(kc90*fc90d);
 
   var response = {
     'sigmaC90d' : sigmaC90d,
     'fc90d' : fc90d,
     'areaEf' : areaEf,
+    'kc90': kc90,
     'index': index
   }
 
