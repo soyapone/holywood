@@ -3,7 +3,7 @@
 
 <% include head %>
 
-<body>
+<body id="StartPage">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
   <script type="text/javascript" src="../js/CompressionPerpendicularToTheGrain.js"></script>
@@ -46,7 +46,7 @@
       <div class="row">
         <div class="col-xs-3">
           Strength class<br>
-          <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required data-toggle="tooltip" title="is the design compressive load perpendicular to the grain">
+          <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required data-toggle="tooltip" title="Structural Wood Quality">
             <% for(var i=0; i<woodtypes.length; i++) { %>
               <option value="<%= woodtypes[i] %>"><%= woodtypes[i] %></option>
               <% } %>
@@ -130,7 +130,7 @@
 
         </div>
 
-
+        <hr>
         <div class="row">
           <div class="col-xs-2">
             <h3><small>&sigma;<sub>C90d</sub>(N/mm<sup>2</sup>)</small></h3><br>
@@ -150,7 +150,7 @@
           </div>
           <div class="col-xs-4">
             <h3><small>index</small></h3><br>
-            <input class="form-control" ng-model="index" readonly data-toggle="tooltip" title="This value checks the 6.3 formula of EN 1995-1-1:2004+A1:2008 and should be lower or equal than 1"><br>
+            <input class="form-control" ng-model="index"  ng-style="{'background-color': myColor}" readonly data-toggle="tooltip" title="This value checks the 6.3 formula of EN 1995-1-1:2004+A1:2008 and should be lower or equal than 1"><br>
           </div>
         </div>
 
