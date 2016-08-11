@@ -62,25 +62,25 @@ module.exports = function (app,mypassport) {
 
 function CompressionPerpendicularToTheGrainGetValue(req,res){
   req.checkQuery('Fd', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('Fd', validationErrors.val_err_isInt()).isInt();
+  req.checkQuery('Fd', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('b', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('b', validationErrors.val_err_isInt()).isInt();
+  req.checkQuery('b', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('l', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('l', validationErrors.val_err_isInt()).isInt();
+  req.checkQuery('l', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('a1', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('a1', validationErrors.val_err_isInt()).isInt();
+  req.checkQuery('a1', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('a2', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('a2', validationErrors.val_err_isInt()).isInt();
+  req.checkQuery('a2', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('l1', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('l1', validationErrors.val_err_isInt()).isInt();
+  req.checkQuery('l1', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('h', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('h', validationErrors.val_err_isInt()).isInt();
+  req.checkQuery('h', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('Continuous', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('Continuous', validationErrors.val_err_isIn(["false","true"])).isIn(["false","true"]);

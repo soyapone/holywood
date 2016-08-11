@@ -54,7 +54,7 @@
           </div>
           <div class="col-xs-3">
             Fd (N)<br>
-            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required data-toggle="tooltip" title="Design compressive load perpendicular to the grain measured in Newtons"><br>
+            <input class="form-control" type="number" min="0" max="10000000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required data-toggle="tooltip" title="Design compressive load perpendicular to the grain measured in Newtons"><br>
           </div>
           <div class="col-xs-3">
             b (mm)<br>
@@ -115,7 +115,16 @@
           </div>
           <div  class="col-xs-3">
             &gamma;<sub>M</sub><br>
-            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.gammaM" name="gammaM" placeholder="&gamma;M" step="any" required data-toggle="tooltip" title="Partial factor for material properties, also acounting for model uncertainties and dimensional variations."><br>
+            <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.service" required required data-toggle="tooltip" title="Partial factor for material properties, also acounting for model uncertainties and dimensional variations.">
+              <option value="1.3">Solid timber (1.3)</option>
+              <option value="1.25">Glued laminated timber (1.25)</option>
+              <option value="1.2">LVL, plywood, OSB (1.2)</option>
+              <option value="1.3">Particle boards (1.3)</option>
+              <option value="1.3">Fibreboards hard, medium, mdf, soft (1.3)</option>
+              <option value="1.3">Connections (1.3)</option>
+              <option value="1.25">Punched metal plated fasteners (1.25)</option>
+              <option value="1.0">Accidental combinations (1.0)</option>
+            </select>
           </div>
         </div>
 

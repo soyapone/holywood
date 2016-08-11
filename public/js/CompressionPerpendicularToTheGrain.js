@@ -38,7 +38,7 @@
           $scope.kc90 = response.data.kc90;
           $scope.index = response.data.index;
 
-          if ($scope.index >= 1) {
+          if ($scope.index <= 1) {
             $scope.myColor = "#00FF00";
           } else {
             $scope.myColor = "#FF0000";

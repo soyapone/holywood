@@ -810,6 +810,8 @@ exports.getrhomean = function (ID){
   }
 }
 
+
+
 exports.isConiferous = function (ID){
   return (ID === "C14" || ID ==="C16" || ID ==="C18" || ID ==="C22" || ID ==="C24" || ID ==="C27" || ID ==="C30" || ID ==="C35" || ID ==="C40" || ID ==="C45" || ID ==="C50")
 }
@@ -822,5 +824,15 @@ exports.isHardwood = function (ID){
   return (ID === "D18" || ID ==="D24" || ID ==="D30" || ID ==="D35" || ID === "D40" || ID ==="D50" || ID ==="D60" || ID ==="D70" )
 }
 
+exports.Kn = function (ID){
+  if (this.isConiferous(ID) || this.isHardwood(ID))
+  {
+    return 5;
+  } else if (this.isGL(ID)) {
+    return 6.5;
+  } else {
+    return 4.5;
+  }
+}
 
 // console.log(this.findServiceDuracion(1,"C"));
