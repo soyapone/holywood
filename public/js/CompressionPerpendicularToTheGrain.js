@@ -7,7 +7,7 @@
 
   app.controller('CalculoController', ['$scope', '$http', '$log', function($scope,$http,$log){
     var cal = this;
-
+    $scope.errVisibility = "none";
 
     this.sendCalculation = function(){
       // mandar hacer el cálculo
@@ -28,6 +28,7 @@
         method: 'GET',
         url: myurl
       }).then(function successCallback(response) {
+          $scope.errVisibility = "none";
           // this callback will be called asynchronously
           // when the response is available
           // Aquí no podemos poner THIS!!
@@ -49,12 +50,20 @@
           // cal.calculation.result.areaEf = response.data.areaEf;
           // cal.calculation.result.index = response.data.index;
 
-
         }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
           // Aquí no podemos poner THIS!!
-          cal.calculation.result = 'There´s an error connecting with the server.';
+          $scope.errVisibility = "initial";
+          $scope.errMsg = response.data;
+
+          $scope.sigmaC90d = "error";
+          $scope.fc90d = "error";
+          $scope.areaEf = "error";
+          $scope.kc90 = "error";
+          $scope.index = "error";
+          $scope.myColor = "#FF0000";
+          
         });
 
     };

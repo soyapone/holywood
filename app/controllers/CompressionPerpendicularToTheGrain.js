@@ -107,6 +107,8 @@ function CompressionPerpendicularToTheGrainGetValue(req,res){
     return;
   } else {
 
+
+
     var Fd = Number(req.query.Fd)
     var b = Number(req.query.b);
     var l = Number(req.query.l);
@@ -119,6 +121,13 @@ function CompressionPerpendicularToTheGrainGetValue(req,res){
     var service = Number(req.query.service);
     var LoadDuration = req.query.LoadDuration;
     var gammaM = Number(req.query.gammaM);
+
+    var logicalErrors = CompressionPerpendicularToTheGrain.logicalValidation(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
+
+    if (logicalErrors){
+     res.status(400).send(logicalErrors);
+     return;
+    }
 
     var rawValues = CompressionPerpendicularToTheGrain.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
     var data = {

@@ -3,6 +3,12 @@ var fun = require('./funciones');
 
 
 
+exports.logicalValidation = function(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM) {
+  // Solo para hacer pruebas esta funcion no devuelve nada erroneo por
+  //if (gammaM == 1) return "gammaM no puede ser 1";
+  return;
+}
+
 
 exports.compresion90ServicioDuracion = function(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,servicio,duracion,gammaM){
   var CompresionPerpendicular = tabla.getfc90k(tipoMadera);
