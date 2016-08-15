@@ -2,6 +2,12 @@ var tabla = require('./tables');
 var fun = require('./funciones');
 
 
+exports.logicalValidation = function(falfaD,b,l,c1,c2,h,durmiente,tipoMadera,servicio,duracion,gammaM, alfGr) {
+  // Solo para hacer pruebas esta funcion no devuelve nada erroneo por
+  //if (gammaM == 1) return "gammaM no puede ser 1";
+  return;
+}
+
 exports.compresionOblicuaEurocodigo = function(falfaD,b,l,c1,c2,h,durmiente,tipoMadera,servicio,duracion,gammaM, alfGr){
   // Considereamos l1 como infinito o el máximo valor para que se cumpla la función de KC90 y en el área eficaz.
 

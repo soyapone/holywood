@@ -1,68 +1,23 @@
 var express = require('express'),
 router = express.Router(),
 mongoose = require('mongoose'),
-Article = mongoose.model('Article'),
 xmlify = require('xmlify'),
-CompressionPerpendicularToTheGrain = require('../statics/CompressionPerpendicularToTheGrain'),
+CompressiveStressesAtAnAngleToTheGrainEuro = require('../statics/CompresionOblicuaEurocodigo'),
 tabla = require('../statics/tables'),
 validationErrors = require('../statics/validationErrors'),
 util = require('util'),
 passport = require('passport');;
 
 module.exports = function (app,mypassport) {
-  app.use('/CompressionPerpendicularToTheGrain', router);
+  app.use('/CompressiveStressesAtAnAngleToTheGrainEuro', router);
   passport = mypassport;
 };
-
-
-//****************************
-// Rutas para los cálculos
-//****************************
-
-
-// //Para cálculos del estilo http://localhost:3705/GUI/calculation/12/33f3
-// app.get('/GUI/:var1/:var2', function (req, res) {
-//   var res1 = Number(req.params.var1)+Number(req.params.var2);
-//   res.render('calculation', {
-//     title: 'calculation',
-//     var1: req.params.var1,
-//     var2: req.params.var2,
-//     res1: res1
-//   });
-//   res.end();
-// });
-
-// //Para cálculos JSON http://localhost:3705/JSON/calculo2?var1=3&var2=5
-// app.get('/JSON', function (req, res) {
-//   var var1 = Number(req.query.var1)
-//   var var2 = Number(req.query.var2);
-//   var res1 = var1+var2;
-//
-//   var result = {  "result": res1 };
-//
-//   res.json(result);
-//   res.end();
-// });
-//
-// //Para cálculos XML http://localhost:3705/XML/calculo2?var1=3&var2=5
-// app.get('/XML', function (req, res) {
-//   var var1 = Number(req.query.var1)
-//   var var2 = Number(req.query.var2);
-//   var res1 = var1+var2;
-//   var result = {  "result": res1 };
-//   var send = '<?xml version="1.0" encoding="utf-8"?>'.concat("\n").concat(xml(result));
-//   res.set('Content-Type', 'text/xml');
-//
-//   res.send(send);
-//   res.end();
-// });
-
 
 // Operaciones serias
 
 function validateAndGetValue(req,res){
-  req.checkQuery('Fd', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('Fd', validationErrors.val_err_isFloat()).isFloat();
+  req.checkQuery('falfaD', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('falfaD', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('b', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('b', validationErrors.val_err_isFloat()).isFloat();
@@ -70,14 +25,11 @@ function validateAndGetValue(req,res){
   req.checkQuery('l', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('l', validationErrors.val_err_isFloat()).isFloat();
 
-  req.checkQuery('a1', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('a1', validationErrors.val_err_isFloat()).isFloat();
+  req.checkQuery('c1', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('c1', validationErrors.val_err_isFloat()).isFloat();
 
-  req.checkQuery('a2', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('a2', validationErrors.val_err_isFloat()).isFloat();
-
-  req.checkQuery('l1', validationErrors.val_err_notEmpty()).notEmpty();
-  req.checkQuery('l1', validationErrors.val_err_isFloat()).isFloat();
+  req.checkQuery('c2', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('c2', validationErrors.val_err_isFloat()).isFloat();
 
   req.checkQuery('h', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('h', validationErrors.val_err_isFloat()).isFloat();
@@ -96,6 +48,9 @@ function validateAndGetValue(req,res){
   req.checkQuery('gammaM', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('gammaM', validationErrors.val_err_isFloat()).isFloat();
 
+  req.checkQuery('alfaGr', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('alfaGr', validationErrors.val_err_isFloat()).isFloat();
+
   req.checkQuery('format', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('format', validationErrors.val_err_isIn(["json","xml"])).isIn(["json","xml"]);
 
@@ -107,43 +62,40 @@ function validateAndGetValue(req,res){
     return;
   } else {
 
-
-
-    var Fd = Number(req.query.Fd)
+    var falfaD = Number(req.query.falfaD)
     var b = Number(req.query.b);
     var l = Number(req.query.l);
-    var a1 = Number(req.query.a1);
-    var a2 = Number(req.query.a2);
-    var l1 = Number(req.query.l1);
+    var c1 = Number(req.query.c1);
+    var c2 = Number(req.query.c2);
     var h = Number(req.query.h);
     var Continuous = ((req.query.Continuous === "true")||(req.query.Continuous === "True"));
     var s = req.query.s;
     var service = Number(req.query.service);
     var LoadDuration = req.query.LoadDuration;
     var gammaM = Number(req.query.gammaM);
+    var alfaGr = Number(req.query.alfaGr);
 
-    var logicalErrors = CompressionPerpendicularToTheGrain.logicalValidation(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
+    var logicalErrors = CompressiveStressesAtAnAngleToTheGrainEuro.logicalValidation(falfaD,b,l,c1,c2,h,Continuous,s,service,LoadDuration,gammaM,alfaGr);
 
     if (logicalErrors){
      res.status(400).send(logicalErrors);
      return;
     }
 
-    var rawValues = CompressionPerpendicularToTheGrain.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
+
+    var rawValues = CompressiveStressesAtAnAngleToTheGrainEuro.compresionOblicuaEurocodigo(falfaD,b,l,c1,c2,h,Continuous,s,service,LoadDuration,gammaM,alfaGr);
     var data = {
-      'sigmaC90d' : rawValues.sigmaC90d.toFixed(2),
-      'fc90d' : rawValues.fc90d.toFixed(2),
       'areaEf' : rawValues.areaEf.toFixed(0),
-      'kc90': rawValues.kc90.toFixed(2),
+      'kc90' : rawValues.kc90.toFixed(2),
+      'fcalfaD' : rawValues.fcalfaD.toFixed(2),
       'index': rawValues.index.toFixed(2)
     };
     return data;
-
   }
 }
 
 //Para cálculos XML y JSON
-//http://localhost:3705/CompressionPerpendicularToTheGrain/?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
+//http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainEURO/?falfaD=1&b=90&l=70&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=xml
 router.get('/', function (req, res) {
  var result = validateAndGetValue(req,res);
  if (req.query.format == 'json'){
@@ -165,11 +117,11 @@ router.get('/', function (req, res) {
 });
 
 
-//Para cálculos del estilo http://localhost:3705/CompressionPerpendicularToTheGrain/GUI/
+//Para cálculos del estilo http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainEURO/GUI/
 router.get('/GUI', function (req, res) {
   //console.log(tabla.findService());
-  res.render('CompressionPerpendicularToTheGrain', {
-    title: 'Compression Perpendicular to the Grain',
+  res.render('CompressiveStressesAtAnAngleToTheGrain', {
+    title: 'Compressive Stresses at an Angle to the Grain',
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes()
   });

@@ -6,7 +6,7 @@
 <body id="StartPage">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js"></script>
-  <script type="text/javascript" src="../js/CompressionPerpendicularToTheGrain.js"></script>
+  <script type="text/javascript" src="../js/CompressiveStressesAtAnAngleToTheGrain.js"></script>
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <!-- <h1>woodcalc</h1> -->
@@ -32,11 +32,11 @@
       <div class="row-pictures">
 
         <figure class="figure">
-      	<img src="/img/CompressionPerpendicularToTheGrain.jpg" class="figure-img pull-right img-responsive">
+      	<img src="/img/CompresionOblicua1.jpg" class="figure-img pull-right img-responsive">
         </figure>
 
         <figure class="figure">
-        <img src="/img/CompresionPerpendicularPuntu.jpg" class="figure-img pull-left img-responsive">
+        <img src="/img/CompresionOblicua2.jpg" class="figure-img pull-left img-responsive">
         </figure>
 
       </div>
@@ -53,8 +53,8 @@
             </select>
           </div>
           <div class="col-xs-3">
-            Fd (N)<br>
-            <input class="form-control" type="number" min="0" max="10000000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required data-toggle="tooltip" title="Design compressive load perpendicular to the grain measured in Newtons"><br>
+            falfaD<br>
+            <input class="form-control" type="number" min="0" max="10000000" ng-model="calculoCtrl.calculation.falfaD" name="falfaD" placeholder="falfaD" required data-toggle="tooltip" title="Design value of a force in alfa-direction"><br>
           </div>
           <div class="col-xs-3">
             b (mm)<br>
@@ -69,21 +69,23 @@
         <div class="row">
 
           <div class="col-xs-3">
-            a1 (mm)<br>
-            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a1" name="a1" placeholder="a1" required data-toggle="tooltip" title="Additional length to the effective contact length (l) parallel to the grain. The contact length, l, at each side is increased by 30 mm,but no more than a1 (see the picture for discrete support), l or l1/2."><br>
+            alfaGr<br>
+            <input class="form-control" type="number" min="0" max="10000000" ng-model="calculoCtrl.calculation.alfaGr" name="alfGr" placeholder="alfaGr" required data-toggle="tooltip" title=""><br>
+          </div>
+
+          <div class="col-xs-3">
+            c1 (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.c1" name="c1" placeholder="c1" required data-toggle="tooltip" title="Increased contact length at each side by 30mm senα, but not more than a, l or l 1 /2 (mm)."><br>
           </div>
           <div class="col-xs-3">
-            a2 (mm)<br>
-            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a2" name="a2" placeholder="a2" required data-toggle="tooltip" title="Additional length to the effective contact length (l) parallel to the grain. The contact length, l, at each side is increased by 30 mm,but no more than a1 (see the picture for discrete support), l or l1/2."><br>
-          </div>
-          <div class="col-xs-3">
-            l1 (mm)<br>
-            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l1" name="l1" placeholder="l1" required data-toggle="tooltip" title="Distance between supports measured in millimeters"><br>
+            c2 (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.c2" name="c2" placeholder="c2" required data-toggle="tooltip" title="Increased contact length at each side by 30mm senα, but not more than a, l or l 1 /2 (mm)."><br>
           </div>
           <div class="col-xs-3">
             h (mm)<br>
             <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required data-toggle="tooltip" title="Height measured in millimeters"><br>
           </div>
+
         </div>
 
 
@@ -144,8 +146,7 @@
 
         <h2>Result</h2>
         <div class="row" ng-style = "{'display': errVisibility}">
-
-          <div class="col-xs-4">
+        <div class="col-xs-4">
           </div>
           <div class="col-xs-4">
             <div class="alert alert-danger">
@@ -155,30 +156,49 @@
           <div class="col-xs-4">
           </div>
         </div>
+        <h3>Eurocode</h3>
+        <div class="row">
+          <div class="col-xs-3">
+            <h3><small>areaEf (mm<sup>2</sup>)</small></h3><br>
+            <input class="form-control" ng-model="euroareaEf" readonly data-toggle="tooltip" title="Effective contact areaof the total contact surface"><br>
+          </div>
+          <div class="col-xs-3">
+            <h3><small>kc90</small></h3><br>
+            <input class="form-control" ng-model="eurokc90" readonly data-toggle="tooltip" title=""><br>
+          </div>
+          <div class="col-xs-3">
+            <h3><small>fcalfaD</small></h3> <br>
+            <input class="form-control" ng-model="eurofcalfaD" readonly data-toggle="tooltip" title=""><br>
+          </div>
+          <div class="col-xs-3">
+            <h3><small>index</small></h3><br>
+            <input class="form-control" ng-model="euroindex"  ng-style="{'background-color': euroMyColor}" readonly data-toggle="tooltip" title="This value checks the 6.3 formula of EN 1995-1-1:2004+A1:2008 and should be lower or equal than 1"><br>
+          </div>
+        </div>
+        <h3>DIN</h3>
         <div class="row">
           <div class="col-xs-2">
-            <h3><small>&sigma;<sub>C90d</sub>(N/mm<sup>2</sup>)</small></h3><br>
-            <input class="form-control" ng-model="sigmaC90d" readonly data-toggle="tooltip" title="Design compressive stress perpendicular to the grain"><br>
-          </div>
-          <div class="col-xs-2">
-            <h3><small>fc90d (N)</small></h3> <br>
-            <input class="form-control" ng-model="fc90d" readonly data-toggle="tooltip" title="Design compressive strength perpendicular to the grain"><br>
-          </div>
-          <div class="col-xs-2">
             <h3><small>areaEf (mm<sup>2</sup>)</small></h3><br>
-            <input class="form-control" ng-model="areaEf" readonly data-toggle="tooltip" title="Effective contact areaof the total contact surface"><br>
+            <input class="form-control" ng-model="DINareaEf" readonly data-toggle="tooltip" title="Effective contact areaof the total contact surface"><br>
           </div>
           <div class="col-xs-2">
             <h3><small>kc90</small></h3><br>
-            <input class="form-control" ng-model="kc90" readonly data-toggle="tooltip" title="Factor taking into account the load configuration, the possibility of splitting and the degree of compressive deformation."><br>
+            <input class="form-control" ng-model="DINkc90" readonly data-toggle="tooltip" title=""><br>
+          </div>
+          <div class="col-xs-2">
+            <h3><small>fcalfaD</small></h3> <br>
+            <input class="form-control" ng-model="DINfcalfaD" readonly data-toggle="tooltip" title=""><br>
+          </div>
+
+          <div class="col-xs-2">
+            <h3><small>kcalf</small></h3><br>
+            <input class="form-control" ng-model="DINkcalf" readonly data-toggle="tooltip" title=""><br>
           </div>
           <div class="col-xs-4">
             <h3><small>index</small></h3><br>
-            <input class="form-control" ng-model="index"  ng-style="{'background-color': myColor}" readonly data-toggle="tooltip" title="This value checks the 6.3 formula of EN 1995-1-1:2004+A1:2008 and should be lower or equal than 1"><br>
+            <input class="form-control" ng-model="DINindex"  ng-style="{'background-color': DINMyColor}" readonly data-toggle="tooltip" title="This value checks the 6.3 formula of EN 1995-1-1:2004+A1:2008 and should be lower or equal than 1"><br>
           </div>
         </div>
-
-
 
       </div>
       <!-- <div> El formulario es: {{calculoForm.$valid}}</div> -->
