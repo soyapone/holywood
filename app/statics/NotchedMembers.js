@@ -2,7 +2,13 @@ var tabla = require('./tables');
 var fun = require('./funciones');
 var _ = require ('lodash');
 
-exports.notchedMembers = function(Vd,b,hef,h,Kcr,d,tipoMadera,x,servicio,duracion, gammaM,notchOnSupport){
+exports.logicalValidation = function(Vd,b,hef,h,Kcr,d,tipoMadera,x,servicio,duracion, gammaM,notchOnSupport) {
+  // Solo para hacer pruebas esta funcion no devuelve nada erroneo por
+  //if (gammaM == 1) return "gammaM no puede ser 1";
+  return;
+}
+
+exports.NotchedMembers = function(Vd,b,hef,h,Kcr,d,tipoMadera,x,servicio,duracion, gammaM,notchOnSupport){
   // Considereamos l1 como infinito o el máximo valor para que se cumpla la función de KC90 y en el área eficaz.
   var Kn = tabla.Kn(tipoMadera);
   var TauD = this.TauD(Vd,b,hef,Kcr,tipoMadera);
