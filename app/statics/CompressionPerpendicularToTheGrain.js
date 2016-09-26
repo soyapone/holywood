@@ -20,7 +20,7 @@ exports.compresion90Kmod = function(Fd,b,l,a1,a2,l1,h,durmiente,tipoMadera,kmod,
   //devolvemos tambien, sigmaC90d y fc90d, areaEf, indice
 
   //Ponemos 90 a capón porque es el ángulo del área eficaz.
-  var areaEf = fun.areaEf(b,l,l1,a1,a2,90);
+  var areaEf = fun.areaEf(b,l,l1,a1,a2,(Math.PI / 2));
 
   var sigmaC90d = Fd/areaEf;
 

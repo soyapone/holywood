@@ -25,14 +25,16 @@ exports.kc90 = function (l1,h,durmiente,tipoMadera){
   } else {
     return 1;
   }
-  return "Hardwood not defined by normative."
+  return 1;
 }
 
 //El ángulo va siempre en Radianes
 exports.areaEf = function(b,l,l1,c1,c2,alfRadian){
   var cc1 = _.min([(30*Math.sin(alfRadian)),l, c1,l1/2]);
   var cc2 = _.min([(30*Math.sin(alfRadian)),l, c2,l1/2]);
-  return b * (l + cc1 + cc2);
+  res = b * (l + cc1 + cc2);
+  //console.log("b: ",b, "- l: ",l,"- l1: ",l1,"- c1: ",c1, "- c2: ",c2,"- alfRadian: ",alfRadian,"- cc1: ",cc1,"- cc2: ",cc2,"- res: ",res)
+  return res;
 }
 
 exports.toRadian = function(alf){
