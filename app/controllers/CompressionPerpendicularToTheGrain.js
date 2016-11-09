@@ -130,7 +130,7 @@ function validateAndGetValue(req,res){
     }
 
     var rawValues = CompressionPerpendicularToTheGrain.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
-    console.log('rawValues', rawValues);
+    //console.log('rawValues', rawValues);
 
     var data = {
       'sigmaC90d' : rawValues.sigmaC90d.toFixed(2),

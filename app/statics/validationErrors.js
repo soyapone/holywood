@@ -8,15 +8,19 @@ const val_err_isIn = "The paremeter do not have one of the expected values: ";
 exports.val_err = function(){
   return val_err;
 }
+
 exports.val_err_notEmpty = function(){
   return val_err_notEmpty;
 }
+
 exports.val_err_isInt = function(){
   return val_err_isInt;
 }
+
 exports.val_err_isIn = function(expectedValues){
   return val_err_isIn.concat(expectedValues);
 }
+
 exports.val_err_isFloat = function(){
   return val_err_isFloat;
 }

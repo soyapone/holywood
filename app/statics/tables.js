@@ -333,13 +333,13 @@ var propiedadesMadera = [
     "E0mean": 8400,
     "E005": 7000,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 340,
-    "rhomean": 370,
+    "rhomean": 370
 
   },
   {
@@ -354,13 +354,13 @@ var propiedadesMadera = [
     "E0mean": 10500,
     "E005": 8800,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 370,
-    "rhomean": 410,
+    "rhomean": 410
 
   },
   {
@@ -375,13 +375,13 @@ var propiedadesMadera = [
     "E0mean": 11500,
     "E005": 9600,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 385,
-    "rhomean": 420,
+    "rhomean": 420
 
   },
   {
@@ -396,13 +396,13 @@ var propiedadesMadera = [
     "E0mean": 12100,
     "E005": 10100,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 405,
-    "rhomean": 445,
+    "rhomean": 445
   },
   {
     "ID": "GL28h",
@@ -416,13 +416,13 @@ var propiedadesMadera = [
     "E0mean": 12600,
     "E005": 10500,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 425,
-    "rhomean": 460,
+    "rhomean": 460
 
   },
   {
@@ -437,13 +437,13 @@ var propiedadesMadera = [
     "E0mean": 13600,
     "E005": 11300,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 430,
-    "rhomean": 480,
+    "rhomean": 480
   },
   {
     "ID": "GL32h",
@@ -457,13 +457,13 @@ var propiedadesMadera = [
     "E0mean": 14200,
     "E005": 11800,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 440,
-    "rhomean": 490,
+    "rhomean": 490
 
   },
   {
@@ -478,13 +478,13 @@ var propiedadesMadera = [
     "E0mean": 10400,
     "E005": 8600,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 355,
-    "rhomean": 390,
+    "rhomean": 390
 
   },
   {
@@ -499,13 +499,13 @@ var propiedadesMadera = [
     "E0mean": 10400,
     "E005": 8600,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 355,
-    "rhomean": 390,
+    "rhomean": 390
 
   },
   {
@@ -520,13 +520,13 @@ var propiedadesMadera = [
     "E0mean": 11000,
     "E005": 9100,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 365,
-    "rhomean": 400,
+    "rhomean": 400
 
   },
   {
@@ -541,13 +541,13 @@ var propiedadesMadera = [
     "E0mean": 12000,
     "E005": 10000,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 385,
-    "rhomean": 420,
+    "rhomean": 420
 
   },
   {
@@ -562,13 +562,13 @@ var propiedadesMadera = [
     "E0mean": 12500,
     "E005": 10400,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 390,
-    "rhomean": 420,
+    "rhomean": 420
 
   },
   {
@@ -583,13 +583,13 @@ var propiedadesMadera = [
     "E0mean": 13000,
     "E005": 10800,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 390,
-    "rhomean": 430,
+    "rhomean": 430
 
   },
   {
@@ -604,13 +604,13 @@ var propiedadesMadera = [
     "E0mean": 13500,
     "E005": 11200,
     "E90mean": 300,
-    "E90,05": 250,
+    "E90-05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 400,
-    "rhomean": 440,
+    "rhomean": 440
 
   }
 
