@@ -108,13 +108,13 @@ router.get('/', function (req, res) {
 });
 
 
-// //Para cálculos del estilo http://localhost:3705/CompressionPerpendicularToTheGrain/GUI/
-// router.get('/GUI', function (req, res) {
-//   //console.log(tabla.findService());
-//   res.render('CompressionPerpendicularToTheGrain', {
-//     title: 'Compression Perpendicular to the Grain',
-//     woodtypes: tabla.findMaderaTypes(),
-//     services: tabla.findServiceTypes()
-//   });
-//   res.end();
-// });
+//Para cálculos del estilo http://localhost:3705/DesignValues/GUI/
+router.get('/GUI', function (req, res) {
+  //console.log(tabla.findService());
+  res.render('DesignValues', {
+    title: 'Design Values',
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes()
+  });
+  res.end();
+});
