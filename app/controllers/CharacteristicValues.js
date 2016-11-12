@@ -10,7 +10,7 @@ util = require('util'),
 passport = require('passport');;
 
 module.exports = function (app,mypassport) {
-  app.use('/StrengthClasses', router);
+  app.use('/CharacteristicValues', router);
   passport = mypassport;
 };
 
@@ -51,7 +51,7 @@ function validateAndGetValue(req,res){
 }
 
 //Para cálculos XML y JSON
-//http://localhost:3705/StrengthClasses/?s=C14&format=xml
+//http://localhost:3705/CharacteristicValues/?s=C14&format=xml
 router.get('/', function (req, res) {
  var result = validateAndGetValue(req,res);
  if (req.query.format == 'json'){
@@ -73,13 +73,12 @@ router.get('/', function (req, res) {
 });
 
 
-// //Para cálculos del estilo http://localhost:3705/CompressionPerpendicularToTheGrain/GUI/
-// router.get('/GUI', function (req, res) {
-//   //console.log(tabla.findService());
-//   res.render('CompressionPerpendicularToTheGrain', {
-//     title: 'Compression Perpendicular to the Grain',
-//     woodtypes: tabla.findMaderaTypes(),
-//     services: tabla.findServiceTypes()
-//   });
-//   res.end();
-// });
+//Para cálculos del estilo http://localhost:3705/CharacteristicValues/GUI/
+router.get('/GUI', function (req, res) {
+  //console.log(tabla.findService());
+  res.render('CharacteristicValues', {
+    title: 'Characteristic Values',
+    woodtypes: tabla.findMaderaTypes()
+  });
+  res.end();
+});
