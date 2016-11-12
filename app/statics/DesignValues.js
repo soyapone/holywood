@@ -10,7 +10,7 @@ exports.logicalValidation = function() {
 
 
 exports.DesignValues = function(tipoMadera,servicio,duration,b,h,Ksys,gammaM){
-  var kh;
+  var kh = 1;
 
   if (tabla.isConiferous(tipoMadera)||tabla.isHardwood(tipoMadera)){
     if (h <= 150){
@@ -24,27 +24,27 @@ exports.DesignValues = function(tipoMadera,servicio,duration,b,h,Ksys,gammaM){
       a = Math.pow((600/h),0.1);
       kh = _.min([a,1.1]);
     } else {
-      // ##################################################
-      //     Esto me lo he inventado preguntar a Mariano
-      // ##################################################
       kh = 1;
     }
   }
 
   var kmod = tabla.findServiceDuracion(servicio,duration);
 
-  var multiplicador = (kmod*kh)/gammaM;
+  var multiplicador = kmod/gammaM;
   var fmd;
-
   if (Ksys){
     fmd = tabla.getfmk(tipoMadera)*1.1;
   } else {
     fmd = tabla.getfmk(tipoMadera);
   }
 
+  fmd = fmd * multiplicador * kh;
+
+  var ft0d = tabla.getft0k(tipoMadera)*multiplicador*kh;
+
   var response = {
     'fmd' : fmd,
-    'ft0d': tabla.getft0k(tipoMadera)*multiplicador,
+    'ft0d': ft0d,
     'ft90d' : tabla.getft90k(tipoMadera)*multiplicador,
     'fc0d' : tabla.getfc0k(tipoMadera)*multiplicador,
     'fc90d' : tabla.getfc90k(tipoMadera)*multiplicador,
