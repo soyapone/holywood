@@ -36,6 +36,9 @@ function validateAndGetValue(req,res){
   req.checkQuery('Ksys', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('Ksys', validationErrors.val_err_isIn(["false","true"])).isIn(["false","true"]);
 
+  req.checkQuery('Kh', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('Kh', validationErrors.val_err_isIn(["false","true"])).isIn(["false","true"]);
+
   req.checkQuery('gammaM', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('gammaM', validationErrors.val_err_isFloat()).isFloat();
 
@@ -56,17 +59,18 @@ function validateAndGetValue(req,res){
     var b = Number(req.query.b);
     var h = Number(req.query.h);
     var Ksys = ((req.query.Ksys === "true")||(req.query.Ksys === "True"));
+    var Kh = ((req.query.Ksys === "true")||(req.query.Ksys === "True"));
     var gammaM = Number(req.query.gammaM);
 
 
-    var logicalErrors = funcion.logicalValidation(s,service,LoadDuration,b,h,Ksys,gammaM);
+    var logicalErrors = funcion.logicalValidation(s,service,LoadDuration,b,h,Ksys,kh,gammaM);
 
     if (logicalErrors){
      res.status(400).send(logicalErrors);
      return;
     }
 
-    var rawValues = funcion.DesignValues(s,service,LoadDuration,b,h,Ksys,gammaM);
+    var rawValues = funcion.DesignValues(s,service,LoadDuration,b,h,Ksys,kh,gammaM);
     //console.log('rawValues', rawValues);
 
     var data = {

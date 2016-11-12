@@ -2,30 +2,34 @@ var tabla = require('./tables');
 var fun = require('./funciones');
 var _ = require('lodash');
 
-exports.logicalValidation = function() {
+exports.logicalValidation = function(s,service,LoadDuration,b,h,Ksys,kh,gammaM) {
   // Solo para hacer pruebas esta funcion no devuelve nada erroneo por
   //if (gammaM == 1) return "gammaM no puede ser 1";
   return;
 }
 
 
-exports.DesignValues = function(tipoMadera,servicio,duration,b,h,Ksys,gammaM){
-  var kh = 1;
+exports.DesignValues = function(tipoMadera,servicio,duration,b,h,Ksys,Kh,gammaM){
+  var khm;
 
-  if (tabla.isConiferous(tipoMadera)||tabla.isHardwood(tipoMadera)){
-    if (h <= 150){
-      a = Math.pow((150/h),0.2);
-      kh = _.min([a,1.3]);
-    } else {
-      kh = 1;
+  if (Kh){
+    if (tabla.isConiferous(tipoMadera)||tabla.isHardwood(tipoMadera)){
+      if (h <= 150){
+        a = Math.pow((150/h),0.2);
+        khm = _.min([a,1.3]);
+      } else {
+        khm = 1;
+      }
+    }else if (tabla.isGL(tipoMadera)) {
+      if (h <= 600){
+        a = Math.pow((600/h),0.1);
+        khm = _.min([a,1.1]);
+      } else {
+        khm = 1;
+      }
     }
-  }else if (tabla.isGL(tipoMadera)) {
-    if (h <= 600){
-      a = Math.pow((600/h),0.1);
-      kh = _.min([a,1.1]);
-    } else {
-      kh = 1;
-    }
+  } else{
+  khm = 1;
   }
 
   var kmod = tabla.findServiceDuracion(servicio,duration);
@@ -38,9 +42,9 @@ exports.DesignValues = function(tipoMadera,servicio,duration,b,h,Ksys,gammaM){
     fmd = tabla.getfmk(tipoMadera);
   }
 
-  fmd = fmd * multiplicador * kh;
+  fmd = fmd * multiplicador * khm;
 
-  var ft0d = tabla.getft0k(tipoMadera)*multiplicador*kh;
+  var ft0d = tabla.getft0k(tipoMadera)*multiplicador*khm;
 
   var response = {
     'fmd' : fmd,
