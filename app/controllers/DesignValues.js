@@ -59,18 +59,18 @@ function validateAndGetValue(req,res){
     var b = Number(req.query.b);
     var h = Number(req.query.h);
     var Ksys = ((req.query.Ksys === "true")||(req.query.Ksys === "True"));
-    var Kh = ((req.query.Ksys === "true")||(req.query.Ksys === "True"));
+    var Kh = ((req.query.Kh === "true")||(req.query.Kh === "True"));
     var gammaM = Number(req.query.gammaM);
 
 
-    var logicalErrors = funcion.logicalValidation(s,service,LoadDuration,b,h,Ksys,kh,gammaM);
+    var logicalErrors = funcion.logicalValidation(s,service,LoadDuration,b,h,Ksys,Kh,gammaM);
 
     if (logicalErrors){
      res.status(400).send(logicalErrors);
      return;
     }
 
-    var rawValues = funcion.DesignValues(s,service,LoadDuration,b,h,Ksys,kh,gammaM);
+    var rawValues = funcion.DesignValues(s,service,LoadDuration,b,h,Ksys,Kh,gammaM);
     //console.log('rawValues', rawValues);
 
     var data = {
