@@ -86,7 +86,7 @@ function validateAndGetValue(req,res){
 }
 
 //Para cálculos XML y JSON
-//http://localhost:3705/DesignValues/?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&gammaM=1.30&format=xml
+//http://localhost:3705/DesignValues/?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&Kh=true&gammaM=1.30&format=xml
 router.get('/', function (req, res) {
  var result = validateAndGetValue(req,res);
  if (req.query.format == 'json'){
