@@ -17,7 +17,8 @@
       //
       var myurlEURO = '/CompressiveStressesAtAnAngleToTheGrainEuro/'
       +'?falfaD='+cal.calculation.falfaD+'&b='+cal.calculation.b
-      +'&l='+cal.calculation.l+'&c1='+cal.calculation.c1
+      +'&l='+cal.calculation.l+'&l1='+cal.calculation.l1
+      +'&c1='+cal.calculation.c1
       +'&c2='+cal.calculation.c2+'&h='+cal.calculation.h
       +'&Continuous='+cal.calculation.Continuous
       +'&s='+cal.calculation.woodtype+'&service='+cal.calculation.service
@@ -27,7 +28,8 @@
 
       var myurlDIN = '/CompressiveStressesAtAnAngleToTheGrainDIN/'
       +'?falfaD='+cal.calculation.falfaD+'&b='+cal.calculation.b
-      +'&l='+cal.calculation.l+'&c1='+cal.calculation.c1
+      +'&l='+cal.calculation.l+'&l1='+cal.calculation.l1
+      +'&c1='+cal.calculation.c1
       +'&c2='+cal.calculation.c2+'&h='+cal.calculation.h
       +'&Continuous='+cal.calculation.Continuous
       +'&s='+cal.calculation.woodtype+'&service='+cal.calculation.service

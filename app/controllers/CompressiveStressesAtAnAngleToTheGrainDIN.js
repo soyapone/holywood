@@ -25,6 +25,9 @@ function validateAndGetValue(req,res){
   req.checkQuery('l', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('l', validationErrors.val_err_isFloat()).isFloat();
 
+  req.checkQuery('l1', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('l1', validationErrors.val_err_isFloat()).isFloat();
+
   req.checkQuery('c1', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('c1', validationErrors.val_err_isFloat()).isFloat();
 
@@ -65,6 +68,7 @@ function validateAndGetValue(req,res){
     var falfaD = Number(req.query.falfaD)
     var b = Number(req.query.b);
     var l = Number(req.query.l);
+    var l1 = Number(req.query.l1);
     var c1 = Number(req.query.c1);
     var c2 = Number(req.query.c2);
     var h = Number(req.query.h);
@@ -75,7 +79,7 @@ function validateAndGetValue(req,res){
     var gammaM = Number(req.query.gammaM);
     var alfaGr = Number(req.query.alfaGr);
 
-    var logicalErrors = CompressiveStressesAtAnAngleToTheGrainDIN.logicalValidation(falfaD,b,l,c1,c2,h,Continuous,s,service,LoadDuration,gammaM,alfaGr);
+    var logicalErrors = CompressiveStressesAtAnAngleToTheGrainDIN.logicalValidation(falfaD,b,l,l1,c1,c2,h,Continuous,s,service,LoadDuration,gammaM,alfaGr);
 
     if (logicalErrors){
      res.status(400).send(logicalErrors);
@@ -83,7 +87,7 @@ function validateAndGetValue(req,res){
     }
 
 
-    var rawValues = CompressiveStressesAtAnAngleToTheGrainDIN.compresionOblicuaDIN(falfaD,b,l,c1,c2,h,Continuous,s,service,LoadDuration,gammaM,alfaGr);
+    var rawValues = CompressiveStressesAtAnAngleToTheGrainDIN.compresionOblicuaDIN(falfaD,b,l,l1,c1,c2,h,Continuous,s,service,LoadDuration,gammaM,alfaGr);
 
     var data = {
       'areaEf' : rawValues.areaEf.toFixed(0),
@@ -97,7 +101,7 @@ function validateAndGetValue(req,res){
 }
 
 //Para cálculos XML y JSON
-//http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainDIN/?falfaD=1&b=90&l=70&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=xml
+//http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainDIN/?falfaD=1&b=90&l=70&l1=1000&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=xml
 
 router.get('/', function (req, res) {
  var result = validateAndGetValue(req,res);

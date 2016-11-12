@@ -23,23 +23,16 @@
     <!-- <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"> </span> Facebook</a>
     <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"> </span> Google</a> -->
   </div>
+  <!-- sección para la foto -->
+
+  <div class="row">
+    <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/CompresionOblicua1.jpg"/></div>
+    <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/CompresionOblicua2.jpg"/></div>
+  </div>
 
   <div ng-controller="CalculoController as calculoCtrl">
     <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
 
-      <!-- sección para la foto -->
-
-      <div class="row-pictures">
-
-        <figure class="figure">
-      	<img src="/img/CompresionOblicua1.jpg" class="figure-img pull-right img-responsive">
-        </figure>
-
-        <figure class="figure">
-        <img src="/img/CompresionOblicua2.jpg" class="figure-img pull-left img-responsive">
-        </figure>
-
-      </div>
 
       <!-- sección para los parametros -->
 
@@ -67,6 +60,10 @@
         </div>
 
         <div class="row">
+          <div class="col-xs-3">
+            l1 (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l1" name="l1" placeholder="l1" required data-toggle="tooltip" title=""><br>
+          </div>
 
           <div class="col-xs-3">
             alfaGr<br>
@@ -81,15 +78,18 @@
             c2 (mm)<br>
             <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.c2" name="c2" placeholder="c2" required data-toggle="tooltip" title="Increased contact length at each side by 30mm senα, but not more than a, l or l 1 /2 (mm)."><br>
           </div>
-          <div class="col-xs-3">
-            h (mm)<br>
-            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required data-toggle="tooltip" title="Height measured in millimeters"><br>
-          </div>
+
 
         </div>
 
 
         <div class="row">
+
+          <div class="col-xs-3">
+            h (mm)<br>
+            <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required data-toggle="tooltip" title="Height measured in millimeters"><br>
+          </div>
+
           <div class="col-xs-3">
             Supports<br>
             <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.Continuous" required data-toggle="tooltip" title="Structural design">
@@ -115,6 +115,11 @@
               <option value="I">Instantaneous</option>
             </select>
           </div>
+        </div>
+
+
+
+        <div class="row">
           <div  class="col-xs-3">
             &gamma;<sub>M</sub><br>
             <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.gammaM" required required data-toggle="tooltip" title="Partial factor for material properties, also acounting for model uncertainties and dimensional variations.">
@@ -146,7 +151,7 @@
 
         <h2>Result</h2>
         <div class="row" ng-style = "{'display': errVisibility}">
-        <div class="col-xs-4">
+          <div class="col-xs-4">
           </div>
           <div class="col-xs-4">
             <div class="alert alert-danger">

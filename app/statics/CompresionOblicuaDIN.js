@@ -2,7 +2,7 @@ var tabla = require('./tables');
 var fun = require('./funciones');
 
 
-exports.logicalValidation = function(falfaD,b,l,c1,c2,h,durmiente,tipoMadera,servicio,duracion,gammaM, alfGr) {
+exports.logicalValidation = function(falfaD,b,l,l1,c1,c2,h,durmiente,tipoMadera,servicio,duracion,gammaM, alfGr) {
   // Solo para hacer pruebas esta funcion no devuelve nada erroneo por
   //if (gammaM == 1) return "gammaM no puede ser 1";
   return;
@@ -10,10 +10,10 @@ exports.logicalValidation = function(falfaD,b,l,c1,c2,h,durmiente,tipoMadera,ser
 
 
 
-exports.compresionOblicuaDIN = function(falfaD,b,l,c1,c2,h,durmiente,tipoMadera,servicio,duracion,gammaM, alfGr){
+exports.compresionOblicuaDIN = function(falfaD,b,l,l1,c1,c2,h,durmiente,tipoMadera,servicio,duracion,gammaM, alfGr){
   // Considereamos l1 como infinito o el máximo valor para que se cumpla la función de KC90 y en el área eficaz.
   var alf = fun.toRadian(alfGr);
-  var l1 = Number.MAX_VALUE;
+  //var l1 = Number.MAX_VALUE;
   var kc90 = fun.kc90(l1,h,durmiente,tipoMadera);
   var kmod = tabla.findServiceDuracion(servicio,duracion);
   var areaEf= fun.areaEf(b,l,l1,c1,c1,alf);
