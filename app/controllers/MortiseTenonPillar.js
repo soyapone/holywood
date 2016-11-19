@@ -7,7 +7,10 @@ MortiseTenonPillar = require('../statics/MortiseTenonPillar'),
 tabla = require('../statics/tables'),
 validationErrors = require('../statics/validationErrors'),
 util = require('util'),
-passport = require('passport');;
+passport = require('passport');
+
+var ua = require('universal-analytics');
+var visitor = ua('UA-80763829-1');
 
 module.exports = function (app,mypassport) {
   app.use('/MortiseTenonPillar', router);
@@ -90,8 +93,8 @@ function validateAndGetValue(req,res){
     var logicalErrors = MortiseTenonPillar.logicalValidation(Nd,b,hprime,bprime,lprime,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
 
     if (logicalErrors){
-     res.status(400).send(logicalErrors);
-     return;
+      res.status(400).send(logicalErrors);
+      return;
     }
 
     var rawValues = MortiseTenonPillar.funcion(Nd,b,hprime,bprime,lprime,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
@@ -112,23 +115,24 @@ function validateAndGetValue(req,res){
 //Para cálculos XML y JSON
 //http://localhost:3705/MortiseTenonPillar/?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=xml
 router.get('/', function (req, res) {
- var result = validateAndGetValue(req,res);
- if (req.query.format == 'json'){
-     if (result){
-       res.json(result);
-     }
- } else if(req.query.format == 'xml'){
-   if (result){
-     var msg = xmlify(result, { root: 'results' });
-     res.set('Content-Type', 'text/xml');
-     res.send(msg);
-     res.end();
-   }
- } else {
-   res.send(result);
-   res.set(400);
-   res.end();
- };
+  var result = validateAndGetValue(req,res);
+  if (req.query.format == 'json'){
+    if (result){
+      res.json(result);
+    }
+  } else if(req.query.format == 'xml'){
+    if (result){
+      var msg = xmlify(result, { root: 'results' });
+      res.set('Content-Type', 'text/xml');
+      res.send(msg);
+      res.end();
+    }
+  } else {
+    res.send(result);
+    res.set(400);
+    res.end();
+  };
+  visitor.pageview("/MortiseTenonPillar").send();
 });
 
 

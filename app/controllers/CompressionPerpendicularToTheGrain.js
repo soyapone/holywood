@@ -7,7 +7,10 @@ CompressionPerpendicularToTheGrain = require('../statics/CompressionPerpendicula
 tabla = require('../statics/tables'),
 validationErrors = require('../statics/validationErrors'),
 util = require('util'),
-passport = require('passport');;
+passport = require('passport');
+
+var ua = require('universal-analytics');
+var visitor = ua('UA-80763829-1');
 
 module.exports = function (app,mypassport) {
   app.use('/CompressionPerpendicularToTheGrain', router);
@@ -125,8 +128,8 @@ function validateAndGetValue(req,res){
     var logicalErrors = CompressionPerpendicularToTheGrain.logicalValidation(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
 
     if (logicalErrors){
-     res.status(400).send(logicalErrors);
-     return;
+      res.status(400).send(logicalErrors);
+      return;
     }
 
     var rawValues = CompressionPerpendicularToTheGrain.compresion90ServicioDuracion(Fd,b,l,a1,a2,l1,h,Continuous,s,service,LoadDuration,gammaM);
@@ -147,23 +150,24 @@ function validateAndGetValue(req,res){
 //Para cálculos XML y JSON
 //http://localhost:3705/CompressionPerpendicularToTheGrain/?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
 router.get('/', function (req, res) {
- var result = validateAndGetValue(req,res);
- if (req.query.format == 'json'){
-     if (result){
-       res.json(result);
-     }
- } else if(req.query.format == 'xml'){
-   if (result){
-     var msg = xmlify(result, { root: 'results' });
-     res.set('Content-Type', 'text/xml');
-     res.send(msg);
-     res.end();
-   }
- } else {
-   res.send(result);
-   res.set(400);
-   res.end();
- };
+  var result = validateAndGetValue(req,res);
+  if (req.query.format == 'json'){
+    if (result){
+      res.json(result);
+    }
+  } else if(req.query.format == 'xml'){
+    if (result){
+      var msg = xmlify(result, { root: 'results' });
+      res.set('Content-Type', 'text/xml');
+      res.send(msg);
+      res.end();
+    }
+  } else {
+    res.send(result);
+    res.set(400);
+    res.end();
+  };
+  visitor.pageview("/CompressionPerpendicularToTheGrain").send();
 });
 
 

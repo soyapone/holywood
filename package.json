@@ -23,6 +23,7 @@
     "passport-facebook": "^2.1.0",
     "passport-google-oauth": "^1.0.0",
     "serve-favicon": "^2.3.0",
+    "universal-analytics": "^0.4.6",
     "xml": "^1.0.1",
     "xmlify": "^1.0.1"
   },
