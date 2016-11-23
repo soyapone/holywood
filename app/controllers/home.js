@@ -15,7 +15,7 @@ module.exports = function (app,mypassport) {
 
 router.get('/', function (req, res, next) {
   res.render('indexTest', {
-    title: 'WOODCALC - specialists in wood joints calculations [BETA]'
+    title: 'WOODCALC - Specialists in wood joint calculations [BETA]'
   });
 });
 
