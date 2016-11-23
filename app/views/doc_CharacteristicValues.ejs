@@ -1,0 +1,111 @@
+<% include head %>
+
+<body id="StartPage">
+  <div class="container">
+    <div class="panel-body">
+      <div class="table-responsive">
+
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th valign="top" width="15%">
+                Title
+              </th>
+              <td>
+                <span class="caption">CHARACTERISTIC VALUES</span> <br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Description
+              </th>
+              <td>
+                <p>This function gives you the characteristic values of a number of timber properties for different strength classes.
+                  <br>These values are based on UNE-EN-338 for solid timber and UNE-EN-14080 for Glue Laminated timber.
+                  <br>These values will be used in the other functions implemented by WoodCalc.
+                </p>
+
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Example URL
+              </th>
+              <td>
+                <span class="caption"><a href="/CharacteristicValues/?s=C14&amp;format=json"><b><code>/CharacteristicValues/?s=C14&format=json</code></b></a></span> <br>
+              </td>
+            </tr>
+            <tr>
+              <th valign="top">
+                Method
+              </th>
+              <td>
+                <span class="caption"><b><code>GET</code></b></span> <br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                URL Params
+              </th>
+              <td>
+                <b>Required:</b> <br>
+                <code>s=[StrengthValue]</code> <br>
+                The alpha-numeric code of the strength classes. A value from the next lists:<br>
+                <b>Softwood:</b> C14, C16, C18, C20, C22, C24, C27, C30, C35, C40, C45 or C50.<br>
+                <b>Hardwood:</b> D18, D24, D30,  D35, D40, D50, D60 or D70<br>
+                <b>Homogenous Glue Laminated:</b> GL20h, GL22h, GL24h, GL26h, GL28h or GL30h<br>
+                <b>Combined Glue Laminated:</b> GL20c, GL22c, GL24c, GL26c, GL28c or GL30c<br>
+                <br>
+                example: s=C14  <br><br>
+
+                <code>format=[xml|json]</code> <br>
+                Choose the language you wish the output to be in. Indicate either json or xml. <br><br>
+                example: format=json  <br><br>
+
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Success Response
+              </th>
+              <td>
+                <b> Example: </b> <br>
+                <b>Code:</b> 200 <br>
+                <b>Example content:</b> <code> {"ID":"C14","fmk":14,"ft0k":8,"ft90k":0.4,"fc0k":16,"fc90k":2,"fvk":3,"E0mean":7,"E005":4.7,"E90mean":0.23,"Gmean":0.44,"rhok":290,"rhomean":350}</code><br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Response Params
+              </th>
+              <td>
+                <b>ID</b>= Is the strength class selected.<br>
+                <b>fmk</b>= Characteristic bending strength. In N/mm2.<br>
+                <b>ft0k</b>= Characteristic tensile strength along the grain. In N/mm2.<br>
+                <b>ft90k</b>=Characteristic tensile strength perpendicular to the grain. In N/mm2.<br>
+                <b>fc0k</b>= Characteristic compressive strength along the grain. In N/mm2.<br>
+                <b>fc90k</b>= Characteristic compressive strength perpendicular to grain. In N/mm2.<br>
+
+
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Notes
+              </th>
+              <td>
+                <span class="caption"></span> <br>
+              </td>
+            </tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <% include footer %>

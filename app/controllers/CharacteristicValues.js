@@ -86,3 +86,13 @@ router.get('/GUI', function (req, res) {
   });
   res.end();
 });
+
+//Para cálculos del estilo http://localhost:3705/CharacteristicValues/doc/
+router.get('/doc', function (req, res) {
+  //console.log(tabla.findService());
+  res.render('doc_CharacteristicValues', {
+    title: 'Characteristic Values',
+    woodtypes: tabla.findMaderaTypes()
+  });
+  res.end();
+});
