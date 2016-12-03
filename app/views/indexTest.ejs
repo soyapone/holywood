@@ -2,31 +2,31 @@
 
 <body id="StartPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#myPage">woodcalc</a>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#myPage">woodcalc</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/CompressionPerpendicularToTheGrain?Fd=14752&amp;b=90&amp;l=70&amp;a1=0&amp;a2=30&amp;l1=1000&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;format=json">JSON Test</a></li>
+          <li><a href="/CompressionPerpendicularToTheGrain?Fd=14752&amp;b=90&amp;l=70&amp;a1=0&amp;a2=30&amp;l1=1000&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;format=xml">XML Test</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/CompressionPerpendicularToTheGrain?Fd=14752&amp;b=90&amp;l=70&amp;a1=0&amp;a2=30&amp;l1=1000&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;format=json">JSON Test</a></li>
-        <li><a href="/CompressionPerpendicularToTheGrain?Fd=14752&amp;b=90&amp;l=70&amp;a1=0&amp;a2=30&amp;l1=1000&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;format=xml">XML Test</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="jumbotron text-center">
-  <!-- <h1>woodcalc</h1> -->
-<img src="/img/woodcalc.png" alt="woodcalc" width="30%">
-  <p>Specialists in wood joint calculations</p>
-  <h5>we are in beta</h5>
-  <!-- <form class="form-inline">
+  <div class="jumbotron text-center">
+    <!-- <h1>woodcalc</h1> -->
+    <img src="/img/woodcalc.png" alt="woodcalc" width="30%">
+    <p>Specialists in wood joint calculations</p>
+    <h5>we are in beta</h5>
+    <!-- <form class="form-inline">
     <input type="email" class="form-control" size="50" placeholder="Email Address" required>
     <button type="button" class="btn btn-danger">Subscribe</button>
   </form> -->
@@ -35,12 +35,14 @@
   <a href="/auth/google" class="btn btn-danger"><span class="fa fa-google"> </span> Google</a> -->
 </div>
 
+<% include donation %>
+
 <div id="about" class="container-fluid">
   <div class="row">
 
     <div class="col-sm-12 col-md-3">
       <a href="/CharacteristicValues/GUI">
-        <img  alt="Characteristic Values" src="/img/DesignValues_logo.jpg" class="figure-img img-responsive center-block">
+        <img  alt="Characteristic Values" src="/img/CharacteristicValues_logo.jpg" class="figure-img img-responsive center-block">
       </a>
     </div>
     <div class="col-sm-12 col-md-9">
@@ -49,7 +51,7 @@
       <p><a href="/CharacteristicValues/GUI">Try the GUI interface.</a></p>
       <p><a href="/CharacteristicValues/?s=C14&amp;format=json">You can test the operation here and get the results in JSON</a></p>
       <p><a href="/CharacteristicValues/?s=C14&amp;format=xml">You can test the operation here and get the results in XML</a></p>
-      <p><a href="/CharacteristicValues/doc">Function documentation</a></p>
+      <p><a href="/CharacteristicValues/doc">Characteristic Values Function Documentation</a></p>
       <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
     </div>
   </div>
@@ -59,7 +61,7 @@
   <div class="row">
 
     <div class="col-sm-12 col-md-3">
-      <a href="/CharacteristicValues/GUI">
+      <a href="/DesignValues/GUI">
         <img  alt="Design Values" src="/img/DesignValues_logo.jpg" class="figure-img img-responsive center-block">
       </a>
     </div>
@@ -68,8 +70,8 @@
       <h3>function testing</h3><br>
       <p><a href="/DesignValues/GUI">Try the GUI interface.</a></p>
       <p><a target="_blank" href="/DesignValues/?s=GL24h&amp;service=1&amp;LoadDuration=S&amp;b=70&amp;h=70&amp;Ksys=true&amp;Kh=true&amp;gammaM=1.30&amp;format=json">You can test the operation here and get the results in JSON</a></p>
-      <p><a target="_blank" href="/DesignValues/?s=GL24h&service=1&amp;LoadDuration=S&amp;b=70&amp;h=70&amp;Ksys=true&amp;Kh=true&amp;gammaM=1.30&amp;format=xml">You can test the operation here and get the results in XML</a></p>
-
+      <p><a target="_blank" href="/DesignValues/?s=GL24h&amp;service=1&amp;LoadDuration=S&amp;b=70&amp;h=70&amp;Ksys=true&amp;Kh=true&amp;gammaM=1.30&amp;format=xml">You can test the operation here and get the results in XML</a></p>
+      <p><a href="/DesignValues/doc">Design Values Function Documentation</a></p>
       <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
     </div>
 
@@ -91,6 +93,7 @@
       <p><a href="/CompressionPerpendicularToTheGrain/gui">Try the GUI interface.</a></p>
       <p><a target="_blank" href="/CompressionPerpendicularToTheGrain?Fd=14752&amp;b=90&amp;l=70&amp;a1=0&amp;a2=30&amp;l1=1000&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;format=json">You can test the operation here and get the results in JSON</a></p>
       <p><a target="_blank" href="/CompressionPerpendicularToTheGrain?Fd=14752&amp;b=90&amp;l=70&amp;a1=0&amp;a2=30&amp;l1=1000&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;format=xml">You can test the operation here and get the results in XML</a></p>
+      <p><a href="/CompressionPerpendicularToTheGrain/doc">Compression Perpendicular to the Grain Function Documentation</a></p>
       <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
     </div>
 
@@ -114,10 +117,11 @@
       <h4>Eurocode</h4>
       <p><a target="_blank" href="/CompressiveStressesAtAnAngleToTheGrainEURO/?falfaD=1&amp;b=90&amp;l=70&amp;l1=70&amp;c1=0&amp;c2=30&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;alfaGr=30.5&amp;format=json">You can test the operation here and get the results in JSON</a></p>
       <p><a target="_blank" href="/CompressiveStressesAtAnAngleToTheGrainEURO/?falfaD=1&amp;b=90&amp;l=70&amp;l1=70&amp;c1=0&amp;c2=30&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;alfaGr=30.5&amp;format=xml">You can test the operation here and get the results in XML</a></p>
+      <p><a href="/CompressiveStressesAtAnAngleToTheGrainEURO/doc">Compressive Stresses at an Angle to the Grain Eurocode 5 Function Documentation</a></p>
       <h4>DIN</h4>
       <p><a target="_blank" href="/CompressiveStressesAtAnAngleToTheGrainDIN/?falfaD=1&amp;b=90&amp;l=70&amp;l1=70&amp;c1=0&amp;c2=30&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;alfaGr=30.5&amp;format=json">You can test the operation here and get the result in JSON</a></p>
       <p><a target="_blank" href="/CompressiveStressesAtAnAngleToTheGrainDIN/?falfaD=1&amp;b=90&amp;l=70&amp;l1=70&amp;c1=0&amp;c2=30&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;alfaGr=30.5&amp;format=xml">You can test the operation here and get the result in XML</a></p>
-
+      <p><a href="/CompressiveStressesAtAnAngleToTheGrainDIN/doc">Compressive Stresses at an Angle to the Grain DIN Function Documentation</a></p>
       <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
     </div>
 
@@ -138,7 +142,7 @@
       <p><a href="/NotchedMembers/GUI">Try the GUI interface.</a></p>
       <p><a target="_blank" href="/NotchedMembers/?Vd=14752&amp;b=90&amp;hef=70&amp;h=5&amp;Kcr=false&amp;d=97&amp;s=GL24h&amp;x=4&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;notchOnSupport=true&amp;format=json">You can test the operation here and get the results in JSON</a></p>
       <p><a target="_blank" href="/NotchedMembers/?Vd=14752&amp;b=90&amp;hef=70&amp;h=5&amp;Kcr=false&amp;d=97&amp;s=GL24h&amp;x=4&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;notchOnSupport=true&amp;format=xml">You can test the operation here and get the results in XML</a></p>
-
+      <p><a href="/NotchedMembers/doc">Notched Members Function Documentation</a></p>
       <!-- <br><button class="btn btn-default btn-lg">Get in Touch</button> -->
     </div>
 
@@ -159,8 +163,8 @@
       <p><a href="/MortiseTenonPillar/GUI">Try the GUI interface.</a></p>
       <p><a target="_blank" href="/MortiseTenonPillar/?Nd=21&amp;b=21&amp;hprime=21&amp;bprime=21&amp;lprime=21&amp;a1=21&amp;a2=21&amp;l1=21&amp;h=21&amp;Continuous=true&amp;s=C14&amp;service=1&amp;LoadDuration=P&amp;gammaM=1.3&amp;format=json">You can test the operation here and get the results in JSON</a></p>
       <p><a target="_blank" href="/MortiseTenonPillar/?Nd=21&amp;b=21&amp;hprime=21&amp;bprime=21&amp;lprime=21&amp;a1=21&amp;a2=21&amp;l1=21&amp;h=21&amp;Continuous=true&amp;s=C14&amp;service=1&amp;LoadDuration=P&amp;gammaM=1.3&amp;format=xml">You can test the operation here and get the results in XML</a></p>
+      <p><a href="/MortiseTenonPillar/doc">Mortise Tenon Pillar Function Documentation</a></p>
     </div>
-
   </div>
 </div>
 
@@ -173,21 +177,21 @@
 var myCenter = new google.maps.LatLng(40.94212,	-4.10321);
 
 function initialize() {
-var mapProp = {
-  center:myCenter,
-  zoom:12,
-  scrollwheel:false,
-  draggable:false,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
+  var mapProp = {
+    center:myCenter,
+    zoom:12,
+    scrollwheel:false,
+    draggable:false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
   };
 
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-var marker = new google.maps.Marker({
-  position:myCenter,
+  var marker = new google.maps.Marker({
+    position:myCenter,
   });
 
-marker.setMap(map);
+  marker.setMap(map);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -222,9 +226,9 @@ $(document).ready(function(){
       var pos = $(this).offset().top;
 
       var winTop = $(window).scrollTop();
-        if (pos < winTop + 600) {
-          $(this).addClass("slide");
-        }
+      if (pos < winTop + 600) {
+        $(this).addClass("slide");
+      }
     });
   });
 })

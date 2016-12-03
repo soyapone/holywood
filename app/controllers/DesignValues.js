@@ -123,3 +123,13 @@ router.get('/GUI', function (req, res) {
   });
   res.end();
 });
+
+//Para cálculos del estilo http://localhost:3705/DesignValues/doc/
+router.get('/doc', function (req, res) {
+  //console.log(tabla.findService());
+  res.render('doc_DesignValues', {
+    title: 'Design Values Documentation',
+    woodtypes: tabla.findMaderaTypes()
+  });
+  res.end();
+});

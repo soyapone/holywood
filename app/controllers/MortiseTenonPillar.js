@@ -146,3 +146,14 @@ router.get('/GUI', function (req, res) {
   });
   res.end();
 });
+
+
+//Para cálculos del estilo http://localhost:3705/MortiseTenonPillar/doc/
+router.get('/doc', function (req, res) {
+  //console.log(tabla.findService());
+  res.render('doc_MortiseTenonPillar', {
+    title: 'Mortise Tenon Pillar Documentation',
+    woodtypes: tabla.findMaderaTypes()
+  });
+  res.end();
+});

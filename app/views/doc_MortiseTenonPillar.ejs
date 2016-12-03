@@ -12,7 +12,7 @@
                 Title
               </th>
               <td>
-                <span class="caption">CHARACTERISTIC VALUES</span> <br>
+                <span class="caption">MORTISE TENON PILLAR</span> <br>
               </td>
             </tr>
 
@@ -21,37 +21,25 @@
                 Description
               </th>
               <td>
-                <p>This function gives you the characteristic values of a number of timber properties for different strength classes.
-                  <br>These values are based on UNE-EN-338 for solid timber and UNE-EN-14080 for Glue Laminated timber.
-                  <br>These values will be used in the other functions implemented by WoodCalc.
+                <p>This function assesses mortise and tenon working as a pillar. This check is important to avoid crushing timber.
+                  <br>The REST API calculates the index based on Eurocode 5 and CTE DB-SE-M.
                 </p>
-
               </td>
             </tr>
-
-
             <tr>
               <th valign="top">
                 Image
               </th>
               <td>
-
-                <div class="row-pictures">
-
-                  <img style="width: 75%;" src="/img/CharacteristicsValues.jpg" class="img-responsive center-block" >
-
-                </div>
-
+                <div class="cell"><img alt="Mortise Tenon Pillar" src="/img/MortiseTenonPillar.jpg" class="cell-fluid" /></div>
               </td>
             </tr>
-
-
             <tr>
               <th valign="top">
                 Example URL
               </th>
               <td>
-                <span class="caption"><a href="/CharacteristicValues/?s=C14&amp;format=json"><b><code>/CharacteristicValues/?s=C14&format=json</code></b></a></span> <br>
+                <span class="caption"><a href="/MortiseTenonPillar/?Nd=21&amp;b=21&amp;hprime=21&amp;bprime=21&amp;lprime=21&amp;a1=21&amp;a2=21&amp;l1=21&amp;h=21&amp;Continuous=true&amp;s=C14&amp;service=1&amp;LoadDuration=P&amp;gammaM=1.3&amp;format=json"><b><code>/MortiseTenonPillar/?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=json</code></b></a></span> <br>
               </td>
             </tr>
             <tr>
@@ -69,6 +57,42 @@
               </th>
               <td>
                 <b>Required:</b> <br>
+                <code>Nd =[Integer]</code> <br>
+                Is the design axial force of the pillar in Newtons (N)<br><br>
+                example: Fd=14752<br><br>
+
+                <code>b =[Integer]</code> <br>
+                Width measured in millimeters(mm)<br><br>
+                example: b=90<br><br>
+
+                <code>hprime =[Integer]</code> <br>
+                Depth measured in millimeters (mm)<br><br>
+                example: hprime=21<br><br>
+
+                <code>lprime =[Integer]</code> <br>
+                Is the length  of the mortise measured in millimeters (suggestion hprime*4/5) (mm)<br><br>
+                example: lprime=21<br><br>
+
+                <code>a1 =[Integer]</code> <br>
+                Increased contact length at each side by 30mm, but not more than a, l or l1/2. The system considered the minimum of these values. Measured in millimeters (mm).<br><br>
+                example: a1=0  <br><br>
+
+                <code>a2 =[Integer]</code> <br>
+                Increased contact length at each side by 30mm, but not more than a, l or l1/2. The system considered the minimum of these values. Measured in millimeters (mm).<br><br>
+                example: a2=0  <br><br>
+
+                <code>l1 =[Integer]</code> <br>
+                Distance between contact areas measured in millimeters (mm).<br><br>
+                example: l1=21<br><br>
+
+                <code>h =[Integer]</code> <br>
+                Depth measured in millimeters (mm)<br><br>
+                example: h=21<br><br>
+
+                <code>continous =[true|false]</code> <br>
+                Design parameter. Introduce true or false for continuous support to continuous design or discrete design, respectively.<br><br>
+                example: continous=true  <br><br>
+
                 <code>s=[StrengthValue]</code> <br>
                 The alpha-numeric code of the strength classes. A value from the next lists:<br>
                 <b>Softwood:</b> C14, C16, C18, C20, C22, C24, C27, C30, C35, C40, C45 or C50.<br>
@@ -77,6 +101,18 @@
                 <b>Combined Glue Laminated:</b> GL20c, GL22c, GL24c, GL26c, GL28c or GL30c<br>
                 <br>
                 example: s=C14  <br><br>
+
+                <code>service =[1|2|3]</code> <br>
+                The service class is indicated by introducing the number of the corresponding service class, 1, 2 or 3 <br><br>
+                example: service=1  <br><br>
+
+                <code>LoadDuration =[I|S|M|L|P]</code> <br>
+                Load duration is indicated by introducing one of the following parameters : I, S,M L or P  <br><br>
+                example: LoadDuration=P  <br><br>
+
+                <code>gammaM =[float]</code> <br>
+                Partial factor for material properties, also accounting for model uncertainties and dimensional variations. This input is a number.
+                example: gammaM=1.3<br><br>
 
                 <code>format=[xml|json]</code> <br>
                 Choose the language you wish the output to be in. Indicate either json or xml. <br><br>
@@ -121,7 +157,7 @@
               </td>
             </tr>
           </tbody></table>
-        </div>
+         </div>
       </div>
     </div>
   </body>

@@ -1,0 +1,168 @@
+<% include head %>
+
+<body id="StartPage">
+  <div class="container">
+    <div class="panel-body">
+      <div class="table-responsive">
+
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th valign="top" width="15%">
+                Title
+              </th>
+              <td>
+                <span class="caption">COMPRESSIVE STRESSES AT AN ANGLE TO THE GRAIN DIN1052:2008</span> <br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Description
+              </th>
+              <td>
+                <p>This function assesses compressive stresses at an angle to the grain. This check is important to avoid crushing timber.
+                  <br>In this case there are two diferent ways to made the assesses. DIN1052:2008
+                </p>
+
+              </td>
+            </tr>
+
+
+            <tr>
+              <th valign="top">
+                Image
+              </th>
+              <td>
+                <div class="row">
+                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/CompresionOblicua1.jpg"/></div>
+                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/CompresionOblicua2.jpg"/></div>
+                </div>
+              </td>
+            </tr>
+            
+            <tr>
+              <th valign="top">
+                Example URL
+              </th>
+              <td>
+                <span class="caption"><a href="/CompressiveStressesAtAnAngleToTheGrainDIN/?falfaD=1&amp;b=90&amp;l=70&amp;l1=70&amp;c1=0&amp;c2=30&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;alfaGr=30.5&amp;format=json"><b><code>/CompressiveStressesAtAnAngleToTheGrainDIN/?falfaD=1&b=90&l=70&l1=70&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=json</code></b></a></span> <br>
+              </td>
+            </tr>
+            <tr>
+              <th valign="top">
+                Method
+              </th>
+              <td>
+                <span class="caption"><b><code>GET</code></b></span> <br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                URL Params
+              </th>
+              <td>
+                <b>Required:</b> <br>
+                <code>falfaD =[Integer]</code> <br>
+                Is the design force in Newtons (N) <br><br>
+                example: falfaD=1  <br><br>
+
+                <code>b =[Integer]</code> <br>
+                Width measured in millimeters(mm)<br><br>
+                example: b=90  <br><br>
+
+                <code>l =[Integer]</code> <br>
+                Is the contact length  measured in millimeters (mm)<br><br>
+                example: l=70  <br><br>
+
+                <code>l1 =[Integer]</code> <br>
+                Distance between contact areas measured in millimeters (mm).<br><br>
+                example: l1=70  <br><br>
+
+                <code>c1 =[Integer]</code> <br>
+                Increased contact length at each side by 30·senα mm, but not more than a, l or l1/2. The system considered the minimum of these values. Measured in millimeters (mm).<br><br>
+                example: c1=0  <br><br>
+
+                <code>c2 =[Integer]</code> <br>
+                Increased contact length at each side by 30·senα mm, but not more than a, l or l1/2. The system considered the minimum of these values. Measured in millimeters (mm).<br><br>
+                example: c2=30  <br><br>
+
+                <code>h =[Integer]</code> <br>
+                Depth measured in millimeters (mm)<br><br>
+                example: h=300  <br><br>
+
+                <code>continous =[true|false]</code> <br>
+                Design parameter. Introduce true or false for continuous support to continuous design or discrete design, respectively.<br><br>
+                example: continous=true  <br><br>
+
+                <code>s=[StrengthValue]</code> <br>
+                The alpha-numeric code of the strength classes. A value from the next lists:<br>
+                <b>Softwood:</b> C14, C16, C18, C20, C22, C24, C27, C30, C35, C40, C45 or C50.<br>
+                <b>Hardwood:</b> D18, D24, D30,  D35, D40, D50, D60 or D70<br>
+                <b>Homogenous Glue Laminated:</b> GL20h, GL22h, GL24h, GL26h, GL28h or GL30h<br>
+                <b>Combined Glue Laminated:</b> GL20c, GL22c, GL24c, GL26c, GL28c or GL30c<br>
+                <br>
+                example: s=C14  <br><br>
+
+                <code>service =[1|2|3]</code> <br>
+                The service class is indicated by introducing the number of the corresponding service class, 1, 2 or 3 <br><br>
+                example: service=1  <br><br>
+
+                <code>LoadDuration =[I|S|M|L|P]</code> <br>
+                Load duration is indicated by introducing one of the following parameters : I, S,M L or P  <br><br>
+                example: LoadDuration=S  <br><br>
+
+                <code>gammaM =[float]</code> <br>
+                Partial factor for material properties, also accounting for model uncertainties and dimensional variations. This input is a number.
+                example: gammaM=1.25  <br><br>
+
+                <code>alfaGr =[Integer]</code> <br>
+                Angle between the force and the grain direction measured in degrees.<br><br>
+                example: alfaGr=300  <br><br>
+
+                <code>format=[xml|json]</code> <br>
+                Choose the language you wish the output to be in. Indicate either json or xml. <br><br>
+                example: format=json  <br><br>
+
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Success Response
+              </th>
+              <td>
+                <b> Example: </b> <br>
+                <b>Code:</b> 200 <br>
+                <b>Example content:</b> <code>{"areaEf":"6300","kc90":"1.00","fcalfaD":"5.29","kcalf":"1.00","index":"0.00"}</code><br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Response Params
+              </th>
+              <td>
+                <b>areaEf</b>= Effective contact area in compression perpendicular to the grain measured in mm2.<br>
+                <b>kc90</b>= is a factor taking into account the load configuration, the possibility of splitting and the degree of compressive deformation.<br>
+                <b>fcalfaD</b>= Design compressive stress at an angle to the grain measured in N/mm2.<br>
+                <b>kcalf</b>= Is a factor taking into account the load configuration, the possibility of splitting and the degree of compressive deformation and the angle to the grain.<br>
+                <b>index</b>= This value checks the compressive stress at an angle to the grain according to DIN 1052:2008 and should be lower or equal than 1.<br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Notes
+              </th>
+              <td>
+                <span class="caption"></span> <br>
+              </td>
+            </tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <% include footer %>

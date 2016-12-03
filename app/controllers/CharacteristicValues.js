@@ -91,7 +91,7 @@ router.get('/GUI', function (req, res) {
 router.get('/doc', function (req, res) {
   //console.log(tabla.findService());
   res.render('doc_CharacteristicValues', {
-    title: 'Characteristic Values',
+    title: 'Characteristic Values Documentation',
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

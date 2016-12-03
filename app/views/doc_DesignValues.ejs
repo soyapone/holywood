@@ -12,7 +12,7 @@
                 Title
               </th>
               <td>
-                <span class="caption">CHARACTERISTIC VALUES</span> <br>
+                <span class="caption">DESIGN VALUES</span> <br>
               </td>
             </tr>
 
@@ -21,37 +21,30 @@
                 Description
               </th>
               <td>
-                <p>This function gives you the characteristic values of a number of timber properties for different strength classes.
+                <p>This function gives you the design values for different strength classes.
                   <br>These values are based on UNE-EN-338 for solid timber and UNE-EN-14080 for Glue Laminated timber.
+                  <br>Then the increase and decrease factors are applied in accordance with Eurocode 5 and CTE DB-SE-M.
                   <br>These values will be used in the other functions implemented by WoodCalc.
                 </p>
 
               </td>
             </tr>
 
-
             <tr>
               <th valign="top">
                 Image
               </th>
               <td>
-
-                <div class="row-pictures">
-
-                  <img style="width: 75%;" src="/img/CharacteristicsValues.jpg" class="img-responsive center-block" >
-
-                </div>
-
+                <div class="cell"><img style="width: 75%;" alt="Design Values" src="/img/DesignValues.jpg" class="cell-fluid" /></div>
               </td>
             </tr>
-
 
             <tr>
               <th valign="top">
                 Example URL
               </th>
               <td>
-                <span class="caption"><a href="/CharacteristicValues/?s=C14&amp;format=json"><b><code>/CharacteristicValues/?s=C14&format=json</code></b></a></span> <br>
+                <span class="caption"><a href="/DesignValues/?s=GL24h&amp;service=1&amp;LoadDuration=S&amp;b=70&amp;h=70&amp;Ksys=true&amp;Kh=true&amp;gammaM=1.30&amp;format=json"><b><code>/DesignValues/?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&Kh=true&gammaM=1.30&format=json</code></b></a></span> <br>
               </td>
             </tr>
             <tr>
@@ -78,6 +71,34 @@
                 <br>
                 example: s=C14  <br><br>
 
+                <code>service =[1|2|3]</code> <br>
+                The service class is indicated by introducing the number of the corresponding service class, 1, 2 or 3 <br><br>
+                example: service=1  <br><br>
+
+                <code>LoadDuration =[I|S|M|L|P]</code> <br>
+                Load duration is indicated by introducing one of the following parameters : I, S,M L or P  <br><br>
+                example: LoadDuration=S  <br><br>
+
+                <code>b =[Integer]</code> <br>
+                Width measured in millimeters(mm)<br><br>
+                example: b=70  <br><br>
+
+                <code>h =[Integer]</code> <br>
+                Depth measured in millimeters (mm)<br><br>
+                example: h=70  <br><br>
+
+                <code>Ksys =[true|false]</code> <br>
+                Load sharing factor. Introduce true or false for the load sharing factor to be considered or not, respectively.<br><br>
+                example: Ksys=true  <br><br>
+
+                <code>Kh =[true|false]</code> <br>
+                Depth factor. Introduce true or false for the depth factor to be considered or not, respectively.
+                example: Ksys=true  <br><br>
+
+                <code>gammaM =[float]</code> <br>
+                Partial factor for material properties, also accounting for model uncertainties and dimensional variations. This input is a number.
+                example: gammaM=1.3  <br><br>
+
                 <code>format=[xml|json]</code> <br>
                 Choose the language you wish the output to be in. Indicate either json or xml. <br><br>
                 example: format=json  <br><br>
@@ -90,9 +111,9 @@
                 Success Response
               </th>
               <td>
-                <b> Example: </b> <br>
+                <b>Example: </b> <br>
                 <b>Code:</b> 200 <br>
-                <b>Example content:</b> <code> {"ID":"C14","fmk":14,"ft0k":8,"ft90k":0.4,"fc0k":16,"fc90k":2,"fvk":3,"E0mean":7,"E005":4.7,"E90mean":0.23,"Gmean":0.44,"rhok":290,"rhomean":350}</code><br>
+                <b>Example content:</b> <code> {"fmd":"21.29","ft0d":"11.29","ft90d":"0.28","fc0d":"14.54","fc90d":"1.73","fvd":"2.77"}</code><br>
               </td>
             </tr>
 
@@ -101,14 +122,12 @@
                 Response Params
               </th>
               <td>
-                <b>ID</b>= Is the strength class selected.<br>
-                <b>fmk</b>= Characteristic bending strength. In N/mm2.<br>
-                <b>ft0k</b>= Characteristic tensile strength along the grain. In N/mm2.<br>
-                <b>ft90k</b>=Characteristic tensile strength perpendicular to the grain. In N/mm2.<br>
-                <b>fc0k</b>= Characteristic compressive strength along the grain. In N/mm2.<br>
-                <b>fc90k</b>= Characteristic compressive strength perpendicular to grain. In N/mm2.<br>
-
-
+                <b>fmd</b>= Design bending strength.<br>
+                <b>ft0d</b>= Design tensile strength along the grain.<br>
+                <b>ft90d</b>= Design tensile strength perpendicular to the grain.<br>
+                <b>fc0d</b>=Design compressive strength along the grain.<br>
+                <b>fc90d</b>= Design compressive strength perpendicular to grain.<br>
+                <b>fvd</b>= Design shear strength.<br>
               </td>
             </tr>
 

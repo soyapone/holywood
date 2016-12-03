@@ -138,15 +138,15 @@ router.get('/GUI', function (req, res) {
     services: tabla.findServiceTypes()
   });
   res.end();
+
 });
 
-
-//Para cálculos JSON
-//http://localhost:3705/JSON/CompressionPerpendicularToTheGrain?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25
-// app.get('/JSON', function (req, res) {
-//   var result = CompressionPerpendicularToTheGrainGetValue(req,res);
-//   if (result){
-//     res.json(result);
-//   }
-//
-// });
+//Para cálculos del estilo http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainDIN/doc/
+router.get('/doc', function (req, res) {
+  //console.log(tabla.findService());
+  res.render('doc_CompressiveStressesAtAnAngleToTheGrainDIN', {
+    title: 'Compressive Stresses At An Angle To The Grain DIN DIN1052:2008 Documentation',
+    woodtypes: tabla.findMaderaTypes()
+  });
+  res.end();
+});
