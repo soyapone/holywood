@@ -39,3 +39,10 @@ router.get('/logout', function(req,res){
   req.logout();
   res.redirect('/');
 });
+
+
+router.get('/docs', function (req, res, next) {
+  res.render('doc_', {
+    title: 'Documentation'
+  });
+});
