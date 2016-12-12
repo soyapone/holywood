@@ -40,9 +40,17 @@ router.get('/logout', function(req,res){
   res.redirect('/');
 });
 
-
 router.get('/docs', function (req, res, next) {
   res.render('doc_', {
     title: 'Documentation'
   });
+});
+///////////////////////////
+// Para trackear el vídeo
+///////////////////////////
+var ua = require('universal-analytics');
+var visitor = ua('UA-80763829-1');
+router.get('/video', function(req,res){
+  visitor.pageview("/video").send();
+  res.redirect('https://youtu.be/te1giW51T9s');
 });
