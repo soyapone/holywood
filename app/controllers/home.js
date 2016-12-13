@@ -45,6 +45,13 @@ router.get('/docs', function (req, res, next) {
     title: 'Documentation'
   });
 });
+
+router.get('/about', function (req, res, next) {
+  res.render('aboutus', {
+    title: 'Woodcalc: About us'
+  });
+});
+
 ///////////////////////////
 // Para trackear el vídeo
 ///////////////////////////
