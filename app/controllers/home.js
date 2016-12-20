@@ -27,6 +27,12 @@ function isLoggedIn(req,res,next) {
 };
 
 
+///////////////////////////
+// Para trackear el vídeo
+///////////////////////////
+var ua = require('universal-analytics');
+var visitor = ua('UA-80763829-1');
+
 //*********
 //Rutas para el perfil
 //*******
@@ -41,22 +47,19 @@ router.get('/logout', function(req,res){
 });
 
 router.get('/docs', function (req, res, next) {
+  visitor.pageview("/docs").send();
   res.render('doc_', {
     title: 'Documentation'
   });
 });
 
 router.get('/about', function (req, res, next) {
+  visitor.pageview("/about").send();
   res.render('aboutus', {
     title: 'Woodcalc: About us'
   });
 });
 
-///////////////////////////
-// Para trackear el vídeo
-///////////////////////////
-var ua = require('universal-analytics');
-var visitor = ua('UA-80763829-1');
 router.get('/video', function(req,res){
   visitor.pageview("/video").send();
   res.redirect('https://youtu.be/te1giW51T9s');

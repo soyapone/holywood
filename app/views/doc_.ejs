@@ -1,9 +1,11 @@
 <% include head %>
-<body id="StartPage">
-  <div id="about" class="container-fluid">
+<body id="StartPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <% include navbar %>
+  <br><br>
+  <div id="about" class="container">
     <div class="text-center">
       <h1>User´s guide API REST WOODCAL.COM</h1>
-      <img src="/img/woodcalc.png" alt="woodcalc" width="30%">
+      <a href="/"><img src="/img/woodcalc.png" alt="woodcalc" width="30%"></a>
       <p>Specialists in wood joint calculations</p>
       <h5>we are in beta</h5>
       <br>
@@ -29,6 +31,6 @@
           <li><a href="/MortiseTenonPillar/doc">Mortise tenon pillar</a></li>
         </ul>
       </div>
-    </body>
+  </body>
     <% include donation %>
     <% include footer %>
