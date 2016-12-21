@@ -60,6 +60,13 @@ router.get('/about', function (req, res, next) {
   });
 });
 
+router.get('/terms', function (req, res, next) {
+  visitor.pageview("/terms").send();
+  res.render('terms', {
+    title: 'Terms of use and conditions of use'
+  });
+});
+
 router.get('/video', function(req,res){
   visitor.pageview("/video").send();
   res.redirect('https://youtu.be/te1giW51T9s');
