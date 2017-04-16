@@ -143,6 +143,7 @@ router.get('/', function (req, res) {
 
   visitor.pageview("/NotchedMembers").send();
 
+  db.SaveAPIRequest(req.connection.remoteAddress,"NotchedMembers",inputs);
 });
 
 
