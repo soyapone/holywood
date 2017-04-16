@@ -12,6 +12,8 @@ passport = require('passport');
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
+var db = require('../statics/APIRequests_db');
+
 module.exports = function (app,mypassport) {
   app.use('/DesignValues', router);
   passport = mypassport;
@@ -88,10 +90,40 @@ function validateAndGetValue(req,res){
   }
 }
 
+function getInputs(req){
+
+  var s = req.query.s;
+  var service = Number(req.query.service);
+  var LoadDuration = req.query.LoadDuration;
+  var b = Number(req.query.b);
+  var h = Number(req.query.h);
+  var Ksys = ((req.query.Ksys === "true")||(req.query.Ksys === "True"));
+  var Kh = ((req.query.Kh === "true")||(req.query.Kh === "True"));
+  var gammaM = Number(req.query.gammaM);
+
+
+  var data = {
+    's' : req.query.s,
+    'service' : Number(req.query.service),
+    'LoadDuration' : req.query.LoadDuration,
+    'b' : Number(req.query.b),
+    'h' : Number(req.query.h),
+    'Ksys' : ((req.query.Ksys === "true")||(req.query.Ksys === "True")),
+    'Kh' : ((req.query.Kh === "true")||(req.query.Kh === "True")),
+    'gammaM' : Number(req.query.gammaM),
+  };
+  return data;
+
+}
+
+
+
 //Para cálculos XML y JSON
 //http://localhost:3705/DesignValues/?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&Kh=true&gammaM=1.30&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
+  var inputs = getInputs(req);
+
   if (req.query.format == 'json'){
     if (result){
       res.json(result);
@@ -110,6 +142,9 @@ router.get('/', function (req, res) {
   };
 
   visitor.pageview("/DesignValues").send();
+
+db.SaveAPIRequest(req.connection.remoteAddress,"DesignValues",inputs);
+
 });
 
 

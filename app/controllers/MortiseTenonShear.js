@@ -11,6 +11,8 @@ passport = require('passport');
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
+var db = require('../statics/APIRequests_db');
+
 module.exports = function (app,mypassport) {
   app.use('/MortiseTenonShear', router);
   passport = mypassport;
@@ -92,10 +94,31 @@ function validateAndGetValue(req,res){
   }
 }
 
+
+function getInputs(req){
+
+  var data = {
+    'sc' : req.query.sc,
+    'lc' : Number(req.query.lc),
+    'v' : Number(req.query.v),
+    'service' : Number(req.query.service),
+    'hs' : Number(req.query.hs),
+    'LoadDuration' : req.query.LoadDuration,
+    'hc' : Number(req.query.hc),
+    'b' : Number(req.query.b),
+    'gammaM' : Number(req.query.gammaM),
+    'hi' : Number(req.query.hi)
+  };
+  return data;
+
+}
+
+
 //Para cálculos XML y JSON
 //http://localhost:3705/MortiseTenonShear/?sc=C14&lc=21&v=21&service=1&hs=21&LoadDuration=P&hc=21&b=21&gammaM=1.3&hi=21&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
+  var inputs = getInputs(req);
   if (req.query.format == 'json'){
     if (result){
       res.json(result);
@@ -113,6 +136,8 @@ router.get('/', function (req, res) {
     res.end();
   };
   visitor.pageview("/MortiseTenonShear").send();
+
+  db.SaveAPIRequest(req.connection.remoteAddress,"MortiseTenonShear",inputs);
 });
 
 //

@@ -12,6 +12,9 @@ passport = require('passport');
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
+var db = require('../statics/APIRequests_db');
+
+
 module.exports = function (app,mypassport) {
   app.use('/MortiseTenonPillar', router);
   passport = mypassport;
@@ -75,7 +78,7 @@ function validateAndGetValue(req,res){
 
 
 
-    var Nd = Number(req.query.Nd)
+    var Nd = Number(req.query.Nd);
     var b = Number(req.query.b);
     var hprime = Number(req.query.hprime);
     var bprime = Number(req.query.bprime);
@@ -112,10 +115,52 @@ function validateAndGetValue(req,res){
   }
 }
 
+
+function getInputs(req){
+
+
+  var Nd = Number(req.query.Nd)
+  var b = Number(req.query.b);
+  var hprime = Number(req.query.hprime);
+  var bprime = Number(req.query.bprime);
+  var lprime = Number(req.query.lprime);
+  var a1 = Number(req.query.a1);
+  var a2 = Number(req.query.a2);
+  var l1 = Number(req.query.l1);
+  var h = Number(req.query.h);
+  var Continuous = ((req.query.Continuous === "true")||(req.query.Continuous === "True"));
+  var s = req.query.s;
+  var service = Number(req.query.service);
+  var LoadDuration = req.query.LoadDuration;
+  var gammaM = Number(req.query.gammaM);
+
+
+  var data = {
+    'Nd' : Number(req.query.Nd),
+    'b' : Number(req.query.b),
+    'hprime' : Number(req.query.hprime),
+    'bprime' : Number(req.query.bprime),
+    'lprime' : Number(req.query.lprime),
+    'a1' : Number(req.query.a1),
+    'a2' : Number(req.query.a2),
+    'l1' : Number(req.query.l1),
+    'h' : Number(req.query.h),
+    'Continuous' : ((req.query.Continuous === "true")||(req.query.Continuous === "True")),
+    's' : req.query.s,
+    'service' : Number(req.query.service),
+    'LoadDuration' : req.query.LoadDuration,
+    'gammaM' : Number(req.query.gammaM)
+  };
+  return data;
+
+}
+
 //Para cálculos XML y JSON
 //http://localhost:3705/MortiseTenonPillar/?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
+  var inputs = getInputs(req);
+
   if (req.query.format == 'json'){
     if (result){
       res.json(result);
@@ -133,6 +178,8 @@ router.get('/', function (req, res) {
     res.end();
   };
   visitor.pageview("/MortiseTenonPillar").send();
+
+db.SaveAPIRequest(req.connection.remoteAddress,"MortiseTenonPillar",inputs);
 });
 
 

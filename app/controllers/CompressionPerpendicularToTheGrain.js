@@ -12,6 +12,8 @@ passport = require('passport');
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
+var db = require('../statics/APIRequests_db');
+
 module.exports = function (app,mypassport) {
   app.use('/CompressionPerpendicularToTheGrain', router);
   passport = mypassport;
@@ -112,7 +114,7 @@ function validateAndGetValue(req,res){
 
 
 
-    var Fd = Number(req.query.Fd)
+    var Fd = Number(req.query.Fd);
     var b = Number(req.query.b);
     var l = Number(req.query.l);
     var a1 = Number(req.query.a1);
@@ -146,10 +148,34 @@ function validateAndGetValue(req,res){
   }
 }
 
+
+function getInputs(req){
+
+  var data = {
+    'Fd' : Number(req.query.Fd),
+    'b' : Number(req.query.b),
+    'l' : Number(req.query.l),
+    'a1' : Number(req.query.a1),
+    'a2' : Number(req.query.a2),
+    'l1' : Number(req.query.l1),
+    'h' : Number(req.query.h),
+    'Continous' : ((req.query.Continuous === "true")||(req.query.Continuous === "True")),
+    's' : req.query.s,
+    'service' : Number(req.query.service),
+    'LoadDuration' : req.query.LoadDuration,
+    'hi' : Number(req.query.hi)
+  };
+  return data;
+
+}
+
+
+
 //Para cálculos XML y JSON
 //http://localhost:3705/CompressionPerpendicularToTheGrain/?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
+  var inputs = getInputs(req);
   if (req.query.format == 'json'){
     if (result){
       res.json(result);
@@ -167,6 +193,9 @@ router.get('/', function (req, res) {
     res.end();
   };
   visitor.pageview("/CompressionPerpendicularToTheGrain").send();
+
+  db.SaveAPIRequest(req.connection.remoteAddress,"CompressionPerpendicularToTheGrain",inputs);
+
 });
 
 

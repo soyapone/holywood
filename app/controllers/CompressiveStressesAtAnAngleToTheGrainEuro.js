@@ -11,6 +11,8 @@ passport = require('passport');
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
+var db = require('../statics/APIRequests_db');
+
 module.exports = function (app,mypassport) {
   app.use('/CompressiveStressesAtAnAngleToTheGrainEuro', router);
   passport = mypassport;
@@ -68,7 +70,7 @@ function validateAndGetValue(req,res){
     return;
   } else {
 
-    var falfaD = Number(req.query.falfaD)
+    var falfaD = Number(req.query.falfaD);
     var b = Number(req.query.b);
     var l = Number(req.query.l);
     var l1 = Number(req.query.l1);
@@ -101,10 +103,34 @@ function validateAndGetValue(req,res){
   }
 }
 
+
+function getInputs(req){
+
+  var data = {
+    'falfaD' : Number(req.query.falfaD),
+    'b' : Number(req.query.b),
+    'l' : Number(req.query.l),
+    'l1' : Number(req.query.l1),
+    'c1' : Number(req.query.c1),
+    'c2' : Number(req.query.c2),
+    'h' : Number(req.query.h),
+    'Continuous' : ((req.query.Continuous === "true")||(req.query.Continuous === "True")),
+    's' : req.query.s,
+    'service' : Number(req.query.service),
+    'LoadDuration' : req.query.LoadDuration,
+    'gammaM' : Number(req.query.gammaM),
+    'alfaGr' : Number(req.query.alfaGr)
+  };
+  return data;
+
+}
+
+
 //Para cálculos XML y JSON
 //http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainEURO/?falfaD=1&b=90&l=70&l1=1000&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
+  var inputs = getInputs(req);
   if (req.query.format == 'json'){
     if (result){
       res.json(result);
@@ -122,6 +148,9 @@ router.get('/', function (req, res) {
     res.end();
   };
   visitor.pageview("/CompressiveStressesAtAnAngleToTheGrainEURO").send();
+
+  db.SaveAPIRequest(req.connection.remoteAddress,"CompressiveStressesAtAnAngleToTheGrainEURO",inputs);
+
 });
 
 

@@ -12,6 +12,8 @@ passport = require('passport');
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
+var db = require('../statics/APIRequests_db');
+
 module.exports = function (app,mypassport) {
   app.use('/NotchedMembers', router);
   passport = mypassport;
@@ -96,10 +98,32 @@ function validateAndGetValue(req,res){
   }
 }
 
+function getInputs(req){
+
+  var data = {
+    'Vd' : Number(req.query.Vd),
+    'b' : Number(req.query.b),
+    'hef' : Number(req.query.hef),
+    'h' : Number(req.query.h),
+    'Kcr' : ((req.query.Kcr === "true")||(req.query.Kcr === "True")),
+    'd' : Number(req.query.d),
+    's' : req.query.s,
+    'x' : Number(req.query.x),
+    'service' : Number(req.query.service),
+    'LoadDuration' : req.query.LoadDuration,
+    'gammaM' : Number(req.query.gammaM),
+    'notchOnSupport' : ((req.query.notchOnSupport === "true")||(req.query.notchOnSupport === "True"))
+  };
+  return data;
+
+}
+
 //Para cálculos XML y JSON
 //http://localhost:3705/NotchedMembers/?Vd=14752&b=90&hef=70&h=5&Kcr=false&d=97&s=GL24h&x=4&service=1&LoadDuration=S&gammaM=1.25&notchOnSupport=true&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
+  var inputs = getInputs(req);
+
   if (req.query.format == 'json'){
     if (result){
       res.json(result);
@@ -118,6 +142,7 @@ router.get('/', function (req, res) {
   };
 
   visitor.pageview("/NotchedMembers").send();
+
 });
 
 

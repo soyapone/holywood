@@ -1,0 +1,65 @@
+<% include head %>
+
+
+<h1 class="text-center"><%= title %></h1>
+<!-- <h2 class="text-center">APIRequests</h2> -->
+
+<div class="container" class="center-block" >
+
+  <form method="post" action="./APIRequests/removeall">
+    <button type="submit" class="btn btn-danger" >
+      Remove All
+    </button>
+  </form>
+
+</div>
+
+<div class="container" class="center-block" style="width:90%;">
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- <th style="width:5%;">ID</th> -->
+        <th>ID</th>
+        <th>Date</th>
+        <th>IP</th>
+        <th>function</th>
+        <th>Inputs</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% for(var i=0; i<APIRequests.length; i++) { %>
+        <tr>
+
+          <td>
+            <a href= "/APIRequests/<%= APIRequests[i]._id %>" > <%= APIRequests[i]._id %> </a>
+          </td>
+          <td>
+            <%= APIRequests[i].date.toDateString() %>
+          </td>
+          <td>
+            <a href= "https://whois.domaintools.com/<%= APIRequests[i].ip %>" target="_blank"><%= APIRequests[i].ip %></a>
+          </td>
+          <td>
+            <%= APIRequests[i].function %>
+          </td>
+          <td>
+            <%= APIRequests[i].inputs %>
+          </td>
+          <td>
+            <form method="post" action="/APIRequests/<%= APIRequests[i]._id %>?_method=delete">
+              <button type="submit" class="btn btn-danger" >
+                <i class="glyphicon glyphicon-remove"></i>
+              </button>
+            </form>
+          </td>
+          <tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+
+      <hr>
+
+      <% include footer %>

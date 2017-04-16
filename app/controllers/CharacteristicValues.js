@@ -12,6 +12,8 @@ passport = require('passport');
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
+var db = require('../statics/APIRequests_db');
+
 module.exports = function (app,mypassport) {
   app.use('/CharacteristicValues', router);
   passport = mypassport;
@@ -53,10 +55,22 @@ function validateAndGetValue(req,res){
   }
 }
 
+
+function getInputs(req){
+
+  var data = {
+    's' : req.query.s
+  };
+  return data;
+
+}
+
+
 //Para cálculos XML y JSON
 //http://localhost:3705/CharacteristicValues/?s=C14&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
+  var inputs = getInputs(req);
   if (req.query.format == 'json'){
     if (result){
       res.json(result);
@@ -74,6 +88,9 @@ router.get('/', function (req, res) {
     res.end();
   };
   visitor.pageview("/CharacteristicValues").send();
+
+  db.SaveAPIRequest(req.connection.remoteAddress,"CharacteristicValues",inputs);
+
 });
 
 

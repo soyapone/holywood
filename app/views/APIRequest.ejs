@@ -1,0 +1,26 @@
+<% include head %>
+
+<div class="container" style="width:70%;">
+
+
+  <div class="well well-sm">
+
+
+
+    <h4> <%= APIRequest.function %></h4>
+      <p>
+        <i>ID: </i> <%= APIRequest._id %><br>
+        <i>Date: </i> <%= APIRequest.date %><br>
+        <i>IP: </i> <a href= "https://whois.domaintools.com/<%= APIRequest.ip %>" target="_blank"><%= APIRequest.ip %></a><br>
+
+        <i>Inputs: </i> <%= APIRequest.inputs %><br>
+        <!-- Split button -->
+        </div>
+
+
+      </div>
+<div class="container" style="width:35%;">
+  <a class="btn btn-primary" href="/APIRequests" role="button">Back</a>
+</div>
+
+      <% include footer %>

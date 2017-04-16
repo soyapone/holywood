@@ -20,7 +20,7 @@ module.exports = function(app, config) {
  require('./passport')(passport);
   app.set('views', config.root + '/app/views');
   app.set('view engine', 'ejs');
-
+  app.use(methodOverride('_method'));
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
