@@ -1,0 +1,160 @@
+<% include head %>
+
+<body id="StartPage">
+  <div class="container">
+    <div class="panel-body">
+      <div class="table-responsive">
+
+        <table class="table table-striped">
+          <tbody>
+            <tr>
+              <th valign="top" width="15%">
+                Title
+              </th>
+              <td>
+                <span class="caption">NOTCHED MEMBERS</span> <br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Description
+              </th>
+              <td>
+                <p>This function assesses notched members.
+                  <br>In this case Eurocode 5, DIN 1052:2009 and CTE DB-SE-M  have been followed.
+                </p>
+
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Image
+              </th>
+              <td>
+                <div class="row">
+                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/NotchedMembers1.jpg"/></div>
+                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/NotchedMembers2.jpg"/></div>
+                </div>
+             </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Example URL
+              </th>
+              <td>
+                <span class="caption"><a href="/NotchedMembers/?Vd=14752&amp;b=90&amp;hef=70&amp;h=5&amp;Kcr=false&amp;d=97&amp;s=GL24h&amp;x=4&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;notchOnSupport=true&amp;format=json"><b><code>/NotchedMembers/?Vd=14752&b=90&hef=70&h=5&Kcr=false&d=97&s=GL24h&x=4&service=1&LoadDuration=S&gammaM=1.25&notchOnSupport=true&format=json</code></b></a></span> <br>
+              </td>
+            </tr>
+            <tr>
+              <th valign="top">
+                Method
+              </th>
+              <td>
+                <span class="caption"><b><code>GET</code></b></span> <br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                URL Params
+              </th>
+              <td>
+                <b>Required:</b> <br>
+                <code>Vd =[Integer]</code> <br>
+                Is the design force in Newtons (N)<br><br>
+                example: Fd=14752<br><br>
+
+                <code>b =[Integer]</code> <br>
+                Width measured in millimeters(mm)<br><br>
+                example: b=90<br><br>
+
+                <code>hef =[Integer]</code> <br>
+                Is the effective (reduced) depth measured in millimetres.<br><br>
+                example: hef=70<br><br>
+
+                <code>h =[Integer]</code> <br>
+                Depth measured in millimeters (mm)<br><br>
+                example: h=300  <br><br>
+
+                <code>Kcr =[true|false]</code> <br>
+                Is a factor that consider the influence of cracks. Introduce true or false for the influence of cracks factor to be considered or not, respectively.<br><br>
+                example: Kcr=false  <br><br>
+
+                <code>d =[Integer]</code> <br>
+                Length of the notch measured in millimeters (mm)<br><br>
+                example: d=97<br><br>
+
+                <code>s=[StrengthValue]</code> <br>
+                The alpha-numeric code of the strength classes. A value from the next lists:<br>
+                <b>Softwood:</b> C14, C16, C18, C20, C22, C24, C27, C30, C35, C40, C45 or C50.<br>
+                <b>Hardwood:</b> D18, D24, D30,  D35, D40, D50, D60 or D70<br>
+                <b>Homogenous Glue Laminated:</b> GL20h, GL22h, GL24h, GL26h, GL28h or GL30h<br>
+                <b>Combined Glue Laminated:</b> GL20c, GL22c, GL24c, GL26c, GL28c or GL30c<br>
+                <br>
+                example: s=C14  <br><br>
+
+                <code>service =[1|2|3]</code> <br>
+                The service class is indicated by introducing the number of the corresponding service class, 1, 2 or 3 <br><br>
+                example: service=1  <br><br>
+
+                <code>LoadDuration =[I|S|M|L|P]</code> <br>
+                Load duration is indicated by introducing one of the following parameters : I, S,M L or P  <br><br>
+                example: LoadDuration=S  <br><br>
+
+                <code>gammaM =[float]</code> <br>
+                Partial factor for material properties, also accounting for model uncertainties and dimensional variations. This input is a number.
+                example: gammaM=1.25  <br><br>
+
+                <code>notchOnSupport =[true|false]</code> <br>
+                Introduce true or false to indicate if the notch is on the same side as the support or not, respectively.<br><br>
+                example: notchOnSupport=false  <br><br>
+
+                <code>format=[xml|json]</code> <br>
+                Choose the language you wish the output to be in. Indicate either json or xml. <br><br>
+                example: format=json  <br><br>
+
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Success Response
+              </th>
+              <td>
+                <b> Example: </b> <br>
+                <b>Code:</b> 200 <br>
+                <b>Example content:</b><code>{"Kn":"6.50","Kv":"1.00","Fvd":"2.52","TauD":"3.51","index":"1.39"}</code><br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Response Params
+              </th>
+              <td>
+                <b>Kn</b>= Notched factor.<br>
+                <b>Kv</b>= Is a reduction factor.<br>
+                <b>Fvd</b>= Design shear strength.<br>
+                <b>TauD</b>= Design shear stress.<br>
+                <b>index</b>= This value checks the 6.60 formula of EN 1995-1-1:20004+A1:2008, the 6.69 formula of CTE DS-SE-M and the 144 formula of DIN 1052:2008 and should be lower or equal than 1.<br>
+              </td>
+            </tr>
+
+            <tr>
+              <th valign="top">
+                Notes
+              </th>
+              <td>
+                <span class="caption"></span> <br>
+              </td>
+            </tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+  </body>
+<% include donation %>
+<% include footer %>

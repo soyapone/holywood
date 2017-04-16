@@ -143,7 +143,6 @@ function validateAndGetValue(req,res){
       'index': rawValues.index.toFixed(2)
     };
     return data;
-
   }
 }
 

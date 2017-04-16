@@ -41,6 +41,12 @@ exports.toRadian = function(alf){
    return alf * Math.PI / 180;
 }
 
+exports.Kcr = function(ID){
+  if (tabla.isConiferous(ID) || tabla.isHardwood(ID) || tabla.isGL(ID) ) return 0.67;
+
+  return  1;
+}
+
 // var prueba = valorDeCalculo(3,5,2);
 //
 // console.log("El resultado es: ",prueba);

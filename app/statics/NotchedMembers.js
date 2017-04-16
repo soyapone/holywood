@@ -33,14 +33,7 @@ exports.TauD = function(Vd,b,hef,Kcr, ID){
   var multiplicador = 1;
 
   if (Kcr) {
-    if (tabla.isConiferous(ID) || tabla.isHardwood(ID) || tabla.isGL(ID) )
-    {
-      multiplicador = 0.67;
-    } else {
-      multiplicador = 1;
-    }
-  } else {
-    multiplicador = 1;
+    multiplicador = fun.Kcr(ID);
   }
 
   return (1.5 * Vd) / (b * hef * multiplicador);
