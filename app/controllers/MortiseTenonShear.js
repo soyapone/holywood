@@ -51,6 +51,9 @@ function validateAndGetValue(req,res){
   req.checkQuery('hi', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('hi', validationErrors.val_err_isFloat()).isFloat();
 
+  req.checkQuery('vd', validationErrors.val_err_notEmpty()).notEmpty();
+  req.checkQuery('vd', validationErrors.val_err_isFloat()).isFloat();
+
   req.checkQuery('format', validationErrors.val_err_notEmpty()).notEmpty();
   req.checkQuery('format', validationErrors.val_err_isIn(["json","xml"])).isIn(["json","xml"]);
 
@@ -73,21 +76,23 @@ function validateAndGetValue(req,res){
     var b = Number(req.query.b);
     var gammaM = Number(req.query.gammaM);
     var hi = Number(req.query.hi);
+    var vd = Number(req.query.vd);
 
-    var logicalErrors = StaticFunction.logicalValidation(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi);
+    var logicalErrors = StaticFunction.logicalValidation(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi,vd);
 
     if (logicalErrors){
       res.status(400).send(logicalErrors);
       return;
     }
 
-    var rawValues = StaticFunction.function(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi);
+    var rawValues = StaticFunction.function(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi,vd);
     //console.log('rawValues', rawValues);
 
     var data = {
       'Kv' : rawValues.Kv.toFixed(2),
       'Rk' : rawValues.Rk.toFixed(2),
-      'Rd' : rawValues.Rd.toFixed(2)
+      'Rd' : rawValues.Rd.toFixed(2),
+      'index' : rawValues.index.toFixed(2)
     };
     return data;
 
@@ -107,7 +112,8 @@ function getInputs(req){
     'hc' : Number(req.query.hc),
     'b' : Number(req.query.b),
     'gammaM' : Number(req.query.gammaM),
-    'hi' : Number(req.query.hi)
+    'hi' : Number(req.query.hi),
+    'vd' : Number(req.query.vd)
   };
   return data;
 
@@ -115,7 +121,7 @@ function getInputs(req){
 
 
 //Para cálculos XML y JSON
-//http://localhost:3705/MortiseTenonShear/?sc=C14&lc=21&v=21&service=1&hs=21&LoadDuration=P&hc=21&b=21&gammaM=1.3&hi=21&format=xml
+//http://localhost:3705/MortiseTenonShear/?sc=C14&lc=21&v=21&service=1&hs=21&LoadDuration=P&hc=21&b=21&gammaM=1.3&hi=21&vd=1000&format=xml
 router.get('/', function (req, res) {
   var result = validateAndGetValue(req,res);
   var inputs = getInputs(req);

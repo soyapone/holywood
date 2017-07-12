@@ -3,7 +3,7 @@ var fun = require('./funciones');
 var _ = require('lodash');
 
 
-exports.logicalValidation = function(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi) {
+exports.logicalValidation = function(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi, vd) {
   // Hace todas las comprobaciones lógicas
   //if (gammaM == 1) return "gammaM no puede ser 1";
   var h = hs+hc+hi;
@@ -17,43 +17,47 @@ exports.logicalValidation = function(sc, lc, v, service, hs, LoadDuration, hc, b
   exp1 = h/6;
   if (!(hc >= exp1)) return "hc must be higher or equal than h/6 (h = hs+hc+hi)";
   if (!(v <= 0.4*h)) return "v must be lower or equal than 0.4h (h = hs+hc+hi)";
+  if (vd <= 0) return "vd must be higher than 0";
+
   return;
 }
 
 
-exports.function = function(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi){
- var h = hs+hc+hi;
- var he = hs+hc;
- var beta = hc/he;
- var alfa = he/h;
+exports.function = function(sc, lc, v, service, hs, LoadDuration, hc, b, gammaM, hi,vd){
+  var h = hs+hc+hi;
+  var he = hs+hc;
+  var beta = hc/he;
+  var alfa = he/h;
 
- var kz = beta*(1+2*Math.pow((1-beta),2))*(2-alfa);
+  var kz = beta*(1+2*Math.pow((1-beta),2))*(2-alfa);
 
-var kmod = tables.findServiceDuracion(service,LoadDuration);
+  var kmod = tables.findServiceDuracion(service,LoadDuration);
 
- var lcef = _.min([(lc+30), (2*lc)]);
- var Kcr = fun.Kcr(sc);
- var Kv,Rk,Rd;
- var FactorA, FactorB;
+  var lcef = _.min([(lc+30), (2*lc)]);
+  var Kcr = fun.Kcr(sc);
+  var Kv,Rk,Rd;
+  var FactorA, FactorB;
 
- if(hi == 0){
+  if(hi == 0){
     Kv = 1;
- } else{
-   FactorB = Math.sqrt(h) * ((Math.sqrt(alfa*(1-alfa))) + (0.8*(v/h)*Math.sqrt((1/alfa)-(Math.pow(alfa,2)))));;
-   Kv = _.min([1,FactorB]);
- }
+  } else{
+    FactorB = Math.sqrt(h) * ((Math.sqrt(alfa*(1-alfa))) + (0.8*(v/h)*Math.sqrt((1/alfa)-(Math.pow(alfa,2)))));;
+    Kv = _.min([1,FactorB]);
+  }
 
- FactorA = (2/3)*Kcr*b*he*kz*Kv*tables.getfvk(sc);
- FactorB = 1.7*b*lcef*tables.getfc90k(sc);
+  FactorA = (2/3)*Kcr*b*he*kz*Kv*tables.getfvk(sc);
+  FactorB = 1.7*b*lcef*tables.getfc90k(sc);
 
- Rk = _.min([FactorA,FactorB]);
+  Rk = _.min([FactorA,FactorB]);
 
- Rd = fun.valorDeCalculo(kmod, Rk, gammaM);
+  Rd = fun.valorDeCalculo(kmod, Rk, gammaM);
+  var index = vd/Rd;
 
- var response = {
-   'Kv' : Kv,
-   'Rk' : Rk,
-   'Rd' : Rd
- };
- return response;
+  var response = {
+    'Kv' : Kv,
+    'Rk' : Rk,
+    'Rd' : Rd,
+    'index' : index
+  };
+  return response;
 }

@@ -5,7 +5,7 @@ var propiedadesMadera = [
   {
     "ID": "C14",
     "fmk": 14,
-    "ft0k": 8,
+    "ft0k": 7.2,
     "ft90k": 0.4,
     "fc0k": 16,
     "fc90k": 2,
@@ -21,7 +21,7 @@ var propiedadesMadera = [
   {
     "ID": "C16",
     "fmk": 16,
-    "ft0k": 10,
+    "ft0k": 8.5,
     "ft90k": 0.4,
     "fc0k": 17,
     "fc90k": 2.2,
@@ -36,7 +36,7 @@ var propiedadesMadera = [
   {
     "ID": "C18",
     "fmk": 18,
-    "ft0k": 11,
+    "ft0k": 10,
     "ft90k": 0.4,
     "fc0k": 18,
     "fc90k": 2.2,
@@ -52,7 +52,7 @@ var propiedadesMadera = [
   {
     "ID": "C20",
     "fmk": 20,
-    "ft0k": 12,
+    "ft0k": 11.5,
     "ft90k": 0.4,
     "fc0k": 19,
     "fc90k": 2.3,
@@ -62,7 +62,7 @@ var propiedadesMadera = [
     "E90mean": 0.32,
     "Gmean": 0.59,
     "rhok": 330,
-    "rhomean": 390
+    "rhomean": 400
 
   },
   {
@@ -84,7 +84,7 @@ var propiedadesMadera = [
   {
     "ID": "C24",
     "fmk": 24,
-    "ft0k": 14,
+    "ft0k": 14.5,
     "ft90k": 0.4,
     "fc0k": 21,
     "fc90k": 2.5,
@@ -100,25 +100,25 @@ var propiedadesMadera = [
   {
     "ID": "C27",
     "fmk": 27,
-    "ft0k": 16,
+    "ft0k": 16.5,
     "ft90k": 0.4,
     "fc0k": 22,
-    "fc90k": 2.6,
+    "fc90k": 2.5,
     "fvk": 4,
     "E0mean": 11.5,
     "E005": 7.7,
     "E90mean": 0.38,
     "Gmean": 0.72,
-    "rhok": 370,
-    "rhomean": 450
+    "rhok": 360,
+    "rhomean": 430
 
   },
   {
     "ID": "C30",
     "fmk": 30,
-    "ft0k": 18,
+    "ft0k": 19,
     "ft90k": 0.4,
-    "fc0k": 23,
+    "fc0k": 24,
     "fc90k": 2.7,
     "fvk": 4,
     "E0mean": 12,
@@ -131,18 +131,19 @@ var propiedadesMadera = [
   },
   {
     "ID": "C35",
+
     "fmk": 35,
-    "ft0k": 21,
+    "ft0k": 22.5,
     "ft90k": 0.4,
     "fc0k": 25,
-    "fc90k": 2.8,
+    "fc90k": 2.7,
     "fvk": 4,
     "E0mean": 13,
     "E005": 8.7,
     "E90mean": 0.43,
     "Gmean": 0.81,
-    "rhok": 400,
-    "rhomean": 480
+    "rhok": 390,
+    "rhomean": 470
 
   },
   {
@@ -150,14 +151,14 @@ var propiedadesMadera = [
     "fmk": 40,
     "ft0k": 24,
     "ft90k": 0.4,
-    "fc0k": 26,
-    "fc90k": 2.9,
+    "fc0k": 27,
+    "fc90k": 2.8,
     "fvk": 4,
     "E0mean": 14,
     "E005": 9.4,
     "E90mean": 0.47,
     "Gmean": 0.88,
-    "rhok": 420,
+    "rhok": 400,
     "rhomean": 500
 
   },
@@ -167,10 +168,10 @@ var propiedadesMadera = [
     "ft0k": 27,
     "ft90k": 0.4,
     "fc0k": 27,
-    "fc90k": 3.1,
+    "fc90k": 2.9,
     "fvk": 4,
     "E0mean": 15,
-    "E005": 10,
+    "E005": 10.1,
     "E90mean": 0.5,
     "Gmean": 0.94,
     "rhok": 440,
@@ -180,17 +181,17 @@ var propiedadesMadera = [
   {
     "ID": "C50",
     "fmk": 50,
-    "ft0k": 30,
+    "ft0k": 33.5,
     "ft90k": 0.4,
-    "fc0k": 29,
+    "fc0k": 30,
     "fc90k": 3.2,
     "fvk": 4,
     "E0mean": 16,
     "E005": 10.7,
     "E90mean": 0.53,
     "Gmean": 1,
-    "rhok": 460,
-    "rhomean": 550
+    "rhok": 430,
+    "rhomean": 520
 
   },
   {
@@ -199,7 +200,7 @@ var propiedadesMadera = [
     "ft0k": 11,
     "ft90k": 0.6,
     "fc0k": 18,
-    "fc90k": 7.5,
+    "fc90k": 4.8,
     "fvk": 3.4,
     "E0mean": 9.5,
     "E005": 8,
@@ -215,12 +216,12 @@ var propiedadesMadera = [
     "ft0k": 14,
     "ft90k": 0.6,
     "fc0k": 21,
-    "fc90k": 7.8,
-    "fvk": 4,
+    "fc90k": 4.9,
+    "fvk": 3.7,
     "E0mean": 10,
-    "E005": 8.5,
+    "E005": 8.4,
     "E90mean": 0.67,
-    "Gmean": 0.62,
+    "Gmean": 0.63,
     "rhok": 485,
     "rhomean": 580
 
@@ -230,9 +231,9 @@ var propiedadesMadera = [
     "fmk": 30,
     "ft0k": 18,
     "ft90k": 0.6,
-    "fc0k": 23,
-    "fc90k": 8,
-    "fvk": 4,
+    "fc0k": 24,
+    "fc90k": 5.3,
+    "fvk": 3.9,
     "E0mean": 11,
     "E005": 9.2,
     "E90mean": 0.73,
@@ -247,8 +248,8 @@ var propiedadesMadera = [
     "ft0k": 21,
     "ft90k": 0.6,
     "fc0k": 25,
-    "fc90k": 8.1,
-    "fvk": 4,
+    "fc90k": 5.4,
+    "fvk": 4.1,
     "E0mean": 12,
     "E005": 10.1,
     "E90mean": 0.8,
@@ -264,7 +265,7 @@ var propiedadesMadera = [
     "ft90k": 0.6,
     "fc0k": 26,
     "fc90k": 8.3,
-    "fvk": 4,
+    "fvk": 4.2,
     "E0mean": 13,
     "E005": 10.9,
     "E90mean": 0.86,
@@ -278,47 +279,105 @@ var propiedadesMadera = [
     "fmk": 50,
     "ft0k": 30,
     "ft90k": 0.6,
-    "fc0k": 29,
-    "fc90k": 9.3,
-    "fvk": 4,
+    "fc0k": 30,
+    "fc90k": 6.2,
+    "fvk": 4.5,
     "E0mean": 14,
     "E005": 11.8,
     "E90mean": 0.93,
     "Gmean": 0.88,
     "rhok": 620,
-    "rhomean": 750
+    "rhomean": 740
+  },
+  {
+    "ID": "D55",
+    "fmk": 55,
+    "ft0k": 33,
+    "ft90k": 0.6,
+    "fc0k": 32,
+    "fc90k": 6.6,
+    "fvk": 4.7,
+    "E0mean": 15.5,
+    "E005": 13,
+    "E90mean": 1.03,
+    "Gmean": 0.97,
+    "rhok": 660,
+    "rhomean": 790
   },
   {
     "ID": "D60",
     "fmk": 60,
     "ft0k": 36,
     "ft90k": 0.6,
-    "fc0k": 32,
+    "fc0k": 33,
     "fc90k": 10.5,
-    "fvk": 4.5,
+    "fvk": 4.8,
     "E0mean": 17,
     "E005": 14.3,
     "E90mean": 1.13,
     "Gmean": 1.06,
     "rhok": 700,
     "rhomean": 840
-
+  },
+  {
+    "ID": "D65",
+    "fmk": 65,
+    "ft0k": 39,
+    "ft90k": 0.6,
+    "fc0k": 35,
+    "fc90k": 11.3,
+    "fvk": 5,
+    "E0mean": 18.5,
+    "E005": 15.5,
+    "E90mean": 1.23,
+    "Gmean": 1.16,
+    "rhok": 750,
+    "rhomean": 900
   },
   {
     "ID": "D70",
     "fmk": 70,
     "ft0k": 42,
     "ft90k": 0.6,
-    "fc0k": 34,
-    "fc90k": 13.5,
+    "fc0k": 36,
+    "fc90k": 12,
     "fvk": 5,
     "E0mean": 20,
     "E005": 16.8,
     "E90mean": 1.33,
     "Gmean": 1.25,
+    "rhok": 800,
+    "rhomean": 960
+  },
+  {
+    "ID": "D75",
+    "fmk": 75,
+    "ft0k": 45,
+    "ft90k": 0.6,
+    "fc0k": 37,
+    "fc90k": 12.8,
+    "fvk": 5,
+    "E0mean": 22,
+    "E005": 18.5,
+    "E90mean": 1.47,
+    "Gmean": 1.38,
+    "rhok": 850,
+    "rhomean": 1020
+  },
+  {
+    "ID": "D80",
+    "fmk": 80,
+    "ft0k": 48,
+    "ft90k": 0.6,
+    "fc0k": 38,
+    "fc90k": 13.5,
+    "fvk": 5,
+    "E0mean": 24,
+    "E005": 20.2,
+    "E90mean": 1.60,
+    "Gmean": 1.50,
     "rhok": 900,
     "rhomean": 1080
-
   },
   {
     "ID": "GL20h",
@@ -332,13 +391,13 @@ var propiedadesMadera = [
     "E0mean": 8400,
     "E005": 7000,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 340,
-    "rhomean": 370
+    "rhomean": 370,
 
   },
   {
@@ -353,13 +412,13 @@ var propiedadesMadera = [
     "E0mean": 10500,
     "E005": 8800,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 370,
-    "rhomean": 410
+    "rhomean": 410,
 
   },
   {
@@ -374,13 +433,13 @@ var propiedadesMadera = [
     "E0mean": 11500,
     "E005": 9600,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 385,
-    "rhomean": 420
+    "rhomean": 420,
 
   },
   {
@@ -395,13 +454,13 @@ var propiedadesMadera = [
     "E0mean": 12100,
     "E005": 10100,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 405,
-    "rhomean": 445
+    "rhomean": 445,
   },
   {
     "ID": "GL28h",
@@ -415,13 +474,13 @@ var propiedadesMadera = [
     "E0mean": 12600,
     "E005": 10500,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 425,
-    "rhomean": 460
+    "rhomean": 460,
 
   },
   {
@@ -436,13 +495,13 @@ var propiedadesMadera = [
     "E0mean": 13600,
     "E005": 11300,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 430,
-    "rhomean": 480
+    "rhomean": 480,
   },
   {
     "ID": "GL32h",
@@ -456,13 +515,13 @@ var propiedadesMadera = [
     "E0mean": 14200,
     "E005": 11800,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":540,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 440,
-    "rhomean": 490
+    "rhomean": 490,
 
   },
   {
@@ -477,13 +536,13 @@ var propiedadesMadera = [
     "E0mean": 10400,
     "E005": 8600,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 355,
-    "rhomean": 390
+    "rhomean": 390,
 
   },
   {
@@ -498,13 +557,13 @@ var propiedadesMadera = [
     "E0mean": 10400,
     "E005": 8600,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 355,
-    "rhomean": 390
+    "rhomean": 390,
 
   },
   {
@@ -519,13 +578,13 @@ var propiedadesMadera = [
     "E0mean": 11000,
     "E005": 9100,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 365,
-    "rhomean": 400
+    "rhomean": 400,
 
   },
   {
@@ -540,13 +599,13 @@ var propiedadesMadera = [
     "E0mean": 12000,
     "E005": 10000,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 385,
-    "rhomean": 420
+    "rhomean": 420,
 
   },
   {
@@ -561,13 +620,13 @@ var propiedadesMadera = [
     "E0mean": 12500,
     "E005": 10400,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 390,
-    "rhomean": 420
+    "rhomean": 420,
 
   },
   {
@@ -582,13 +641,13 @@ var propiedadesMadera = [
     "E0mean": 13000,
     "E005": 10800,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 390,
-    "rhomean": 430
+    "rhomean": 430,
 
   },
   {
@@ -603,13 +662,13 @@ var propiedadesMadera = [
     "E0mean": 13500,
     "E005": 11200,
     "E90mean": 300,
-    "E9005": 250,
+    "E90,05": 250,
     "Gmean": 650,
     "G05":542,
     "Grmean": 65,
     "Gr05":54,
     "rhok": 400,
-    "rhomean": 440
+    "rhomean": 440,
 
   }
 
