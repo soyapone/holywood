@@ -13,9 +13,9 @@
       // mandar hacer el cálculo
       //alert("Alerta me han mandado un calculation!");
       //this.calculation.resultado = "";
-      //http://localhost:3705/MortiseTenonPillar/?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=json
+      //http://localhost:3705/MortiseTenonPillar/api?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=json
       //
-      var myurl = '/MortiseTenonPillar/'
+      var myurl = '/MortiseTenonPillar/api'
       +'?Nd='+cal.calculation.Nd+'&b='+cal.calculation.b
       +'&hprime='+cal.calculation.hprime+'&bprime='+cal.calculation.bprime
       +'&lprime='+cal.calculation.lprime+'&a1='+cal.calculation.a1
@@ -69,23 +69,5 @@
 
     };
   }]);
-
-
-
-var gems = [
-{
-  name: 'Dodecaedro',
-  price: 2.95,
-  description: 'esta es la descripcion',
-  canPurchase: false
-},
-{
-  name: 'Gema superchula',
-  price: 17.00,
-  description: 'Gema que te cagas de chuli',
-  canPurchase: true
-}
-
-]
 
 })();

@@ -14,7 +14,7 @@
       //alert("Alerta me han mandado un calculation!");
       //this.calculation.resultado = "";
       //?Vd=14752&b=90&hef=70&h=5&Kcr=false&d=97&s=GL24h&x=4&service=1&LoadDuration=S&gammaM=1.25&notchOnSupport=true&format=xml
-      var myurl = '/NotchedMembers/'
+      var myurl = '/NotchedMembers/api'
       +'?Vd='+cal.calculation.Vd+'&b='+cal.calculation.b
       +'&hef='+cal.calculation.hef+'&h='+cal.calculation.h
       +'&Kcr='+cal.calculation.Kcr+'&d='+cal.calculation.d
@@ -68,7 +68,6 @@
 
     };
   }]);
-
 
 
 })();

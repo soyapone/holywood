@@ -11,6 +11,7 @@ passport = require('passport');
 
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
+var images = ["/img/WoodProperties/CharacteristicValues/CharacteristicValues.png"];
 
 var db = require('../statics/APIRequests_db');
 
@@ -67,8 +68,8 @@ function getInputs(req){
 
 
 //Para cálculos XML y JSON
-//http://localhost:3705/CharacteristicValues/?s=C14&format=xml
-router.get('/', function (req, res) {
+//http://localhost:3705/CharacteristicValues/api/?s=C14&format=xml
+router.get('/api', function (req, res) {
   var result = validateAndGetValue(req,res);
   var inputs = getInputs(req);
   if (req.query.format == 'json'){
@@ -94,11 +95,12 @@ router.get('/', function (req, res) {
 });
 
 
-//Para cálculos del estilo http://localhost:3705/CharacteristicValues/GUI/
-router.get('/GUI', function (req, res) {
+//Para cálculos del estilo http://localhost:3705/CharacteristicValues/
+router.get('/', function (req, res) {
   //console.log(tabla.findService());
-  res.render('CharacteristicValues', {
+  res.render('GUI_CharacteristicValues', {
     title: 'Characteristic Values',
+    images: images,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();
@@ -109,6 +111,7 @@ router.get('/doc', function (req, res) {
   //console.log(tabla.findService());
   res.render('doc_CharacteristicValues', {
     title: 'Characteristic Values Documentation',
+    images: images,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

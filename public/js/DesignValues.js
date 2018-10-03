@@ -14,12 +14,12 @@
       // mandar hacer el cálculo
       //alert("Alerta me han mandado un calculation!");
       //this.calculation.resultado = "";
-      //http://localhost:3705/CompressionPerpendicularToTheGrain/?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
+      //http://localhost:3705/CompressionPerpendicularToTheGrain/api/?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
       //
-      var CharacteristicValues = '/CharacteristicValues/'
+      var CharacteristicValues = '/CharacteristicValues/api'
       +'?s='+cal.calculation.woodtype+'&format=json';
 
-      var DesignValues = '/DesignValues/'
+      var DesignValues = '/DesignValues/api'
       +'?s='+cal.calculation.woodtype+'&service='+cal.calculation.service
       +'&LoadDuration='+cal.calculation.LoadDuration+'&b='+cal.calculation.b
       +'&h='+cal.calculation.h+'&Ksys='+cal.calculation.Ksys
@@ -123,23 +123,5 @@
 
     };
   }]);
-
-
-
-  var gems = [
-    {
-      name: 'Dodecaedro',
-      price: 2.95,
-      description: 'esta es la descripcion',
-      canPurchase: false
-    },
-    {
-      name: 'Gema superchula',
-      price: 17.00,
-      description: 'Gema que te cagas de chuli',
-      canPurchase: true
-    }
-
-  ]
 
 })();

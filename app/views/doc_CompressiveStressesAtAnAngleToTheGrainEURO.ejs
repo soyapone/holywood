@@ -1,4 +1,4 @@
-<% include head %>
+<% include GUI_head2 %>
 
 <body id="StartPage">
   <div class="container">
@@ -33,10 +33,7 @@
                 Image
               </th>
               <td>
-                <div class="row">
-                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/CompresionOblicua1.jpg"/></div>
-                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/CompresionOblicua2.jpg"/></div>
-                </div>
+                <% include GUI_imagenes %>
               </td>
             </tr>
 
@@ -45,7 +42,7 @@
                 Example URL
               </th>
               <td>
-                <span class="caption"><a href="/CompressiveStressesAtAnAngleToTheGrainEURO/?falfaD=1&amp;b=90&amp;l=70&amp;l1=70&amp;c1=0&amp;c2=30&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;alfaGr=30.5&amp;format=json"><b><code>/CompressiveStressesAtAnAngleToTheGrainEURO/?falfaD=1&b=90&l=70&l1=70&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=json</code></b></a></span> <br>
+                <span class="caption"><a href="/CompressiveStressesAtAnAngleToTheGrainEURO/api?falfaD=1&amp;b=90&amp;l=70&amp;l1=70&amp;c1=0&amp;c2=30&amp;h=300&amp;Continuous=false&amp;s=GL24h&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;alfaGr=30.5&amp;format=json"><b><code>/CompressiveStressesAtAnAngleToTheGrainEURO/api?falfaD=1&b=90&l=70&l1=70&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=json</code></b></a></span> <br>
               </td>
             </tr>
             <tr>
@@ -163,5 +160,5 @@
       </div>
     </div>
   </body>
-<% include donation %>
-<% include footer %>
+<% include GUI_donation %>
+<% include GUI_footer %>

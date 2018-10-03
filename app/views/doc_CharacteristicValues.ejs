@@ -1,4 +1,4 @@
-<% include head %>
+<% include GUI_head2 %>
 
 <body id="StartPage">
   <div class="container">
@@ -36,11 +36,7 @@
               </th>
               <td>
 
-                <div class="row-pictures">
-
-                  <img style="width: 75%;" src="/img/CharacteristicsValues.jpg" class="img-responsive center-block" >
-
-                </div>
+                <% include GUI_imagenes %>
 
               </td>
             </tr>
@@ -51,7 +47,7 @@
                 Example URL
               </th>
               <td>
-                <span class="caption"><a href="/CharacteristicValues/?s=C14&amp;format=json"><b><code>/CharacteristicValues/?s=C14&format=json</code></b></a></span> <br>
+                <span class="caption"><a href="/CharacteristicValues/api?s=C14&amp;format=json"><b><code>/CharacteristicValues/api?s=C14&format=json</code></b></a></span> <br>
               </td>
             </tr>
             <tr>
@@ -90,9 +86,9 @@
                 Success Response
               </th>
               <td>
-                <b> Example: </b> <br>
+                <b>Example: </b> <br>
                 <b>Code:</b> 200 <br>
-                <b>Example content:</b> <code> {"ID":"C14","fmk":14,"ft0k":8,"ft90k":0.4,"fc0k":16,"fc90k":2,"fvk":3,"E0mean":7,"E005":4.7,"E90mean":0.23,"Gmean":0.44,"rhok":290,"rhomean":350}</code><br>
+                <b>Example content:</b> <code>{"ID":"C14","fmk":14,"ft0k":8,"ft90k":0.4,"fc0k":16,"fc90k":2,"fvk":3,"E0mean":7,"E005":4.7,"E90mean":0.23,"Gmean":0.44,"rhok":290,"rhomean":350}</code><br>
               </td>
             </tr>
 
@@ -125,5 +121,5 @@
       </div>
     </div>
   </body>
-<% include donation %>
-<% include footer %>
+  <% include GUI_donation %>
+  <% include GUI_footer %>

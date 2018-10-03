@@ -1,4 +1,4 @@
-<% include head %>
+<% include GUI_head2 %>
 
 <body id="StartPage">
   <div class="container">
@@ -33,10 +33,7 @@
                 Image
               </th>
               <td>
-                <div class="row">
-                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/NotchedMembers1.jpg"/></div>
-                  <div class="col-xs-6 col-md-6"><img class="figure-img pull-right img-responsive" src="/img/NotchedMembers2.jpg"/></div>
-                </div>
+                <% include GUI_imagenes %>
              </td>
             </tr>
 
@@ -45,7 +42,7 @@
                 Example URL
               </th>
               <td>
-                <span class="caption"><a href="/NotchedMembers/?Vd=14752&amp;b=90&amp;hef=70&amp;h=5&amp;Kcr=false&amp;d=97&amp;s=GL24h&amp;x=4&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;notchOnSupport=true&amp;format=json"><b><code>/NotchedMembers/?Vd=14752&b=90&hef=70&h=5&Kcr=false&d=97&s=GL24h&x=4&service=1&LoadDuration=S&gammaM=1.25&notchOnSupport=true&format=json</code></b></a></span> <br>
+                <span class="caption"><a href="/NotchedMembers/api?Vd=14752&amp;b=90&amp;hef=70&amp;h=5&amp;Kcr=false&amp;d=97&amp;s=GL24h&amp;x=4&amp;service=1&amp;LoadDuration=S&amp;gammaM=1.25&amp;notchOnSupport=true&amp;format=json"><b><code>/NotchedMembers/api?Vd=14752&b=90&hef=70&h=5&Kcr=false&d=97&s=GL24h&x=4&service=1&LoadDuration=S&gammaM=1.25&notchOnSupport=true&format=json</code></b></a></span> <br>
               </td>
             </tr>
             <tr>
@@ -156,5 +153,5 @@
       </div>
     </div>
   </body>
-<% include donation %>
-<% include footer %>
+<% include GUI_donation %>
+<% include GUI_footer %>

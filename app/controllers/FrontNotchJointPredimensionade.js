@@ -96,7 +96,7 @@ router.get('/', function (req, res) {
 // //Para cálculos del estilo http://localhost:3705/FrontNotchJointPredimensionade/GUI/
 // router.get('/GUI', function (req, res) {
 //   //console.log(tabla.findService());
-//   res.render('NotchedMembers', {
+//   res.render('GUI_NotchedMembers', {
 //     title: 'NotchedMembers',
 //     woodtypes: tabla.findMaderaTypes(),
 //     services: tabla.findServiceTypes()

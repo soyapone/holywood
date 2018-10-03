@@ -11,6 +11,7 @@ passport = require('passport');
 
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
+var images = ['/img/MortiseTenon/MortiseTenonPillar/MortiseTenonPillar.jpg'];
 
 var db = require('../statics/APIRequests_db');
 
@@ -156,8 +157,8 @@ function getInputs(req){
 }
 
 //Para cálculos XML y JSON
-//http://localhost:3705/MortiseTenonPillar/?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=xml
-router.get('/', function (req, res) {
+//http://localhost:3705/MortiseTenonPillar/api?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=xml
+router.get('/api', function (req, res) {
   var result = validateAndGetValue(req,res);
   var inputs = getInputs(req);
 
@@ -183,11 +184,12 @@ db.SaveAPIRequest(req.connection.remoteAddress,"MortiseTenonPillar",inputs);
 });
 
 
-//Para cálculos del estilo //http://localhost:3705/MortiseTenonPillar/GUI
-router.get('/GUI', function (req, res) {
+//Para cálculos del estilo //http://localhost:3705/MortiseTenonPillar/
+router.get('/', function (req, res) {
   //console.log(tabla.findService());
-  res.render('MortiseTenonPillar', {
+  res.render('GUI_MortiseTenonPillar', {
     title: 'Mortise and Tenon as a Pillar',
+    images: images,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes()
   });
@@ -200,6 +202,7 @@ router.get('/doc', function (req, res) {
   //console.log(tabla.findService());
   res.render('doc_MortiseTenonPillar', {
     title: 'Mortise Tenon Pillar Documentation',
+    images: images,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

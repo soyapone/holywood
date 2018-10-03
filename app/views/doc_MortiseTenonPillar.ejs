@@ -1,4 +1,4 @@
-<% include head %>
+<% include GUI_head2 %>
 
 <body id="StartPage">
   <div class="container">
@@ -30,16 +30,14 @@
               <th valign="top">
                 Image
               </th>
-              <td>
-                <div class="cell"><img alt="Mortise Tenon Pillar" src="/img/MortiseTenonPillar.jpg" class="cell-fluid" /></div>
-              </td>
+              <% include GUI_imagenes %>
             </tr>
             <tr>
               <th valign="top">
                 Example URL
               </th>
               <td>
-                <span class="caption"><a href="/MortiseTenonPillar/?Nd=21&amp;b=21&amp;hprime=21&amp;bprime=21&amp;lprime=21&amp;a1=21&amp;a2=21&amp;l1=21&amp;h=21&amp;Continuous=true&amp;s=C14&amp;service=1&amp;LoadDuration=P&amp;gammaM=1.3&amp;format=json"><b><code>/MortiseTenonPillar/?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=json</code></b></a></span> <br>
+                <span class="caption"><a href="/MortiseTenonPillar/api?Nd=21&amp;b=21&amp;hprime=21&amp;bprime=21&amp;lprime=21&amp;a1=21&amp;a2=21&amp;l1=21&amp;h=21&amp;Continuous=true&amp;s=C14&amp;service=1&amp;LoadDuration=P&amp;gammaM=1.3&amp;format=json"><b><code>/MortiseTenonPillar/api?Nd=21&b=21&hprime=21&bprime=21&lprime=21&a1=21&a2=21&l1=21&h=21&Continuous=true&s=C14&service=1&LoadDuration=P&gammaM=1.3&format=json</code></b></a></span> <br>
               </td>
             </tr>
             <tr>
@@ -161,5 +159,5 @@
       </div>
     </div>
   </body>
-<% include donation %>
-<% include footer %>
+<% include GUI_donation %>
+<% include GUI_footer %>

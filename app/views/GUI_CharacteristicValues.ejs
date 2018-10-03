@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<% include GUI_head2 %>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.8/angular-resource.min.js"></script>
+<script type="text/javascript" src="../js/CharacteristicValues.js"></script>
+
+
+
+<body id="StartPage">
+  <% include GUI_navbar %>
+
+  <% include GUI_jumbotron %>
+
+
+  <div class="container" style="margin-top:30px">
+
+
+
+  <div ng-controller="CalculoController as calculoCtrl">
+
+
+    <% include GUI_imagenes %>
+    <h1 class="display-3 text-center">Inputs</h1>
+    <br>
+    <br>
+    <h2 class = "text-center">Strength class</h2>
+    <select style="width: 200px;" class="form-control mx-auto" ng-change="calculoCtrl.sendCalculation()" selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required data-toggle="tooltip" title="Structural Wood Quality">
+      <% for(var i=0; i<woodtypes.length; i++) { %>
+        <option value="<%= woodtypes[i] %>">
+          <%= woodtypes[i] %>
+        </option>
+        <% } %>
+      </select>
+
+      <br>
+      <br>
+      <hr>
+      <br>
+      <br>
+
+      <h1 class="display-3 text-center">Results</h1>
+      <div class="alert alert-danger text-center" ng-style = "{'display': errVisibility}">
+        <strong>Error!</strong> {{errMsg}}.
+      </div>
+
+      <div class="row d-flex justify-content-between">
+        <div class="col-xs-2 p-2">
+          <h3>fmk</h3>
+          <input class="form-control" ng-model="fmk" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>ft0k</h3>
+          <input class="form-control" ng-model="ft0k" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>ft90k</h3>
+          <input class="form-control" ng-model="ft90k" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>fc0k</h3>
+          <input class="form-control" ng-model="fc0k" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>fc90k</h3>
+          <input class="form-control" ng-model="fc90k"  readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>fvk</h3>
+          <input class="form-control" ng-model="fvk"  readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>E0mean</h3>
+          <input class="form-control" ng-model="E0mean" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>E005</h3>
+          <input class="form-control" ng-model="E005" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>E90mean</h3>
+          <input class="form-control" ng-model="E90mean" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>Gmean</h3>
+          <input class="form-control" ng-model="Gmean"  readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>rhok</h3>
+          <input class="form-control" ng-model="rhok" readonly data-toggle="tooltip" title=""><br>
+        </div>
+        <div class="col-xs-2 p-2">
+          <h3>rhomean</h3>
+          <input class="form-control" ng-model="rhomean"  readonly data-toggle="tooltip" title=""><br>
+        </div>
+      </div>
+
+      <div ng-style = "{'display': extVisibility}">
+      <div class="row d-flex justify-content-between" >
+        <div class="col-xs-2 p-2">
+          <h3>frgk</h3>
+          <input class="form-control" ng-model="frgk" readonly data-toggle="tooltip" title=""><br>
+        </div>
+
+        <div class="col-xs-2 p-2">
+          <h3>E90-05</h3>
+          <input class="form-control" ng-model="E9005"  readonly data-toggle="tooltip" title=""><br>
+        </div>
+
+        <div class="col-xs-2 p-2">
+          <h3>G05</h3>
+          <input class="form-control" ng-model="G05" readonly data-toggle="tooltip" title=""><br>
+        </div>
+
+        <div class="col-xs-2 p-2">
+          <h3>Grmean</h3>
+          <input class="form-control" ng-model="Grmean" readonly data-toggle="tooltip" title=""><br>
+        </div>
+
+        <div class="col-xs-2 p-2">
+          <h3>Gr05</h3>
+          <input class="form-control" ng-model="Gr05" readonly data-toggle="tooltip" title=""><br>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </div>
+
+
+  <% include GUI_donation %>
+  <% include GUI_footer %>
+</body>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

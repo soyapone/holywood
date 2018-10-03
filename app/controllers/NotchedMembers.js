@@ -119,8 +119,8 @@ function getInputs(req){
 }
 
 //Para cálculos XML y JSON
-//http://localhost:3705/NotchedMembers/?Vd=14752&b=90&hef=70&h=5&Kcr=false&d=97&s=GL24h&x=4&service=1&LoadDuration=S&gammaM=1.25&notchOnSupport=true&format=xml
-router.get('/', function (req, res) {
+//http://localhost:3705/NotchedMembers/api?Vd=14752&b=90&hef=70&h=5&Kcr=false&d=97&s=GL24h&x=4&service=1&LoadDuration=S&gammaM=1.25&notchOnSupport=true&format=xml
+router.get('/api', function (req, res) {
   var result = validateAndGetValue(req,res);
   var inputs = getInputs(req);
 
@@ -147,22 +147,63 @@ router.get('/', function (req, res) {
 });
 
 
-//Para cálculos del estilo http://localhost:3705/NotchedMembers/GUI/
-router.get('/GUI', function (req, res) {
+//Para cálculos del estilo All Cases http://localhost:3705/NotchedMembers/
+router.get('/', function (req, res) {
   //console.log(tabla.findService());
-  res.render('NotchedMembers', {
-    title: 'NotchedMembers',
+  var images = ['/img/NotchedMembers/AllCases/NotchedMemberOnSupport.PNG', '/img/NotchedMembers/AllCases/NotchedMemberOpposite.PNG'];
+
+  res.render('GUI_NotchedMembers', {
+    title: 'Notched Members',
+    images: images,
     woodtypes: tabla.findMaderaTypes(),
-    services: tabla.findServiceTypes()
+    services: tabla.findServiceTypes(),
+    fixedValues:{}
   });
   res.end();
 });
 
+
+//Para cálculos del estilo NotchOnSupport http://localhost:3705/NotchedMembers/NotchOnSupport
+router.get('/NotchOnSupport', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/NotchedMembers/NotchOnSupport/NotchOnSupport.PNG'];
+
+  res.render('GUI_NotchedMembers', {
+    title: 'Notched Members: Notch On Support',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (notchOnSupportFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{notchOnSupportFixed:true, notchOnSupport:true}
+  });
+  res.end();
+});
+
+
+//Para cálculos del estilo NotchOppositeTheSupport http://localhost:3705/NotchedMembers/NotchOppositeTheSupport
+router.get('/NotchOppositeTheSupport', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/NotchedMembers/NotchOppositeTheSupport/NotchOppositeTheSupport.PNG'];
+
+  res.render('GUI_NotchedMembers', {
+    title: 'Notched Members: Notch Opposite The Support',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (notchOnSupportFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{h:100,d:100,x:50,notchOnSupportFixed:true, notchOnSupport:false}
+  });
+  res.end();
+});
+
+
 //Para cálculos del estilo http://localhost:3705/NotchedMembers/doc/
 router.get('/doc', function (req, res) {
   //console.log(tabla.findService());
+  var images = ['/img/NotchedMembers/AllCases/NotchedMemberOnSupport.PNG', '/img/NotchedMembers/AllCases/NotchedMemberOpposite.PNG'];
   res.render('doc_NotchedMembers', {
     title: 'Notched Members Documentation',
+    images: images,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

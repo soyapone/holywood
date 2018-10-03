@@ -11,7 +11,7 @@ passport = require('passport');
 
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
-
+  var images = ['/img/WoodProperties/DesignValues/DesignValues.png'];
 var db = require('../statics/APIRequests_db');
 
 module.exports = function (app,mypassport) {
@@ -119,8 +119,8 @@ function getInputs(req){
 
 
 //Para cálculos XML y JSON
-//http://localhost:3705/DesignValues/?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&Kh=true&gammaM=1.30&format=xml
-router.get('/', function (req, res) {
+//http://localhost:3705/DesignValues/api/?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&Kh=true&gammaM=1.30&format=xml
+router.get('/api', function (req, res) {
   var result = validateAndGetValue(req,res);
   var inputs = getInputs(req);
 
@@ -148,11 +148,12 @@ db.SaveAPIRequest(req.connection.remoteAddress,"DesignValues",inputs);
 });
 
 
-//Para cálculos del estilo http://localhost:3705/DesignValues/GUI/
-router.get('/GUI', function (req, res) {
+//Para cálculos del estilo http://localhost:3705/DesignValues/
+router.get('/', function (req, res) {
   //console.log(tabla.findService());
-  res.render('DesignValues', {
+  res.render('GUI_DesignValues', {
     title: 'Design Values',
+    images: images,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes()
   });
@@ -164,6 +165,7 @@ router.get('/doc', function (req, res) {
   //console.log(tabla.findService());
   res.render('doc_DesignValues', {
     title: 'Design Values Documentation',
+    images: images,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

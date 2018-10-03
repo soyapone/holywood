@@ -15,7 +15,7 @@
       //this.calculation.resultado = "";
       //http://localhost:3705/CompressionPerpendicularToTheGrain/?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
       //
-      var myurl = '/CompressionPerpendicularToTheGrain/'
+      var myurl = '/CompressionPerpendicularToTheGrain/api'
       +'?Fd='+cal.calculation.Fd+'&b='+cal.calculation.b
       +'&l='+cal.calculation.l+'&a1='+cal.calculation.a1
       +'&a2='+cal.calculation.a2+'&l1='+cal.calculation.l1
@@ -63,28 +63,10 @@
           $scope.kc90 = "error";
           $scope.index = "error";
           $scope.myColor = "#FF0000";
-          
+
         });
 
     };
   }]);
-
-
-
-var gems = [
-{
-  name: 'Dodecaedro',
-  price: 2.95,
-  description: 'esta es la descripcion',
-  canPurchase: false
-},
-{
-  name: 'Gema superchula',
-  price: 17.00,
-  description: 'Gema que te cagas de chuli',
-  canPurchase: true
-}
-
-]
 
 })();

@@ -14,6 +14,8 @@ var visitor = ua('UA-80763829-1');
 
 var db = require('../statics/APIRequests_db');
 
+var images = ['/img/CompresionPerpendicularToTheGrain/AllCases/CompressionPerpendicularToTheGrain.jpg', '/img//CompresionPerpendicularToTheGrain/AllCases/CompresionPerpendicularPuntu.jpg'];
+
 module.exports = function (app,mypassport) {
   app.use('/CompressionPerpendicularToTheGrain', router);
   passport = mypassport;
@@ -172,8 +174,8 @@ function getInputs(req){
 
 
 //Para cálculos XML y JSON
-//http://localhost:3705/CompressionPerpendicularToTheGrain/?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
-router.get('/', function (req, res) {
+//http://localhost:3705/CompressionPerpendicularToTheGrain/api?Fd=14752&b=90&l=70&a1=0&a2=30&l1=1000&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&format=xml
+router.get('/api', function (req, res) {
   var result = validateAndGetValue(req,res);
   var inputs = getInputs(req);
   if (req.query.format == 'json'){
@@ -199,22 +201,126 @@ router.get('/', function (req, res) {
 });
 
 
-//Para cálculos del estilo http://localhost:3705/CompressionPerpendicularToTheGrain/GUI/
-router.get('/GUI', function (req, res) {
+//Para todos los casos generales http://localhost:3705/CompressionPerpendicularToTheGrain/
+router.get('/', function (req, res) {
   //console.log(tabla.findService());
-  res.render('CompressionPerpendicularToTheGrain', {
-    title: 'Compression Perpendicular to the Grain',
+
+  res.render('GUI_CompressionPerpendicularToTheGrain', {
+    title: 'Compression Perpendicular to the Grain: All Cases',
+    images: images,
     woodtypes: tabla.findMaderaTypes(),
-    services: tabla.findServiceTypes()
+    services: tabla.findServiceTypes(),
+    fixedValues:{}
   });
   res.end();
 });
 
-//Para cálculos del estilo http://localhost:3705/CompressionPerpendicularToTheGrain/doc/
+//Para el caso. MiddleSleeperBeam http://localhost:3705/CompressionPerpendicularToTheGrain/MiddleSleeperBeam
+router.get('/MiddleSleeperBeam', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/CompresionPerpendicularToTheGrain/MiddleSleeperBeam/MidleSleeperBeam.png'];
+
+  res.render('GUI_CompressionPerpendicularToTheGrain', {
+    title: 'Compression Perpendicular to the Grain: Middle Sleeper Beam',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{ a1 : 30, a2 : 30, ContinuousFixed:true , Continuous: true}
+  });
+  res.end();
+});
+
+//Para el caso. EndSleeperPillar http://localhost:3705/CompressionPerpendicularToTheGrain/EndSleeperPillar
+router.get('/EndSleeperPillar', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/CompresionPerpendicularToTheGrain/EndSleeperPillar/EndSleeperPillar.png'];
+
+  res.render('GUI_CompressionPerpendicularToTheGrain', {
+    title: 'Compression Perpendicular to the Grain: End Sleeper Pillar',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{ a1 : 0, a2 : 30, ContinuousFixed:true , Continuous: true}
+  });
+  res.end();
+});
+
+
+//Para el caso. EndSleeperPillar http://localhost:3705/CompressionPerpendicularToTheGrain/MiddleSleeperPillar
+router.get('/MiddleSleeperPillar', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/CompresionPerpendicularToTheGrain/MiddleSleeperPillar/MiddleSleeperPillar.png'];
+
+  res.render('GUI_CompressionPerpendicularToTheGrain', {
+    title: 'Compression Perpendicular to the Grain: Middle Sleeper Pillar',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{ a1 : 30, a2 : 30, ContinuousFixed:true , Continuous: true}
+  });
+  res.end();
+});
+
+
+//Para el caso. EndSleeperBeam http://localhost:3705/CompressionPerpendicularToTheGrain/EndSleeperBeam
+router.get('/EndSleeperBeam', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/CompresionPerpendicularToTheGrain/EndSleeperBeam/EndSleeperBeam.png'];
+
+  res.render('GUI_CompressionPerpendicularToTheGrain', {
+    title: 'Compression Perpendicular to the Grain: End Sleeper Beam',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{ a1 : 0, a2 : 30, ContinuousFixed:true , Continuous: true}
+  });
+  res.end();
+});
+
+
+//Para el caso. BeamCompression http://localhost:3705/CompressionPerpendicularToTheGrain/BeamCompression
+router.get('/BeamCompression', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/CompresionPerpendicularToTheGrain/BeamCompression/BeamCompression.png'];
+
+  res.render('GUI_CompressionPerpendicularToTheGrain', {
+    title: 'Compression Perpendicular to the Grain: Beam Compression',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{ a1 : 0, a2 : 30, l1 : 1, ContinuousFixed:true , Continuous: true}
+  });
+  res.end();
+});
+
+//Para el caso. EndDiscreteSupport http://localhost:3705/CompressionPerpendicularToTheGrain/EndDiscreteSupport
+router.get('/EndDiscreteSupport', function (req, res) {
+  //console.log(tabla.findService());
+  var images = ['/img/CompresionPerpendicularToTheGrain/EndDiscreteSupport/EndDiscreteSupport.png'];
+
+  res.render('GUI_CompressionPerpendicularToTheGrain', {
+    title: 'Compression Perpendicular to the Grain: End Discrete Support',
+    images: images,
+    woodtypes: tabla.findMaderaTypes(),
+    services: tabla.findServiceTypes(),
+    // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
+    fixedValues:{ a2 : 30, ContinuousFixed:true , Continuous: false}
+  });
+  res.end();
+});
+
+
+//Para documentación http://localhost:3705/CompressionPerpendicularToTheGrain/doc/
 router.get('/doc', function (req, res) {
   //console.log(tabla.findService());
   res.render('doc_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular To The Grain',
+    images: images,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

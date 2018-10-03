@@ -10,6 +10,7 @@ passport = require('passport');
 
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
+var images = ['/img/CompressiveStressesAtAnAngleToTheGrain/AllCases/AllCases1.jpg', '/img/CompressiveStressesAtAnAngleToTheGrain/AllCases/AllCases2.jpg'];
 
 var db = require('../statics/APIRequests_db');
 
@@ -130,9 +131,9 @@ function getInputs(req){
 
 
 //Para cálculos XML y JSON
-//http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainDIN/?falfaD=1&b=90&l=70&l1=1000&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=xml
+//http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainDIN/api?falfaD=1&b=90&l=70&l1=1000&c1=0&c2=30&h=300&Continuous=false&s=GL24h&service=1&LoadDuration=S&gammaM=1.25&alfaGr=30.5&format=xml
 
-router.get('/', function (req, res) {
+router.get('/api', function (req, res) {
   var result = validateAndGetValue(req,res);
   var inputs = getInputs(req);
   if (req.query.format == 'json'){
@@ -158,23 +159,12 @@ router.get('/', function (req, res) {
 });
 
 
-//Para cálculos del estilo http://localhost:3705/CompressionPerpendicularToTheGrain/GUI/
-router.get('/GUI', function (req, res) {
-  //console.log(tabla.findService());
-  res.render('CompressiveStressesAtAnAngleToTheGrain', {
-    title: 'Compressive Stresses at an Angle to the Grain',
-    woodtypes: tabla.findMaderaTypes(),
-    services: tabla.findServiceTypes()
-  });
-  res.end();
-
-});
-
 //Para cálculos del estilo http://localhost:3705/CompressiveStressesAtAnAngleToTheGrainDIN/doc/
 router.get('/doc', function (req, res) {
   //console.log(tabla.findService());
   res.render('doc_CompressiveStressesAtAnAngleToTheGrainDIN', {
     title: 'Compressive Stresses At An Angle To The Grain DIN DIN1052:2008 Documentation',
+    images: images,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

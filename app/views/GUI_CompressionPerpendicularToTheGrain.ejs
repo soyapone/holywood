@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<% include GUI_head2 %>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.8/angular-resource.min.js"></script>
+<script type="text/javascript" src="../js/CompressionPerpendicularToTheGrain.js"></script>
+
+
+
+<body id="StartPage">
+  <% include GUI_navbar %>
+
+  <% include GUI_jumbotron %>
+
+
+  <div class="container" style="margin-top:30px">
+    <h1 class="display-3 text-center"><%= title %></h1>
+    <!-- sección para la foto -->
+
+
+    <% include GUI_imagenes %>
+
+          <div ng-controller="CalculoController as calculoCtrl">
+            <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
+
+              <!-- sección para los parametros -->
+              <h1 class="display-3 text-center">Inputs</h1>
+
+              <h2>Material and geometrical parameters</h2>
+              <div class="row d-flex justify-content-between">
+              <div class="col-xs-2 p-2">
+                <h3>Strength class</h3>
+                <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.woodtype" required data-toggle="tooltip" title="Structural Wood Quality">
+                  <% for(var i=0; i<woodtypes.length; i++) { %>
+                    <option value="<%= woodtypes[i] %>"><%= woodtypes[i] %></option>
+                    <% } %>
+                  </select>
+                </div>
+
+                <div  class="col-xs-2 p-2">
+                  <h3>&gamma;<sub>M</sub></h3>
+                  <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.gammaM" required required data-toggle="tooltip" title="Partial factor for material properties, also acounting for model uncertainties and dimensional variations.">
+                    <option value="1.3">Solid timber (1.3)</option>
+                    <option value="1.25">Glued laminated timber (1.25)</option>
+                    <option value="1.2">LVL, plywood, OSB (1.2)</option>
+                    <option value="1.3">Particle boards (1.3)</option>
+                    <option value="1.3">Fibreboards hard, medium, mdf, soft (1.3)</option>
+                    <option value="1.3">Connections (1.3)</option>
+                    <option value="1.25">Punched metal plated fasteners (1.25)</option>
+                    <option value="1.0">Accidental combinations (1.0)</option>
+                  </select>
+                  <br>
+                </div>
+
+                <div class="col-xs-2 p-2">
+                  <h3>b (mm)</h3>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.b" name="b" placeholder="b" required data-toggle="tooltip" title="Contact width measured in millimeters"><br>
+                </div>
+
+                <div class="col-xs-2 p-2">
+                  <h3>h (mm)</h3>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.h" name="h" placeholder="h" required data-toggle="tooltip" title="Height measured in millimeters"><br>
+                </div>
+
+                <div class="col-xs-2 p-2">
+                  <h3>l (mm)</h3>
+                  <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.l" name="l" placeholder="l" required data-toggle="tooltip" title="Contact length measured in millimeters"><br>
+                </div>
+
+              </div>
+
+              <h2>Factors of safety and other design parameters</h2>
+
+              <div class="row d-flex justify-content-between">
+
+                <div class="col-xs-2 p-2">
+                  <h3>Service class</h3>
+                  <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.service" required data-toggle="tooltip" title="Structures shall be assigned to one of the services classes depending on its moisture content.">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+
+                  <div  class="col-xs-2 p-2">
+                    <h3>Load-duration</h3>
+                    <select class="form-control" selected="selected" ng-model = "calculoCtrl.calculation.LoadDuration" required data-toggle="tooltip" title="The load duration classes are characterised by the effect of a constant load acting for a certain period of time in the life of the structure">
+                      <option value="P">Permanent</option>
+                      <option value="L">Long-term</option>
+                      <option value="M">Medium-term</option>
+                      <option value="S">Short-term</option>
+                      <option value="I">Instantaneous</option>
+                    </select>
+                  </div>
+
+                  <div class="
+                  <% if(fixedValues.ContinuousFixed){ %>
+                    d-none
+                  <% } else { %>
+                    col-xs-2 p-2
+                  <% } %>
+
+                  ">
+                    <h3>Supports</h3>
+                    <% if(fixedValues.ContinuousFixed){ %>
+                      <input class="form-control" ng-model = "calculoCtrl.calculation.Continuous" required data-toggle="tooltip" title="Structural design" ng-init="calculoCtrl.calculation.Continuous = <%= fixedValues.Continuous %>" disabled>
+                    <% } else { %>
+                        <select class="form-control" ng-model = "calculoCtrl.calculation.Continuous" required data-toggle="tooltip" title="Structural design"><br>
+                          <option value="true">Continuous</option>
+                          <option value="false">Discrete</option>
+                        </select>
+
+                    <% } %>
+                  </div>
+
+                  <div class="
+                  <% if(fixedValues.a1){ %>
+                    d-none
+                  <% } else { %>
+                    col-xs-2 p-2
+                  <% } %>
+                  ">
+                    <h3>a1 (mm)</h3>
+                    <input class="form-control" type="number" min="0" max="100000" ng-model="calculoCtrl.calculation.a1" name="a1" placeholder="a1" required data-toggle="tooltip" title="Additional length to the effective contact length (l) parallel to the grain. The contact length, l, at each side is increased by 30 mm,but no more than a1 (see the picture for discrete support), l or l1/2."
+                    <% if(fixedValues.a1){ %>
+                      ng-init="calculoCtrl.calculation.a1 = <%= fixedValues.a1 %>" value="<%= fixedValues.a1 %>" disabled
+                      <% } %>
+                      ><br>
+                  </div>
+
+                  <div class="
+                  <% if(fixedValues.a2){ %>
+                    d-none
+                  <% } else { %>
+                    col-xs-2 p-2
+                  <% } %>
+                  ">
+                    <h3>a2 (mm)</h3>
+                    <input class="form-control" type="number" required min="0" max="100000" ng-model="calculoCtrl.calculation.a2" name="a2" placeholder="a2" required data-toggle="tooltip" title="Additional length to the effective contact length (l) parallel to the grain. The contact length, l, at each side is increased by 30 mm,but no more than a1 (see the picture for discrete support), l or l1/2."
+                    <% if(fixedValues.a2){ %>
+                      ng-init="calculoCtrl.calculation.a2 = <%= fixedValues.a2 %>" value="<%= fixedValues.a2 %>" disabled
+                      <% } %>
+                      ><br>
+                  </div>
+
+                  <div class="
+                  <% if(fixedValues.l1){ %>
+                    d-none
+                  <% } else { %>
+                    col-xs-2 p-2
+                  <% } %>
+
+                  ">
+                    <h3>l1 (mm)</h3>
+                    <input class="form-control" type="number" required min="0" max="100000" ng-model="calculoCtrl.calculation.l1" name="l1" placeholder="l1" required data-toggle="tooltip" title="Distance between supports measured in millimeters"
+                    <% if(fixedValues.l1){ %>
+                      ng-init="calculoCtrl.calculation.l1 = <%= fixedValues.l1 %>" value="<%= fixedValues.l1 %>" disabled
+                      <% } %>
+                      ><br>
+                  </div>
+              </div>
+              <h2>Loads</h2>
+              <div class="row d-flex justify-content-between">
+                <div class="col-xs-2 p-2">
+                  <h3>Fd (N)</h3>
+                  <input class="form-control" type="number" min="0" max="10000000" ng-model="calculoCtrl.calculation.Fd" name="Fd" placeholder="Fd" required data-toggle="tooltip" title="Design compressive load perpendicular to the grain measured in Newtons"><br>
+                </div>
+              </div>
+
+              <input class="form-control" type="submit" value="Submit" ng-disabled = "!calculoForm.$valid" class="btn btn-primary"/>
+
+              <br>
+              <br>
+              <hr>
+              <br>
+              <br>
+
+              <h1 class="display-3 text-center">Results</h1>
+
+              <div class="alert alert-danger text-center" ng-style = "{'display': errVisibility}">
+                <strong>Error!</strong> {{errMsg}}.
+              </div>
+
+              <div class="row d-flex justify-content-between">
+                <div class="col-xs-2 p-2">
+                  <h3><small>&sigma;<sub>C90d</sub>(N/mm<sup>2</sup>)</small></h3><br>
+                  <input class="form-control" ng-model="sigmaC90d" readonly data-toggle="tooltip" title="Design compressive stress perpendicular to the grain"><br>
+                </div>
+                <div class="col-xs-2 p-2">
+                  <h3><small>fc90d (N)</small></h3> <br>
+                  <input class="form-control" ng-model="fc90d" readonly data-toggle="tooltip" title="Design compressive strength perpendicular to the grain"><br>
+                </div>
+                <div class="col-xs-2 p-2">
+                  <h3><small>areaEf (mm<sup>2</sup>)</small></h3><br>
+                  <input class="form-control" ng-model="areaEf" readonly data-toggle="tooltip" title="Effective contact areaof the total contact surface"><br>
+                </div>
+                <div class="col-xs-2 p-2">
+                  <h3><small>kc90</small></h3><br>
+                  <input class="form-control" ng-model="kc90" readonly data-toggle="tooltip" title="Factor taking into account the load configuration, the possibility of splitting and the degree of compressive deformation."><br>
+                </div>
+                <div class="col-xs-4 p-2">
+                  <h3><small>index</small></h3><br>
+                  <input class="form-control" ng-model="index"  ng-style="{'background-color': myColor}" readonly data-toggle="tooltip" title="This value checks the 6.3 formula of EN 1995-1-1:2004+A1:2008 and should be lower or equal than 1"><br>
+                </div>
+              </div>
+
+
+
+            </div>
+            <!-- <div> El formulario es: {{calculoForm.$valid}}</div> -->
+            <br>
+          </form>
+
+        </div>
+
+
+
+        <% include GUI_donation %>
+        <% include GUI_footer %>
+
+        <!-- <script>
+        var app = angular.module('myApp', []);
+        app.controller('CalculoController', function($scope) {
+        $scope.calculoCtrl.calculation.a1 = 30;
+      });
+    </script> -->
+
+
+</body>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>

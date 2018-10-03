@@ -1,4 +1,4 @@
-<% include head %>
+<% include GUI_head2 %>
 
 <body id="StartPage">
   <div class="container">
@@ -35,8 +35,10 @@
                 Image
               </th>
               <td>
-                <div class="cell"><img style="width: 75%;" alt="Design Values" src="/img/DesignValues.jpg" class="cell-fluid" /></div>
+                <% include GUI_imagenes %>
               </td>
+
+
             </tr>
 
             <tr>
@@ -44,7 +46,7 @@
                 Example URL
               </th>
               <td>
-                <span class="caption"><a href="/DesignValues/?s=GL24h&amp;service=1&amp;LoadDuration=S&amp;b=70&amp;h=70&amp;Ksys=true&amp;Kh=true&amp;gammaM=1.30&amp;format=json"><b><code>/DesignValues/?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&Kh=true&gammaM=1.30&format=json</code></b></a></span> <br>
+                <span class="caption"><a href="/DesignValues/api?s=GL24h&amp;service=1&amp;LoadDuration=S&amp;b=70&amp;h=70&amp;Ksys=true&amp;Kh=true&amp;gammaM=1.30&amp;format=json"><b><code>/DesignValues/api?s=GL24h&service=1&LoadDuration=S&b=70&h=70&Ksys=true&Kh=true&gammaM=1.30&format=json</code></b></a></span> <br>
               </td>
             </tr>
             <tr>
@@ -144,5 +146,5 @@
       </div>
     </div>
   </body>
-<% include donation %>
-<% include footer %>
+<% include GUI_donation %>
+<% include GUI_footer %>
