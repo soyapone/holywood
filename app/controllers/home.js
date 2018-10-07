@@ -5,7 +5,7 @@ mongoose = require('mongoose'),
 xmlify = require('xmlify'),
 util = require('util'),
 passport = require('passport');
-
+var def = require('../statics/StaticValues.json');
 
 module.exports = function (app,mypassport) {
   app.use('/', router);
@@ -15,7 +15,8 @@ module.exports = function (app,mypassport) {
 
 router.get('/', function (req, res, next) {
   res.render('GUI_main', {
-    title: 'WOODCALC - Specialists in wood joint calculations'
+    title: 'WOODCALC - Specialists in wood joint calculations',
+    descriptions: def.FunctionsDefinitions,
   });
 });
 

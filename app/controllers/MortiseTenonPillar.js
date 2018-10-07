@@ -14,7 +14,7 @@ var visitor = ua('UA-80763829-1');
 var images = ['/img/MortiseTenon/MortiseTenonPillar/MortiseTenonPillar.jpg'];
 
 var db = require('../statics/APIRequests_db');
-
+var def = require('../statics/StaticValues.json');
 
 module.exports = function (app,mypassport) {
   app.use('/MortiseTenonPillar', router);
@@ -189,6 +189,7 @@ router.get('/', function (req, res) {
   //console.log(tabla.findService());
   res.render('GUI_MortiseTenonPillar', {
     title: 'Mortise and Tenon as a Pillar',
+    description: def.FunctionsDefinitions.MortiseTenon.MortiseTenonPillar,
     images: images,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes()
@@ -203,6 +204,7 @@ router.get('/doc', function (req, res) {
   res.render('doc_MortiseTenonPillar', {
     title: 'Mortise Tenon Pillar Documentation',
     images: images,
+    description: def.FunctionsDefinitions.MortiseTenon.MortiseTenonPillar,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

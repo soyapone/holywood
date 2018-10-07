@@ -14,6 +14,8 @@ var visitor = ua('UA-80763829-1');
 
 var db = require('../statics/APIRequests_db');
 
+var def = require('../statics/StaticValues.json');
+
 var images = ['/img/CompresionPerpendicularToTheGrain/AllCases/CompressionPerpendicularToTheGrain.jpg', '/img//CompresionPerpendicularToTheGrain/AllCases/CompresionPerpendicularPuntu.jpg'];
 
 module.exports = function (app,mypassport) {
@@ -208,6 +210,7 @@ router.get('/', function (req, res) {
   res.render('GUI_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain: All Cases',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.AllCases,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     fixedValues:{}
@@ -223,6 +226,7 @@ router.get('/MiddleSleeperBeam', function (req, res) {
   res.render('GUI_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain: Middle Sleeper Beam',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.MiddleSleeperBeam,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -239,6 +243,7 @@ router.get('/EndSleeperPillar', function (req, res) {
   res.render('GUI_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain: End Sleeper Pillar',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.EndSleeperPillar,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -256,6 +261,7 @@ router.get('/MiddleSleeperPillar', function (req, res) {
   res.render('GUI_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain: Middle Sleeper Pillar',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.MiddleSleeperPillar,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -273,6 +279,7 @@ router.get('/EndSleeperBeam', function (req, res) {
   res.render('GUI_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain: End Sleeper Beam',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.EndSleeperBeam,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -290,6 +297,7 @@ router.get('/BeamCompression', function (req, res) {
   res.render('GUI_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain: Beam Compression',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.BeamCompression,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -306,6 +314,7 @@ router.get('/EndDiscreteSupport', function (req, res) {
   res.render('GUI_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular to the Grain: End Discrete Support',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.EndDiscreteSupport,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (ContinuousFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -321,6 +330,7 @@ router.get('/doc', function (req, res) {
   res.render('doc_CompressionPerpendicularToTheGrain', {
     title: 'Compression Perpendicular To The Grain',
     images: images,
+    description: def.FunctionsDefinitions.CompressionPerpendicularToTheGrain.AllCases,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

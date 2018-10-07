@@ -19,7 +19,8 @@
     <!-- sección para la foto -->
 
     <% include GUI_imagenes %>
-
+    <br>
+    <% include GUI_function_description %>
     <div ng-controller="CalculoController as calculoCtrl">
       <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
 

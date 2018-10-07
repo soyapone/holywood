@@ -19,6 +19,8 @@
     <!-- sección para la foto -->
 
     <% include GUI_imagenes %>
+    <br>
+    <% include GUI_function_description %>
 
     <div ng-controller="CalculoController as calculoCtrl">
       <form name="calculoForm" ng-submit = "calculoForm.$valid && calculoCtrl.sendCalculation()" novalidate>
@@ -148,7 +150,7 @@
         <div class="row d-flex justify-content-between">
           <div class="col-xs-2 p-2">
             <h3>falfaD</h3>
-            <input class="form-control" type="number" min="0" max="10000000" ng-model="calculoCtrl.calculation.falfaD" name="falfaD" placeholder="falfaD" required data-toggle="tooltip" title="Design value of a force in alfa-direction"><br>
+            <input class="form-control" type="number" min="0" max="10000000" ng-model="calculoCtrl.calculation.falfaD" name="falfaD" placeholder="falfaD" required data-toggle="tooltip" title="Design value of a force in alfa-direction (N)"><br>
           </div>
         </div>
 

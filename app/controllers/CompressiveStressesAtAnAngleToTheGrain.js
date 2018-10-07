@@ -13,6 +13,7 @@ var visitor = ua('UA-80763829-1');
 var images = ['/img/CompressiveStressesAtAnAngleToTheGrain/AllCases/AllCases1.jpg', '/img/CompressiveStressesAtAnAngleToTheGrain/AllCases/AllCases2.jpg'];
 
 var db = require('../statics/APIRequests_db');
+var def = require('../statics/StaticValues.json');
 
 module.exports = function (app,mypassport) {
   app.use('/CompressiveStressesAtAnAngleToTheGrain', router);
@@ -27,6 +28,7 @@ router.get('/', function (req, res) {
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     images: images,
+    description: def.FunctionsDefinitions.CompressiveStressesAtAnAngleToTheGrain.AllCases,
     fixedValues:{}
   });
   res.end();
@@ -40,6 +42,7 @@ router.get('/AngleRafter', function (req, res) {
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     images: images,
+    description: def.FunctionsDefinitions.CompressiveStressesAtAnAngleToTheGrain.AngleRafter,
     // Nos hemos inventado ContinuousFixed para indicar que está fijado
     // Y l1 para decir que lo queremos fijar, luego en el EJS se fija a h
     fixedValues:{ l1:true, ContinuousFixed:true , Continuous: false}

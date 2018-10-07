@@ -13,6 +13,7 @@ var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
 var db = require('../statics/APIRequests_db');
+var def = require('../statics/StaticValues.json');
 
 module.exports = function (app,mypassport) {
   app.use('/NotchedMembers', router);
@@ -155,6 +156,7 @@ router.get('/', function (req, res) {
   res.render('GUI_NotchedMembers', {
     title: 'Notched Members',
     images: images,
+    description: def.FunctionsDefinitions.NotchedMembers.AllCases,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     fixedValues:{}
@@ -171,6 +173,7 @@ router.get('/NotchOnSupport', function (req, res) {
   res.render('GUI_NotchedMembers', {
     title: 'Notched Members: Notch On Support',
     images: images,
+    description: def.FunctionsDefinitions.NotchedMembers.NotchOnSupport,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (notchOnSupportFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -188,6 +191,7 @@ router.get('/NotchOppositeTheSupport', function (req, res) {
   res.render('GUI_NotchedMembers', {
     title: 'Notched Members: Notch Opposite The Support',
     images: images,
+    description: def.FunctionsDefinitions.NotchedMembers.NotchOppositeTheSupport,
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes(),
     // Me invento un parámetro más (notchOnSupportFixed) para saber si se fija o no, porque no hay manera de saber si está activado en EJS
@@ -204,6 +208,7 @@ router.get('/doc', function (req, res) {
   res.render('doc_NotchedMembers', {
     title: 'Notched Members Documentation',
     images: images,
+    description: def.FunctionsDefinitions.NotchedMembers.AllCases,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

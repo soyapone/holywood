@@ -12,6 +12,7 @@ var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
 
 var db = require('../statics/APIRequests_db');
+var def = require('../statics/StaticValues.json');
 
 module.exports = function (app,mypassport) {
   app.use('/MortiseTenonShear', router);
