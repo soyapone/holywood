@@ -14,6 +14,7 @@ var visitor = ua('UA-80763829-1');
 var images = ["/img/WoodProperties/CharacteristicValues/CharacteristicValues.png"];
 
 var db = require('../statics/APIRequests_db');
+var def = require('../statics/StaticValues.json');
 
 module.exports = function (app,mypassport) {
   app.use('/CharacteristicValues', router);
@@ -101,6 +102,7 @@ router.get('/', function (req, res) {
   res.render('GUI_CharacteristicValues', {
     title: 'Characteristic Values',
     images: images,
+    description: "",
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();
@@ -108,11 +110,12 @@ router.get('/', function (req, res) {
 
 //Para cálculos del estilo http://localhost:3705/CharacteristicValues/doc/
 router.get('/doc', function (req, res) {
-  //console.log(tabla.findService());
-  res.render('doc_CharacteristicValues', {
-    title: 'Characteristic Values Documentation',
-    images: images,
-    woodtypes: tabla.findMaderaTypes()
-  });
+  console.log(tabla.findMaderaTypes());
+   res.render('doc_CharacteristicValues', {
+     title: 'Characteristic Values Documentation',
+     images: images,
+     description: "",
+     woodtypes: tabla.findMaderaTypes()
+   });
   res.end();
 });

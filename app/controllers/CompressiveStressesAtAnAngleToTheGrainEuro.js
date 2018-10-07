@@ -13,6 +13,7 @@ var visitor = ua('UA-80763829-1');
 var images = ['/img/CompressiveStressesAtAnAngleToTheGrain/AllCases/AllCases1.jpg', '/img/CompressiveStressesAtAnAngleToTheGrain/AllCases/AllCases2.jpg'];
 
 var db = require('../statics/APIRequests_db');
+var def = require('../statics/StaticValues.json');
 
 module.exports = function (app,mypassport) {
   app.use('/CompressiveStressesAtAnAngleToTheGrainEURO', router);
@@ -161,6 +162,7 @@ router.get('/doc', function (req, res) {
   res.render('doc_CompressiveStressesAtAnAngleToTheGrainEURO', {
     title: 'Compressive Stresses At An Angle To The Grain EUROCODE 5 Documentation',
     images: images,
+    description: def.FunctionsDefinitions.CompressiveStressesAtAnAngleToTheGrain.AllCases,
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();

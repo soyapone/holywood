@@ -11,7 +11,7 @@ passport = require('passport');
 
 var ua = require('universal-analytics');
 var visitor = ua('UA-80763829-1');
-  var images = ['/img/WoodProperties/DesignValues/DesignValues.png'];
+var images = ['/img/WoodProperties/DesignValues/DesignValues.png'];
 var db = require('../statics/APIRequests_db');
 
 module.exports = function (app,mypassport) {
@@ -154,6 +154,7 @@ router.get('/', function (req, res) {
   res.render('GUI_DesignValues', {
     title: 'Design Values',
     images: images,
+    description: "",
     woodtypes: tabla.findMaderaTypes(),
     services: tabla.findServiceTypes()
   });
@@ -166,6 +167,7 @@ router.get('/doc', function (req, res) {
   res.render('doc_DesignValues', {
     title: 'Design Values Documentation',
     images: images,
+    description: "",
     woodtypes: tabla.findMaderaTypes()
   });
   res.end();
